@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dilsixv38qkun"]
 
-[ext_resource type="Script" uid="uid://yfe3aplmup1m" path="res://scripts/menu.gd" id="1_4ytvr"]
-[ext_resource type="Script" uid="uid://u7qe0otswsed" path="res://scripts/gallina.gd" id="2_vjb58"]
+[ext_resource type="Texture2D" uid="uid://dplneunstwwl5" path="res://assets/kiu/kiu.png" id="1"]
+[ext_resource type="Script" uid="uid://u7qe0otswsed" path="res://scenes/gallina.gd" id="2_vjb58"]
 [ext_resource type="Texture2D" uid="uid://caovse1w307rk" path="res://assets/kiu/kiu_0.png" id="3_4ytvr"]
 [ext_resource type="Texture2D" uid="uid://wk50s3u4krm0" path="res://assets/kiu/kiu_1.png" id="4_g3eks"]
 [ext_resource type="Texture2D" uid="uid://dgrkdtpcoe8ee" path="res://assets/kiu/kiu_2.png" id="5_v86rl"]
@@ -25,8 +25,8 @@ animations = [{
 "texture": ExtResource("3_4ytvr")
 }],
 "loop": true,
-"name": &"walk",
-"speed": 12.0
+"name": &"default",
+"speed": 6.0
 }]
 
 [node name="Control" type="Control"]
@@ -36,7 +36,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_4ytvr")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -47,13 +46,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.156863, 0.635294, 0.207843, 1)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="gallina" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(123, 525)
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_13sgg")
-animation = &"walk"
-frame_progress = 0.245044
+texture = ExtResource("1")
 script = ExtResource("2_vjb58")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="gallina"]
+sprite_frames = SubResource("SpriteFrames_13sgg")
+frame_progress = 0.943383
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b57xprbit0cp3"
-path="res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"
+uid="uid://wk50s3u4krm0"
+path="res://.godot/imported/kiu_1.png-536f3ebe8d45d9a90c2f6f0106914176.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=["res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"]
+source_file="res://assets/kiu/kiu_1.png"
+dest_files=["res://.godot/imported/kiu_1.png-536f3ebe8d45d9a90c2f6f0106914176.ctex"]
 
 [params]
 
