@@ -18,3 +18,6 @@ Este proyecto combina arte en pixelart con mecánicas de juego simples pero desa
 1. Clona este repositorio:
    ```bash
    git clone https://github.com/eviecamila/kiukiu-escape.git
+
+
+fun fact: las carceles son lo equivalente a cualquier caseta de santa rosa XDDDD

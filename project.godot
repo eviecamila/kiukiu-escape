@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="n ew new"
-run/main_scene="res://scenes/menu.tscn"
-config/features=PackedStringArray("4.4")
+run/main_scene="uid://d32h4g5tqweec"
+config/features=PackedStringArray("4.4", "C#")
 boot_splash/image="uid://b57xprbit0cp3"
 config/icon="res://icon.png"
+
+[dotnet]
+
+project/assembly_name="n ew new"
 
 [gui]
 
