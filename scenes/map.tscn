@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ri0bwlxkp7yr"]
+[gd_scene load_steps=4 format=3 uid="uid://ri0bwlxkp7yr"]
 
 [ext_resource type="Script" uid="uid://dw3t0qfmglgp6" path="res://map.gd" id="1_4xfga"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_4xfga"]
+
+[sub_resource type="TileSet" id="TileSet_4xfga"]
 
 [node name="map" type="Control"]
 layout_mode = 3
@@ -19,3 +21,7 @@ script = ExtResource("1_4xfga")
 offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("ImageTexture_4xfga")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_4xfga")
+format = 2
