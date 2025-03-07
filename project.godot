@@ -16,12 +16,20 @@ config/features=PackedStringArray("4.4", "C#")
 boot_splash/image="uid://b57xprbit0cp3"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [dotnet]
 
 project/assembly_name="n ew new"
 
 [gui]
 
+theme/custom_font="uid://dmsgnyy4g4sev"
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]
