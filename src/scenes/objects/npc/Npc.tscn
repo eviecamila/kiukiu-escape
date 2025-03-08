@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3x8mnmy1s3rf"]
+
+[ext_resource type="Script" uid="uid://dp62mf616jijc" path="res://src/scenes/objects/npc/npc.gd" id="1_f6lo0"]
+[ext_resource type="Texture2D" uid="uid://caovse1w307rk" path="res://assets/kiu/kiu_0.png" id="2_goc85"]
+[ext_resource type="Texture2D" uid="uid://wk50s3u4krm0" path="res://assets/kiu/kiu_1.png" id="3_p1ev0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f6lo0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_goc85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p1ev0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p1ev0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_goc85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_goc85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_goc85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_goc85")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_goc85"]
+size = Vector2(14.9496, 0.985163)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1ev0"]
+size = Vector2(11.8962, 0.897026)
+
+[sub_resource type="LabelSettings" id="LabelSettings_goc85"]
+font_size = 64
+font_color = Color(0.703808, 0.703808, 0.703808, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="NPC" type="Node2D"]
+texture_filter = 1
+scale = Vector2(3.62519, 3.62519)
+script = ExtResource("1_f6lo0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f6lo0")
+animation = &"idle"
+
+[node name="TextureRect" type="TextureRect" parent="AnimatedSprite2D"]
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(-13.3028, 15.7233)
+scale = Vector2(1.025, 0.853658)
+shape = SubResource("RectangleShape2D_goc85")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(19.7057, 15.6201)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_p1ev0")
+
+[node name="DialogueText" type="Label" parent="."]
+texture_filter = 1
+offset_left = 13.5165
+offset_top = -47.9975
+offset_right = 91.5165
+offset_bottom = 29.0025
+scale = Vector2(0.164473, 0.164473)
+label_settings = SubResource("LabelSettings_goc85")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

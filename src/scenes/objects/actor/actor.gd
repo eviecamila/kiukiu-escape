@@ -8,4 +8,3 @@ class_name Actor
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
-	print("instancia puesta")
