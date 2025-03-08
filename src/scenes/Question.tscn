@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfbo3ovefukua"]
 
-[ext_resource type="Script" uid="uid://cp56bu1p5ehts" path="res://scenes/Question.cs" id="1_11xw1"]
+[ext_resource type="Script" uid="uid://cp56bu1p5ehts" path="res://src/scenes/Question.cs" id="1_11xw1"]
 [ext_resource type="Texture2D" uid="uid://uv6jj1acwrpm" path="res://chinita mimmosa.png" id="2_aa8bi"]
 
 [node name="QuestionModal" type="Control"]
@@ -20,6 +20,7 @@ metadata/res1_value = false
 metadata/res2_value = false
 
 [node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
 offset_left = 62.0
 offset_top = 8.0
 offset_right = 203.0
@@ -29,6 +30,7 @@ del juego???"
 editable = false
 
 [node name="sprite" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 64.0
@@ -36,6 +38,7 @@ offset_bottom = 103.0
 texture = ExtResource("2_aa8bi")
 
 [node name="YES" type="Button" parent="."]
+layout_mode = 0
 offset_left = 114.0
 offset_top = 95.0
 offset_right = 191.0
@@ -43,6 +46,7 @@ offset_bottom = 123.0
 text = "NO"
 
 [node name="No2" type="Button" parent="."]
+layout_mode = 0
 offset_left = 7.0
 offset_top = 95.0
 offset_right = 84.0

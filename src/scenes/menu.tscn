@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmmyiuak3ahdh"]
 
 [ext_resource type="Script" uid="uid://yfe3aplmup1m" path="res://scripts/menu.gd" id="1_4ytvr"]
-[ext_resource type="Script" uid="uid://bkxqc2oucpfnw" path="res://scenes/player.cs" id="2_g3eks"]
+[ext_resource type="Script" uid="uid://umyxyrbvdo4j" path="res://src/scenes/objects/player/hen.gd" id="2_nr8cr"]
 [ext_resource type="Texture2D" uid="uid://cox4p35vwgxgr" path="res://assets/kiu/framedata.png" id="3_g3eks"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v86rl"]
@@ -68,11 +68,11 @@ color = Color(0.156863, 0.635294, 0.207843, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("2_g3eks")
+script = ExtResource("2_nr8cr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-position = Vector2(532, 326)
+position = Vector2(426, 287)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_13sgg")
 animation = &"walk"

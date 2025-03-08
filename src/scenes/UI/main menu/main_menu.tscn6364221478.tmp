@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://d32h4g5tqweec"]
+
+[ext_resource type="Script" uid="uid://bor5v3sfcvqvs" path="res://src/scenes/UI/main menu/main_menu.gd" id="1_58dk5"]
+[ext_resource type="Texture2D" uid="uid://c6ff8r4bjud47" path="res://assets/kiu/menu.png" id="2_vifqf"]
+[ext_resource type="Texture2D" uid="uid://db5wavmunptyl" path="res://assets/kiu/logo.png" id="3_vifqf"]
+[ext_resource type="Script" uid="uid://07ugkqn7jbjw" path="res://src/scenes/UI/main menu/menu_bg.gd" id="3_wg3jj"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_58dk5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -156.0
+offset_top = -119.0
+offset_right = 1443.0
+offset_bottom = 821.0
+texture = ExtResource("2_vifqf")
+stretch_mode = 4
+script = ExtResource("3_wg3jj")
+
+[node name="Container" type="VBoxContainer" parent="TextureRect"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 228.0
+offset_top = 223.0
+offset_right = 637.0
+offset_bottom = 602.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Container"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_vifqf")
+expand_mode = 5
+
+[node name="Start" type="Button" parent="TextureRect/Container"]
+layout_mode = 2
+text = "Start"
+
+[node name="Settings" type="Button" parent="TextureRect/Container"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Exit" type="Button" parent="TextureRect/Container"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="TextureRect/Container/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="TextureRect/Container/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="TextureRect/Container/Exit" to="." method="_on_exit_pressed"]

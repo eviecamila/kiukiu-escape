@@ -19,5 +19,9 @@ Este proyecto combina arte en pixelart con mecánicas de juego simples pero desa
    ```bash
    git clone https://github.com/eviecamila/kiukiu-escape.git
 
+## Agradecimientos
+
+Lo aprendido se lo debo a los siguientes repositorios:
+[Plataformero de GDQuest Demos](https://github.com/gdquest-demos/godot-3-beginner-2d-platformer)
 
 fun fact: las carceles son lo equivalente a cualquier caseta de santa rosa XDDDD

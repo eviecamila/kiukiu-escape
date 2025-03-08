@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://d32h4g5tqweec"]
+
+[ext_resource type="Script" uid="uid://bor5v3sfcvqvs" path="res://src/scenes/UI/main menu/main_menu.gd" id="1_58dk5"]
+[ext_resource type="Texture2D" uid="uid://c6ff8r4bjud47" path="res://assets/kiu/menu.png" id="2_vifqf"]
+[ext_resource type="Texture2D" uid="uid://db5wavmunptyl" path="res://assets/kiu/logo.png" id="3_vifqf"]
+[ext_resource type="Shader" uid="uid://dqncnwmwrhl0v" path="res://src/scenes/UI/main menu/menu_bg.gdshader" id="4_uhuqf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uhuqf"]
+shader = ExtResource("4_uhuqf")
+shader_parameter/direction = Vector2(1, 0)
+shader_parameter/speed = 0.5
+shader_parameter/amplitude = 0.3
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_58dk5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_uhuqf")
+offset_left = -318.0
+offset_top = -398.0
+offset_right = 2366.0
+offset_bottom = 1132.0
+texture = ExtResource("2_vifqf")
+stretch_mode = 4
+
+[node name="Container" type="VBoxContainer" parent="."]
+texture_filter = 1
+offset_left = 72.0
+offset_top = 104.0
+offset_right = 481.0
+offset_bottom = 483.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Container"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_vifqf")
+expand_mode = 5
+
+[node name="Start" type="Button" parent="Container"]
+layout_mode = 2
+text = "Start"
+
+[node name="Settings" type="Button" parent="Container"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Exit" type="Button" parent="Container"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="Container/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Container/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Container/Exit" to="." method="_on_exit_pressed"]
