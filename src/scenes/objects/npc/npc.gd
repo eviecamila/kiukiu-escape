@@ -1,16 +1,26 @@
 extends Node2D
+class_name NPC
+#TODO:
+#		-Posicionar bien el pivote
+#		-Meter mas entidades
+#		-Mejorar la escala e interaccion
+const types = {
+	"hen":{"a1":"cluck/1.ogg", "a2":"cluck/2.ogg", "text_color":"fff"},
+	"sign": {"a1":"wooden sign/1.ogg", "a2":"wooden sign/2.ogg", "text_color":"840"},
+}
 
 # Propiedades exportadas
-@export var dialog_data: Array = ["Hola pinche\nputita", "Te pones bien\ncachonda hija de\ntu putamadre", "Quisiera mamarte\nElizabeth 🫦"]  # Datos del diálogo (como definiste antes)
+@export var dialog_data: Array = ["no sirvo"]  # Datos del diálogo (como definiste antes)
 @export var interact_radius: int = 100  # Radio de interacción
 @export var interact_action: String = "btn_1"  # Acción de entrada (configurada en Project Settings)
 @export var cancel_action: String = "btn_2"  # Acción de entrada (configurada en Project Settings)
-
+@export var type: String = "hen"  # Acción de entrada (configurada en Project Settings)
+@export var npc_scale: float = 1.5
 
 # Declaraciones "onready" para nodos
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var interaction_area: Area2D = $InteractionArea
-@onready var dialogue_text: Label = $DialogueText  # Ajusta si no existe
+@onready var interaction_area: Area2D = $AnimatedSprite2D/InteractionArea
+@onready var dialogue_text: Label = $AnimatedSprite2D/DialogueText  # Ajusta si no existe
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer  # Nuevo nodo
 
 
@@ -24,13 +34,19 @@ func _ready():
 	if not animated_sprite or not interaction_area:
 		print("Error: Alguno de los nodos requeridos no existe.")
 		return
-
-	animated_sprite.play("idle")  # Animación de idle
+	self.scale = Vector2(npc_scale, npc_scale)
+	animated_sprite.play("idle")
+	animated_sprite.visible = true  # Asegurar que el sprite sea visible
+	
+	# Ajustar el punto de pivote del sprite para que el escalado crezca hacia arriba
+	if animated_sprite.sprite_frames and animated_sprite.sprite_frames.has_animation("idle"):
+		var frame_texture = animated_sprite.sprite_frames.get_frame_texture("idle", 0)
+		if frame_texture:
+			animated_sprite.offset.y = -frame_texture.get_height() / 2
 	
 	# Conectar señales usando Callable
 	interaction_area.connect("body_entered", Callable(self, "_on_body_entered"))
 	interaction_area.connect("body_exited", Callable(self, "_on_body_exited"))
-
 func _process(delta):
 	if is_interacting:
 		# Mostrar diálogo y manejar inputs
@@ -53,7 +69,7 @@ func start_dialog():
 		is_interacting = true
 		animated_sprite.stop()  # Detener animación idle
 		current_dialog_index = 0
-		audio_player.stream = preload("res://assets/audio/cluck/1.ogg")  
+		audio_player.stream = load("res://assets/audio/" + types[type]["a1"])  
 		audio_player.play()  
 
 		# Bloquear controles del jugador
@@ -141,12 +157,19 @@ func end_dialog():
 	animated_sprite.play("idle")  
 	dialogue_text.text = ""  
 
-	audio_player.stream = preload("res://assets/audio/cluck/2.ogg")  
-	audio_player.play()  
+	audio_player.stream = load("res://assets/audio/" + types[type]["a2"])
+	audio_player.play()
+	
 
 	# Reactivar controles del jugador
 	get_node(player_node).set_physics_process(true)
+func is_hen(r):
+	return "Hen" in r.to_string()
+func _on_interaction_area_body_entered(body: Node2D) -> void:
+	
+	if is_hen(body):
+		is_player_near = true
 
-
-func _on_interaction_area_body_entered(body: Node2D) -> void: is_player_near=true
-func _on_interaction_area_body_exited(body: Node2D) -> void: is_player_near=false
+func _on_interaction_area_body_exited(body: Node2D) -> void:
+	if is_hen(body):
+		is_player_near = false

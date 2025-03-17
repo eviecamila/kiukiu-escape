@@ -9,7 +9,7 @@ func change_scene(path: String) -> void:
 	get_tree().change_scene_to_file("res://%s.tscn" % path)
 
 func _on_start_pressed() -> void:
-	change_scene("src/scenes/stages/stage_1")
+	change_scene("src/scenes/stages/stage")
 
 func _on_settings_pressed() -> void:
 	# change_scene("scenes/menu")

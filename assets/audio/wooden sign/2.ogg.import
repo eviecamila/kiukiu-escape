@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dwebynyxowhmb"
+path="res://.godot/imported/2.ogg-481843019aeb8a093bb1884b18c44bd7.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/wooden sign/2.ogg"
+dest_files=["res://.godot/imported/2.ogg-481843019aeb8a093bb1884b18c44bd7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

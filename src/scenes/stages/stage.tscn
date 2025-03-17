@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://n82brx4fqkmm" path="res://src/scenes/stages/level.gd" id="1_6v322"]
 [ext_resource type="PackedScene" uid="uid://gepvpjeoypa3" path="res://src/scenes/stages/map.tscn" id="2_6v322"]
-[ext_resource type="PackedScene" uid="uid://d3x8mnmy1s3rf" path="res://src/scenes/objects/npc/Npc.tscn" id="2_c072t"]
 [ext_resource type="PackedScene" uid="uid://cd7yl2x0c4ltl" path="res://src/scenes/objects/player/Hen.tscn" id="2_ih7p5"]
+[ext_resource type="PackedScene" uid="uid://dyd3dmvx0dx1n" path="res://src/scenes/stages/Npcs_Parser.tscn" id="5_2g2h1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6v322"]
 size = Vector2(10, 725)
@@ -36,11 +36,9 @@ render_target_update_mode = 4
 
 [node name="Node2" type="Node" parent="C/SVPC/SVP"]
 
-[node name="NPC" parent="C/SVPC/SVP/Node2" instance=ExtResource("2_c072t")]
-position = Vector2(159, 422)
-
 [node name="Hen" parent="C/SVPC/SVP/Node2" instance=ExtResource("2_ih7p5")]
-position = Vector2(1161, 318)
+position = Vector2(1183, 465)
+scale = Vector2(2.275, 2.275)
 
 [node name="Camera" type="Camera2D" parent="C/SVPC/SVP"]
 anchor_mode = 0
@@ -60,6 +58,9 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="C/SVPC/SVP/Camera/R_Portal"]
 position = Vector2(45, 355.5)
 shape = SubResource("RectangleShape2D_u1yk2")
+
+[node name="Npcs" parent="C/SVPC/SVP/Camera" instance=ExtResource("5_2g2h1")]
+position = Vector2(1, 0)
 
 [connection signal="body_entered" from="C/SVPC/SVP/Camera/L_Portal" to="." method="on_Left_teleport"]
 [connection signal="body_entered" from="C/SVPC/SVP/Camera/R_Portal" to="." method="on_Right_teleport"]
