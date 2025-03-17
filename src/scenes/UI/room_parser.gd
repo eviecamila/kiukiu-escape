@@ -2,120 +2,232 @@ extends Node2D
 
 class_name RoomParser
 
+const obj_path = "res://src/scenes/objects/"
+
 # Variables de configuración
 @export var tileset: TileSet
 @export var npc_sprite_sheet: Texture2D
-@export var npc_scene: PackedScene  # Escena del NPC
+@onready var npc_scene: PackedScene = preload("%splayer/Hen.tscn" % obj_path)  #mi gallina siempre ta cacaraqueando
+@onready var portal_scene: PackedScene = preload(obj_path + "blocks/portal.tscn")  #escena del portal
+@onready var border_scene: PackedScene = preload(obj_path + "blocks/invisible_border.tscn")
 
-# Contenedor de rooms
+var rooms = {
+	"rooms": {
+		"1": {
+		"portals": [
+			{
+				"room_id": 2,
+				"area": {
+					"type": "rectangle",
+					"x": 100,
+					"y": 200,
+					"width": 32,
+					"height": 16
+				},
+				"position": { "x": 50, "y": 100 }
+			},
+			{
+				"room_id": 3,
+				"area": {
+					"type": "line",
+					"coords": {
+						"x1": 300,
+						"y1": 200,
+						"x2": 300,
+						"y2": 400
+					}
+				},
+				"position": { "x": 150, "y": 200 }
+			}
+		],
+		"borders": [
+			{ "x1": 0, "x2": 1900, "y1": 480, "y2": 480 }
+		],
+		"spawn": { "x": 950, "y": 240 } 
+	},
+		"2": {
+			"portals": [
+				{
+					"room_id": 1,
+					"area": {
+						"type": "line",
+						"coords": {
+							"x1": 100,
+							"y1": 100,
+							"x2": 100,
+							"y2": 300
+						}
+					},
+					"position": { "x": 600, "y": 200 }
+				},
+				{
+					"room_id": 4,
+					"area": {
+						"type": "rectangle",
+						"x": 500,
+						"y": 50,
+						"width": 32,
+						"height": 32
+					},
+					"position": { "x": 516, "y": 150 }
+				}
+			],
+			"borders": [
+				{ "x1": 640, "x2": 640, "y1": 0, "y2": 480 },
+				{ "x1": 0, "x2": 640, "y1": 0, "y2": 0 }
+			],
+			"spawn": { "x": 100, "y": 300 }
+		},
+		"3": {
+			"portals": [
+				{
+					"room_id": 1,
+					"area": {
+						"type": "rectangle",
+						"x": 200,
+						"y": 300,
+						"width": 48,
+						"height": 16
+					},
+					"position": { "x": 400, "y": 300 }
+				},
+				{
+					"room_id": 5,
+					"area": {
+						"type": "line",
+						"coords": {
+							"x1": 600,
+							"y1": 200,
+							"x2": 600,
+							"y2": 400
+						}
+					},
+					"position": { "x": 50, "y": 200 }
+				}
+			],
+			"borders": [
+				{ "x1": 0, "x2": 640, "y1": 480, "y2": 480 },
+				{ "x1": 640, "x2": 640, "y1": 0, "y2": 480 }
+			],
+			"spawn": { "x": 320, "y": 350 }
+		},
+		"4": {
+			"portals": [
+				{
+					"room_id": 2,
+					"area": {
+						"type": "rectangle",
+						"x": 50,
+						"y": 50,
+						"width": 32,
+						"height": 32
+					},
+					"position": { "x": 320, "y": 240 }
+				},
+				{
+					"room_id": 5,
+					"area": {
+						"type": "line",
+						"coords": {
+							"x1": 320,
+							"y1": 0,
+							"x2": 320,
+							"y2": 480
+						}
+					},
+					"position": { "x": 600, "y": 240 }
+				}
+			],
+			"borders": [
+				{ "x1": 0, "x2": 640, "y1": 480, "y2": 480 },
+				{ "x1": 0, "x2": 0, "y1": 0, "y2": 480 }
+			],
+			"spawn": { "x": 100, "y": 240 }
+		},
+		"5": {
+			"portals": [
+				{
+					"room_id": 3,
+					"area": {
+						"type": "rectangle",
+						"x": 100,
+						"y": 100,
+						"width": 64,
+						"height": 32
+					},
+					"position": { "x": 320, "y": 400 }
+				},
+				{
+					"room_id": 4,
+					"area": {
+						"type": "line",
+						"coords": {
+							"x1": 0,
+							"y1": 240,
+							"x2": 640,
+							"y2": 240
+						}
+					},
+					"position": { "x": 320, "y": 100 }
+				}
+			],
+			"borders": [
+				{ "x1": 0, "x2": 640, "y1": 0, "y2": 0 },
+				{ "x1": 640, "x2": 640, "y1": 0, "y2": 480 }
+			],
+			"spawn": { "x": 500, "y": 200 }
+		}
+	}
+}
+
 var rooms_container: Node2D
 
 func _ready():
+	# Crear el contenedor de habitaciones
 	rooms_container = Node2D.new()
 	add_child(rooms_container)
-	load_room(0)
+	
+	# Cargar la primera habitación
+	load_room(1)
 
 func load_room(room_id: int):
 	var room_data = get_room_data(room_id)
 	var room_node = Node2D.new()
 	room_node.name = "Room_%s" % room_id
 	
-	generate_blocks(room_node, room_data.blocks)
+	# Crear portales, bordes y punto de spawn
 	create_portals(room_node, room_data.portals)
-	spawn_npcs(room_node, room_data.npcs)
-	position_player(room_data.startpos)
+	create_borders(room_node, room_data.borders)
+	create_spawn_point(room_node, room_data.spawn)
 	
-	rooms_container.add_child(room_node)
-
-func get_room_data(room_id: int) -> Dictionary:
-	# Implementa la carga desde un archivo JSON o base de datos
-	# Ejemplo de datos estáticos:
-	return {
-		"blocks": {
-			"layer1": {
-				"sky": {"custom": [0,34,5,2,4]},
-				"dirt": {"bits": [0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0], "fill_horizontal": false}
-			}
-		},
-		"portals": [],
-		"npes": [],
-		"startpos": {"x": 0, "y": 0, "direction": true}
-	}
-
-func generate_blocks(parent: Node, blocks_data: Dictionary):
-	for layer_name in blocks_data:
-		var layer_data = blocks_data[layer_name]
-		var tilemap = TileMap.new()
-		tilemap.tile_set = tileset
-		tilemap.name = layer_name
-		
-		for block_type in layer_data:
-			var block_config = layer_data[block_type]
-			
-			if block_type == "sky":
-				if "custom" in block_config:
-					generate_custom_blocks(tilemap, block_config["custom"])
-			else:
-				var bits = block_config["bits"]
-				var fill_horizontal = block_config["fill_horizontal"]
-				
-				for i in range(16):
-					if bits[i] == 1:
-						var x = i if fill_horizontal else 0
-						var y = 0
-						if block_type == "dirt":
-							y = 8
-						elif block_type == "tree_top":
-							y = 4
-						tilemap.set_cell(Vector2i(x, y), 0)  # Usar Vector2i
-		parent.add_child(tilemap)
-
-func generate_custom_blocks(parent: TileMap, custom_data: Array):
-	var filling = true
-	var current_x = 0
-	var current_y = 0
+	# Instanciar y posicionar al jugador/NPC en el punto de spawn
+	position_player(room_data.spawn)
 	
-	for value in custom_data:
-		while value > 0:
-			if filling:
-				parent.set_cell(Vector2i(current_x, current_y), 1)  # Usar Vector2i
-			current_x += 1
-			if current_x >= 16:
-				current_x = 0
-				current_y += 1
-			value -= 1
-		filling = !filling
-
-func create_portals(parent: Node, portals_data: Array):
-	for portal in portals_data:
-		var area = Area2D.new()
-		area.connect("body_entered", Callable(self, "_on_portal_entered").bind(portal.room_id))
-		
-		if portal.area.type:
-			var rect_shape = RectangleShape2D.new()
-			rect_shape.extents = Vector2(0.5, portal.area.thickness)
-			var collision = CollisionShape2D.new()
-			collision.shape = rect_shape
-			area.add_child(collision)
-		else:
-			var line_shape = SegmentShape2D.new()
-			line_shape.a = Vector2(portal.area.coords.x1, portal.area.coords.y1)
-			line_shape.b = Vector2(portal.area.coords.x2, portal.area.coords.y2)
-		
-		area.position = Vector2(portal.area.coords.x1, portal.area.coords.y1)
-		parent.add_child(area)
-
-func spawn_npcs(parent: Node, npcs_data: Array):
-	for npc in npcs_data:
-		var npc_node = npc_scene.instance()  # Instancia desde el recurso
-		if npc_node.is_instance_valid():
-			if npc_node.has_method("set_dialog_data"):
-				npc_node.set_dialog_data(npc.dialog)
-			if npc_node.has_method("set_item_data"):
-				npc_node.set_item_data(npc.item)
-			npc_node.position = Vector2(npc.position.x * 16, npc.position.y * 16)
-			parent.add_child(npc_node)
+	# Agregar la habitación al Viewport
+	var viewport_game_world = $ViewportContainer/Viewport/GameWorld
+	if not viewport_game_world:
+		print("Error: El nodo 'GameWorld' no está asignado en el Viewport.")
+		return
+	
+	viewport_game_world.add_child(room_node)
 
 func position_player(startpos: Dictionary):
-	# Implementa la lógica para posicionar al jugador
-	pass
+	if not npc_scene:
+		print("Error: La escena del NPC no está asignada.")
+		return
+
+	# Eliminar cualquier NPC existente
+	for existing_npc in get_tree().get_nodes_in_group("player"):
+		existing_npc.queue_free()
+
+	# Crear una nueva instancia del NPC
+	var player = npc_scene.instantiate()
+	player.position = Vector2(startpos.x, startpos.y)
+	player.add_to_group("player")
+	
+	# Agregar la gallina al Viewport
+	var viewport_game_world = $ViewportContainer/Viewport/GameWorld
+	if viewport_game_world:
+		viewport_game_world.add_child(player)
+	else:
+		print("Error: El nodo 'GameWorld' no está asignado en el Viewport.")

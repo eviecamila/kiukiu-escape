@@ -13,12 +13,13 @@ extends Node2D
 @onready var dialogue_text: Label = $DialogueText  # Ajusta si no existe
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer  # Nuevo nodo
 
+
 # Estado del NPC
 var is_interacting: bool = false
 var current_dialog_index: int = 0
 var current_text = ""
 var typing_speed = 0.05  # Velocidad de escritura (ajusta según sea necesario)
-
+const player_node = "/root/Stage/C/SVPC/SVP/Node2/Hen"
 func _ready():
 	if not animated_sprite or not interaction_area:
 		print("Error: Alguno de los nodos requeridos no existe.")
@@ -56,7 +57,7 @@ func start_dialog():
 		audio_player.play()  
 
 		# Bloquear controles del jugador
-		get_node("/root/Level 1/Node2/Hen").set_physics_process(false)
+		get_node(player_node).set_physics_process(false)
 
 		show_next_dialog()
 
@@ -144,7 +145,7 @@ func end_dialog():
 	audio_player.play()  
 
 	# Reactivar controles del jugador
-	get_node("/root/Level 1/Node2/Hen").set_physics_process(true)
+	get_node(player_node).set_physics_process(true)
 
 
 func _on_interaction_area_body_entered(body: Node2D) -> void: is_player_near=true

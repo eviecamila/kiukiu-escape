@@ -70,7 +70,6 @@ shape = SubResource("RectangleShape2D_goc85")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(19.7057, 15.6201)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_p1ev0")
 
 [node name="DialogueText" type="Label" parent="."]

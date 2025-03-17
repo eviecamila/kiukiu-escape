@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpax8vlcyy7ax"]
+
+[ext_resource type="Script" uid="uid://ec3u5ervf13m" path="res://src/scenes/objects/blocks/portal.gd" id="1_nlpw2"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nlpw2"]
+
+[node name="Portal" type="Node2D"]
+script = ExtResource("1_nlpw2")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("SegmentShape2D_nlpw2")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_CollisionShape2D_body_entered"]

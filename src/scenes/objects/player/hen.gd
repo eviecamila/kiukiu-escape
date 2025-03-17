@@ -1,5 +1,5 @@
 extends Actor
-
+class_name Hen
 @export var stomp_impulse: float = 600.0
 
 func get_direction() -> Vector2:
@@ -7,6 +7,7 @@ func get_direction() -> Vector2:
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 		-Input.get_action_strength("ui_up") if is_on_floor() and Input.is_action_just_pressed("ui_up") else 0.0
 	)
+
 func calculate_move_velocity(
 		linear_velocity: Vector2,
 		direction: Vector2,
@@ -49,4 +50,16 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = true
 	
 	move_and_slide()
-	
+
+func _on_body_entered(body: Node):
+	if body.is_in_group("portal"):
+		# Cambiar la cámara a la nueva ubicación
+		var portal = body as Portal
+		change_camera_position(portal.target_room, portal.direction)
+
+signal portal_entered(room_id: int)
+
+func change_camera_position(room_id: int, direction: String):
+	# Aquí implementas la lógica para cambiar la cámara a la nueva ubicación
+	print("Cambiar cámara a la habitación:", room_id)
+	emit_signal("portal_entered", room_id, direction)

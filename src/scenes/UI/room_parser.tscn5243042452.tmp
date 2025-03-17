@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0im7ynmxpl43"]
+
+[ext_resource type="Script" uid="uid://bnrur1eb2j4wt" path="res://src/scenes/UI/room_parser.gd" id="1_esw1o"]
+
+[node name="RoomParser" type="Node2D"]
+script = ExtResource("1_esw1o")
