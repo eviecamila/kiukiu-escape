@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfbo3ovefukua"]
+[gd_scene load_steps=2 format=3 uid="uid://dfbo3ovefukua"]
 
-[ext_resource type="Script" uid="uid://cp56bu1p5ehts" path="res://src/scenes/Question.cs" id="1_11xw1"]
 [ext_resource type="Texture2D" uid="uid://uv6jj1acwrpm" path="res://chinita mimmosa.png" id="2_aa8bi"]
 
 [node name="QuestionModal" type="Control"]
@@ -12,7 +11,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-script = ExtResource("1_11xw1")
 metadata/question = ""
 metadata/res1 = ""
 metadata/res2 = ""
