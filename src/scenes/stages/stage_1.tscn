@@ -6,11 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cd7yl2x0c4ltl" path="res://src/scenes/objects/player/Hen.tscn" id="2_ih7p5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6v322"]
-size = Vector2(1, 725)
+size = Vector2(10, 725)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_6v322"]
-a = Vector2(1280, 0)
-b = Vector2(1280, 720)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1yk2"]
+size = Vector2(10, 720)
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_6v322")
@@ -44,22 +43,23 @@ position = Vector2(159, 422)
 position = Vector2(1161, 318)
 
 [node name="Camera" type="Camera2D" parent="C/SVPC/SVP"]
-visible = false
 anchor_mode = 0
 
 [node name="L_Portal" type="Area2D" parent="C/SVPC/SVP/Camera"]
 collision_layer = 4
 
 [node name="L_Portal" type="CollisionShape2D" parent="C/SVPC/SVP/Camera/L_Portal"]
-position = Vector2(0, 357.5)
+position = Vector2(-45, 357.5)
 shape = SubResource("RectangleShape2D_6v322")
 debug_color = Color(0.721573, 0.390079, 0.720596, 0.42)
 
 [node name="R_Portal" type="Area2D" parent="C/SVPC/SVP/Camera"]
+position = Vector2(1278, 0)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="C/SVPC/SVP/Camera/R_Portal"]
-shape = SubResource("SegmentShape2D_6v322")
+position = Vector2(45, 355.5)
+shape = SubResource("RectangleShape2D_u1yk2")
 
 [connection signal="body_entered" from="C/SVPC/SVP/Camera/L_Portal" to="." method="on_Left_teleport"]
 [connection signal="body_entered" from="C/SVPC/SVP/Camera/R_Portal" to="." method="on_Right_teleport"]

@@ -18,12 +18,14 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PlayerData="*res://src/AutoLoad/PlayerData.gd"
+PlayerData="res://src/AutoLoad/player_data.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=3
+window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
