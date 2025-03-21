@@ -62,7 +62,6 @@ position = Vector2(16, -16)
 
 [node name="Area" type="CollisionShape2D" parent="AnimatedSprite2D/InteractionArea"]
 position = Vector2(0, 0.5)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_goc85")
 
 [connection signal="body_entered" from="AnimatedSprite2D/InteractionArea" to="." method="_on_interaction_area_body_entered"]

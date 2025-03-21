@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://derwolenwnww0"
-path="res://.godot/imported/Egg.png-f3db6a213854a43320fb35ad7146eef7.ctex"
+uid="uid://bsuecodnmebwy"
+path="res://.godot/imported/egg.png-ab344be3c5442b5d498e883e3f370c97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Gallina y huevo/Egg.png"
-dest_files=["res://.godot/imported/Egg.png-f3db6a213854a43320fb35ad7146eef7.ctex"]
+source_file="res://assets/kiu/egg.png"
+dest_files=["res://.godot/imported/egg.png-ab344be3c5442b5d498e883e3f370c97.ctex"]
 
 [params]
 

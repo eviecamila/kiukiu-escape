@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dergv18wgq8es"]
+
+[ext_resource type="Script" uid="uid://bs37en13ngtd1" path="res://src/scenes/objects/items/egg.gd" id="1_3b04h"]
+[ext_resource type="Texture2D" uid="uid://bsuecodnmebwy" path="res://assets/kiu/egg.png" id="2_glqhq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_glqhq"]
+radius = 5.0
+height = 10.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_3b04h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_glqhq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_glqhq")

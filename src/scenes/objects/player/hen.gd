@@ -4,11 +4,49 @@ class_name Hen
 signal died
 
 @export var stomp_impulse: float = 600.0
-@export var start_pos: Vector2 = Vector2.ZERO  # Usar Vector2 para la posición de reinicio
+@export var start_pos: Vector2 = Vector2.ZERO
+@export var egg_scene: PackedScene = preload("res://src/scenes/objects/items/egg.tscn")
+@export var throw_cooldown: float = 0.5
+@export var eggs_thrown: float = 0
+@export var max_eggs: float = 3
 
 @onready var sprite = $Sprite
-@onready var audio: AudioStreamPlayer= $Audio
-var is_dead: bool = false  # Variable para controlar si el personaje está muerto
+@onready var audio: AudioStreamPlayer = $Audio
+@onready var npc_detector: Area2D = $enemy_detector2  # Asegúrate de que este nodo exista y sea de tipo Area2D
+
+var is_dead: bool = false
+var can_throw: bool = true
+
+func _input(event: InputEvent) -> void:
+	if is_dead:
+		return
+
+	# Lanzar con btn_1 sin restricciones
+	if event.is_action_pressed("btn_1"):
+		throw_egg()
+
+func throw_egg() -> void:
+	if not can_throw or not is_physics_processing() or eggs_thrown >= max_eggs:
+		return  
+	print(eggs_thrown)
+	print("lanzando huevo me sobas")
+	eggs_thrown+=1
+	var direction = Vector2.RIGHT if not sprite.flip_h else Vector2.LEFT
+	var egg = egg_scene.instantiate()
+	egg.broken_egg.connect(_on_egg_destroyed)
+	egg.position = global_position + direction * 20  
+	get_parent().add_child(egg)  
+
+	# Asegurar que el huevo llegue exactamente 5 bloques adelante
+	var target = global_position + direction * (5 * 32)  
+	egg.throw(target)
+
+	# Se lanza el huevo sin afectar la velocidad de la gallina
+	await get_tree().create_timer(throw_cooldown).timeout
+	can_throw = true
+
+func _on_egg_destroyed()->void:
+	eggs_thrown-=1
 
 func get_direction() -> Vector2:
 	if is_dead:
@@ -35,7 +73,6 @@ func calculate_move_velocity(
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return  # Si está muerto, no procesar físicas
-
 	super._physics_process(delta)
 	
 	var is_jump_interrupted: bool = Input.is_action_just_released("ui_up") and velocity.y < 0.0
@@ -49,9 +86,10 @@ func _physics_process(delta: float) -> void:
 		if direction.x != 0.0:
 			sprite.play("walk")
 		else:
-			sprite.stop()  # Si no se mueve, detener la animación
+			sprite.play("idle")  # Si no se mueve, detener la animación
 	else:
-		sprite.play("jump")  # Animación de salto
+		pass
+		#sprite.play("jump")  # Animación de salto
 	
 	# Flip horizontal
 	if direction.x > 0.0:

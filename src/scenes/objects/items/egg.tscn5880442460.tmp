@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dergv18wgq8es"]
+
+[ext_resource type="Script" uid="uid://bs37en13ngtd1" path="res://src/scenes/objects/items/egg.gd" id="1_3b04h"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_3b04h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
