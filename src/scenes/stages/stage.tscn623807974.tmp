@@ -30,13 +30,19 @@ handle_input_locally = false
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
-[node name="BG" type="ColorRect" parent="C/SVPC/SVP"]
-offset_right = 1280.0
-offset_bottom = 720.0
-
 [node name="Node" type="Node" parent="C/SVPC/SVP"]
 
+[node name="BG" type="ColorRect" parent="C/SVPC/SVP/Node"]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Map" parent="C/SVPC/SVP/Node" instance=ExtResource("2_6v322")]
+
+[node name="Node2" type="Node" parent="C/SVPC/SVP"]
+
+[node name="Hen" parent="C/SVPC/SVP/Node2" instance=ExtResource("2_ih7p5")]
+position = Vector2(1183, 465)
+scale = Vector2(2.275, 2.275)
 
 [node name="Camera" type="Camera2D" parent="C/SVPC/SVP"]
 anchor_mode = 0
@@ -53,22 +59,12 @@ debug_color = Color(0.721573, 0.390079, 0.720596, 0.42)
 position = Vector2(1278, 0)
 collision_layer = 4
 
-[node name="R_Portal" type="CollisionShape2D" parent="C/SVPC/SVP/Camera/R_Portal"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="C/SVPC/SVP/Camera/R_Portal"]
 position = Vector2(45, 355.5)
 shape = SubResource("RectangleShape2D_u1yk2")
 
 [node name="Npcs" parent="C/SVPC/SVP/Camera" instance=ExtResource("5_2g2h1")]
 position = Vector2(1, 0)
-
-[node name="Node2" type="Node" parent="C/SVPC/SVP"]
-
-[node name="Hen" parent="C/SVPC/SVP/Node2" instance=ExtResource("2_ih7p5")]
-position = Vector2(1183, 465)
-scale = Vector2(2.275, 2.275)
-
-[node name="Fade" type="ColorRect" parent="C/SVPC/SVP"]
-offset_right = 1280.0
-offset_bottom = 720.0
 
 [connection signal="body_entered" from="C/SVPC/SVP/Camera/L_Portal" to="." method="on_Left_teleport"]
 [connection signal="body_entered" from="C/SVPC/SVP/Camera/R_Portal" to="." method="on_Right_teleport"]

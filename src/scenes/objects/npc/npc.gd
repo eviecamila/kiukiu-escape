@@ -164,12 +164,14 @@ func end_dialog():
 	# Reactivar controles del jugador
 	get_node(player_node).set_physics_process(true)
 func is_hen(r):
+	print(r)
 	return "Hen" in r.to_string()
 func _on_interaction_area_body_entered(body: Node2D) -> void:
-	
 	if is_hen(body):
+		body.can_throw = false
 		is_player_near = true
 
 func _on_interaction_area_body_exited(body: Node2D) -> void:
 	if is_hen(body):
+		body.can_throw = true
 		is_player_near = false
