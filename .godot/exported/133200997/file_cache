@@ -1,0 +1,20 @@
+res://src/AutoLoad/main.tscn::0c884b7cae3cfce8c13e0e069df2f727::1743212462::res://.godot/exported/133200997/export-55baadb0f7edfc83cccd4eda79a6d956-main.scn
+res://src/AutoLoad/PlayerData.tscn::0e8437a8738e1991ad61a3e1749c6208::1743212462::res://.godot/exported/133200997/export-d08f320392ac0b23cb31240de8dffb1f-PlayerData.scn
+res://src/scenes/objects/blocks/invisible_border.tscn::c64a0f43ed6727366ee790fa17abcf18::1743212462::res://.godot/exported/133200997/export-96827b7966bf4b247d69536052cf555d-invisible_border.scn
+res://src/scenes/objects/blocks/portal.tscn::8d8543d6bac71ffdac57c36ea1a09c2a::1743212462::res://.godot/exported/133200997/export-72c4e8f3d5678a522736d37f65ac2c7f-portal.scn
+res://src/scenes/objects/items/egg.tscn::6f7c1c1bdfc3bf9c5dd926dd6162ed18::1743212462::res://.godot/exported/133200997/export-23b0b3a525194feee3fcd61ba4722ceb-egg.scn
+res://src/scenes/objects/npc/Npc.tscn::168affe5589caa660b2099ef7c45cb65::1743212462::res://.godot/exported/133200997/export-7d7cff653112a85dfe0039f1053cc7a7-Npc.scn
+res://src/scenes/objects/player/Hen.tscn::0c42e33db7459a5d3781051eeaefb04d::1743559660::res://.godot/exported/133200997/export-aeac2fa83686e7c59b1762fbe3294c68-Hen.scn
+res://src/scenes/objects/portal/portal.tscn::1071ccafec7045544f49d8e260490463::1743559659::res://.godot/exported/133200997/export-c2ecd811ed07b646f76c3d0d1301c2b0-portal.scn
+res://src/scenes/objects/structures/block.tscn::9f19a095330d06615387de9ddb4e5181::1743212462::res://.godot/exported/133200997/export-9a0022dabd33c80483cdddb6a173ea3f-block.scn
+res://src/scenes/objects/structures/jail_front.tscn::233b2895118d52cadafede898b991e45::1743212462::res://.godot/exported/133200997/export-749c16e5d9e48108766849dd0e578ef4-jail_front.scn
+res://src/scenes/stages/map.tscn::ff3d9b9a8b10c1de8c26ba1df054be4e::1743559659::res://.godot/exported/133200997/export-c81f19714becf63cccbf06168ff4f670-map.scn
+res://src/scenes/stages/Npcs_Parser.tscn::b3ab5afbaf8a54af0bed03b0a51e8dd7::1743559660::res://.godot/exported/133200997/export-1183db047b01a85457ce4444e62e9fe9-Npcs_Parser.scn
+res://src/scenes/stages/stage.tscn::f72d7e3993e44658d4172768732e598c::1743559659::res://.godot/exported/133200997/export-63fcb6f8df27d7af4d7cab4c0b28c2a9-stage.scn
+res://src/scenes/UI/main menu/main_menu.tscn::40cb90fecca71027748066bbda9b5776::1743212462::res://.godot/exported/133200997/export-5c73b82e65d7fa2c390fbec72fff5af9-main_menu.scn
+res://src/scenes/UI/select level/select_level.tscn::bdaf844ec84a343b181dc1f23cd6711f::1743212462::res://.godot/exported/133200997/export-2aadd1cf568320cf4b1b4fd427488f2e-select_level.scn
+res://src/scenes/menu.tscn::eb9b4ce5c493ded6eb0685eb3eef0114::1743212462::res://.godot/exported/133200997/export-1576808185840a89f8ac6530ee75a50c-menu.scn
+res://src/scenes/Question.tscn::c6384cfd5d15b5b1c5d8a7defb8690d8::1743212462::res://.godot/exported/133200997/export-9e370c9bb95ba9b937cfd262f7d78994-Question.scn
+res://src/scenes/settings.tscn::d8fe9da550537acb5c1f5e44201dd366::1743212462::res://.godot/exported/133200997/export-a501664a70edb13323862e26080bb7bd-settings.scn
+res://default_env.tres::833aec0a5911db2a0b0aa6a229282809::1743559660::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
+res://tileset_gnd.tres::8e00e77555ad1b4cf8fbe3a6d5d26ce2::1743559604::res://.godot/exported/133200997/export-05747c9c665fd590488f6e8ebcd8fe14-tileset_gnd.res
