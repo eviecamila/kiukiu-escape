@@ -24,18 +24,20 @@ func _input(event: InputEvent) -> void:
 	# Lanzar con btn_1 sin restricciones
 	if event.is_action_pressed("btn_1"):
 		throw_egg()
-
 func throw_egg() -> void:
 	if not can_throw or not is_physics_processing() or eggs_thrown >= max_eggs:
 		return  
+
 	print(eggs_thrown)
 	print("lanzando huevo me sobas")
-	eggs_thrown+=1
+	eggs_thrown += 1
+
 	var direction = Vector2.RIGHT if not sprite.flip_h else Vector2.LEFT
 	var egg = egg_scene.instantiate()
 	egg.broken_egg.connect(_on_egg_destroyed)
 	egg.position = global_position + direction * 20  
 	get_parent().add_child(egg)  
+
 
 	# Asegurar que el huevo llegue exactamente 5 bloques adelante
 	var target = global_position + direction * (5 * 32)  
@@ -44,6 +46,7 @@ func throw_egg() -> void:
 	# Se lanza el huevo sin afectar la velocidad de la gallina
 	await get_tree().create_timer(throw_cooldown).timeout
 	can_throw = true
+
 
 func _on_egg_destroyed()->void:
 	eggs_thrown-=1

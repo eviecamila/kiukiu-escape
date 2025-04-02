@@ -16,15 +16,17 @@ var screen_y = 0
 var current_npcs = []  # Almacena referencias a los NPCs actuales
 var current_portals = []  # Almacena referencias a los portales actuales
 var LR_Pressed = false
-
+var current_song = ""
 @onready var camera = $C/SVPC/SVP/Camera
 @onready var player = $C/SVPC/SVP/Node2/Hen
 @onready var BG = $C/SVPC/SVP/BG
+@onready var BGM = $BGM
 @onready var FADE = $C/SVPC/SVP/Fade
 @onready var npcs_script = get_node("/root/Stage/C/SVPC/SVP/Camera/Npcs")  # Referencia al nodo con npcs.gd
+@onready var bgm_sounds = "res://assets/audio/soundtrack/"  # Referencia al nodo con npcs.gd
 
 func _ready():
-	get_tree().set_debug_collisions_hint(true) 
+	#get_tree().set_debug_collisions_hint(true) 
 	camera.offset.x = 0
 	is_transitioning = false
 	load_npcs_for_current_room()
@@ -78,7 +80,15 @@ func transition_bg_color():
 	if BG is ColorRect:
 		var tween = create_tween()  # Crear un Tween nuevo
 		tween.tween_property(BG, "color", new_bg_color, 1.0)  # Transición en 1 segundo
-
+func load_bgm_for_current_room():
+	var song = npcs_script.get_song(room_x,room_y)
+	prints("well, changing song to", song)
+	prints("tamos en: X:", room_x, "Y:", room_y)
+	if current_song != song:
+		current_song = song
+		
+		BGM.stream = load(bgm_sounds + song)  
+		BGM.play()  
 func load_portals_for_current_room():
 	# Limpiar portales antiguos
 	for portal in current_portals:
@@ -89,11 +99,11 @@ func load_portals_for_current_room():
 	var portals = npcs_script.get_portals(room_x, room_y)
 	for portal_data in portals:
 		# Cargar la escena Portal
-		var portal_scene = preload("res://src/scenes/objects/portal/Portal.tscn").instantiate()
+		var portal_scene = preload("res://src/scenes/objects/portal/portal.tscn").instantiate()
 		var room  = Vector2(portal_data["to"]["room"][0], portal_data["to"]["room"][1])
 		var cc  = Vector2(portal_data["to"]["cc"][0], portal_data["to"]["cc"][1])
 		# Configurar el portal con los datos del JSON
-		portal_scene.setup_portal(
+		portal_scene.setup_portal(  
 			portal_data["x"],
 			portal_data["y"],
 			room, cc,
@@ -263,6 +273,7 @@ func _on_portal_teleport(direction: String):
 	move_camera(Vector2(screen_x, screen_y))
 
 func load_npcs_for_current_room():
+	load_bgm_for_current_room()
 	var npcs_data = npcs_script.get_npc_list(room_x, room_y)
 	var bg_color = npcs_script.get_bg(room_x, room_y)
 
