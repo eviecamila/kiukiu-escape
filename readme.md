@@ -1,5 +1,8 @@
 ![KiuKiu's Escape Logo](./assets/kiu/logo.png)
 
+# Juegalo ya mismo!!! [LINK](https://eviecamila.github.io/kiukiu-escape/)
+
+
 ## Descripción
 
 **KiuKiu's Escape** es un juego en estilo pixelart donde KiuKiu, una gallina valiente y un poco enojada, quiere agarrarse contra la follagallinas de la dev de este juego... Emprende una aventura para escapar de su culia... quise decir, cuidadora. Explora un mundo lleno de prados, tierras rocosas y cárceles misteriosas, todo diseñado con gráficos retro de 16x16 píxeles. ¿Podrás ayudar a KiuKiu a encontrar su libertad?
