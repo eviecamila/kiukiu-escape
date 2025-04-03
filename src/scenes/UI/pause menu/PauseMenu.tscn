@@ -1,0 +1,119 @@
+[gd_scene load_steps=2 format=3 uid="uid://3ybboseyi07q"]
+
+[ext_resource type="Script" uid="uid://5h57kl35aoo4" path="res://src/scenes/UI/pause menu/pause_menu.gd" id="1_agenl"]
+
+[node name="Menu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_agenl")
+
+[node name="Home" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_top = 0.45
+anchor_right = 0.85
+anchor_bottom = 0.587
+offset_left = -0.440186
+offset_top = -0.160004
+offset_right = -0.0803223
+offset_bottom = 0.199982
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+vertical = true
+
+[node name="btn" type="Button" parent="Home"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Settings"
+
+[node name="Buttons" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.3
+anchor_right = 0.35
+anchor_bottom = 0.85
+offset_right = 0.039978
+offset_bottom = 0.039978
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+vertical = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Continue" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Continue"
+
+[node name="inv1" type="Label" parent="Buttons"]
+layout_mode = 2
+
+[node name="Settings" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Settings"
+
+[node name="inv2" type="Label" parent="Buttons"]
+layout_mode = 2
+
+[node name="Respawn" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Respawn"
+
+[node name="Volume" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.3
+anchor_right = 0.6
+anchor_bottom = 0.7
+offset_left = 0.179993
+offset_right = -0.180054
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+vertical = true
+
+[node name="SFX" type="Label" parent="Volume"]
+layout_mode = 2
+text = "Sound Effects (SFX)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfx" type="HSlider" parent="Volume"]
+layout_mode = 2
+
+[node name="test" type="Label" parent="Volume"]
+layout_mode = 2
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BGM" type="Label" parent="Volume"]
+layout_mode = 2
+text = "Background Music (BGM)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bgm" type="HSlider" parent="Volume"]
+layout_mode = 2
+
+[connection signal="pressed" from="Home/btn" to="." method="_on_Home_button_pressed"]
+[connection signal="pressed" from="Buttons/Continue" to="." method="_on_Continue_button_pressed"]
+[connection signal="pressed" from="Buttons/Settings" to="." method="_on_Settings_button_pressed"]
+[connection signal="pressed" from="Buttons/Respawn" to="." method="_on_Respawn_button_pressed"]
+[connection signal="value_changed" from="Volume/sfx" to="." method="_on_SFX_slider_value_changed"]
+[connection signal="value_changed" from="Volume/bgm" to="." method="_on_BGM_slider_value_changed"]

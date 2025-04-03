@@ -4,7 +4,6 @@ class_name Portal
 # Señales personalizadas
 signal pressed  # Emitida cuando el jugador presiona una tecla dentro del portal
 signal entered  # Emitida cuando el jugador entra en el portal
-signal exited   # Emitida cuando el jugador sale del portal
 
 # Propiedades personalizadas para almacenar metadatos del portal
 @export var target_room: Vector2 = Vector2.ZERO  # Coordenadas del room de destino
@@ -44,14 +43,14 @@ func _input(event: InputEvent) -> void:
 # Evento cuando un cuerpo entra en el portal
 func _on_body_entered(body: Node2D):
 	if "Hen" in body.to_string():
-		print("Jugador entró en el portal")
 		emit_signal("entered")  # Emitir señal de entrada
+		print("entra w")
 		inside = true
-		print("Presiona Z para teletransportarte")
+		body.preview_btn.can_press("btn_1")
 
 # Evento cuando un cuerpo sale del portal
 func _on_body_exited(body: Node2D):
 	if "Hen" in body.to_string():
-		print("Jugador salió del portal")
 		inside = false
-		emit_signal("exited")  # Emitir señal de salida
+		body.cant_press()
+		

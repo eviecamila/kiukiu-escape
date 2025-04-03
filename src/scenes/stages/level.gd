@@ -22,21 +22,61 @@ var current_song = ""
 @onready var BG = $C/SVPC/SVP/BG
 @onready var BGM = $BGM
 @onready var FADE = $C/SVPC/SVP/Fade
+@onready var DIALOG  = $C/SVPC/SVP/NpcDialog
+@onready var game = $C/SVPC/SVP/Node2  # Asegúrate de que sea un nodo adecuado
 @onready var npcs_script = get_node("/root/Stage/C/SVPC/SVP/Camera/Npcs")  # Referencia al nodo con npcs.gd
 @onready var bgm_sounds = "res://assets/audio/soundtrack/"  # Referencia al nodo con npcs.gd
+@onready var pause_screen = $Pause
 
 func _ready():
-	#get_tree().set_debug_collisions_hint(true) 
+	# Configurar el menú de pausa
+	setup_pause_screen()
+
+	# Configuraciones iniciales
 	camera.offset.x = 0
 	is_transitioning = false
 	load_npcs_for_current_room()
 	load_portals_for_current_room()
 	set_start_pos()
+	
+
+func setup_pause_screen():
+	# Ocultar el menú de pausa al inicio
+	pause_screen.visible = false
+
+	# Conectar señales del menú de pausa
+	pause_screen.connect("continued", Callable(self, "on_pause_continued"))
+
+	pause_screen.connect("respawn", Callable(self, "on_respawn"))
+	
+func on_respawn(): player.die()
+func on_pause_continued():set_pause_visibility(false)
+
+func set_pause_visibility(visible: bool):
+	pause_screen.visible = visible  # Mostrar u ocultar el menú de pausa
+	get_tree().paused = visible  # Pausar/reanudar el nodo `game`
+
+
+func _input(event):
+	if event.is_action_pressed("pause"):
+		if not pause_screen.visible:
+			# Mostrar el menú de pausa y emitir la señal "paused"
+			set_pause_visibility(true)
+			pause_screen.emit_signal("paused")
+		else:
+			# Ocultar el menú de pausa y emitir la señal "continued"
+			set_pause_visibility(false)
+			pause_screen.emit_signal("continued")
 
 func set_start_pos():
 	player.start_pos = Vector2(player.position.x, player.position.y + 20)
 
+func set_UI_pos():
+	BG.position = camera.position
+	FADE.position = camera.position
+	DIALOG.position = camera.position
 func _process(delta: float):
+
 	FADE.color = Color(0, 0, 0, 0)
 	if is_transitioning:
 		if LR_Pressed:
@@ -60,8 +100,7 @@ func _process(delta: float):
 			load_portals_for_current_room()
 
 	# Mover el fondo junto con la cámara
-	BG.position = camera.position
-	FADE.position = camera.position
+	set_UI_pos()
 
 func move_camera(new_position: Vector2):
 	clear_npcs_and_portals()
@@ -90,6 +129,7 @@ func load_bgm_for_current_room():
 		BGM.stream = load(bgm_sounds + song)  
 		BGM.play()  
 func load_portals_for_current_room():
+	
 	# Limpiar portales antiguos
 	for portal in current_portals:
 		portal.queue_free()
@@ -253,19 +293,18 @@ func _on_portal_teleport(direction: String):
 	match direction:
 		"left":
 			screen_x -= screen_width
-			player.position.x -= 80
 			room_x -= 1
 		"right":
 			screen_x += screen_width
-			player.position.x += 80
+			player.position.x
 			room_x += 1
 		"up":
 			screen_y -= screen_height
-			player.position.y -= 80
+			player.position.y
 			room_y -= 1
 		"down":
 			screen_y += screen_height
-			player.position.y += 80
+			player.position.y
 			room_y += 1
 
 	# Actualizar start_pos del jugador al cambiar de habitación
@@ -273,30 +312,39 @@ func _on_portal_teleport(direction: String):
 	move_camera(Vector2(screen_x, screen_y))
 
 func load_npcs_for_current_room():
-	load_bgm_for_current_room()
-	var npcs_data = npcs_script.get_npc_list(room_x, room_y)
 	var bg_color = npcs_script.get_bg(room_x, room_y)
 
 	if BG is ColorRect:
 		BG.color = Color(bg_color)  # Asigna el color inmediatamente
-
+	var npcs_data = npcs_script.get_npc_list(room_x, room_y)
 	for npc_info in npcs_data:
+		# Cargar el recurso del NPC
+		var npc_type = npc_info.get("type", "hen")
+		var resource_path = "res://src/resources/npcs/" + npc_type + ".tres"
+		var npc_resource = load(resource_path)
+		if not npc_resource:
+			printerr("Error: No se pudo cargar el recurso del NPC:", resource_path)
+			continue
+
+		# Instanciar el NPC
 		var npc_instance = preload("res://src/scenes/objects/npc/Npc.tscn").instantiate()
 
-		# Asegurarse de que las coordenadas tengan valores predeterminados
+		# Configurar la posición del NPC
 		var world_x = (npc_info.get("location", [0, 0])[0] * tile_size)
 		var world_y = screen_height - (npc_info.get("location", [0, 0])[1] * tile_size)
-
 		npc_instance.position = Vector2(world_x, world_y)
 
-		# Asegurarse de que el diálogo tenga un valor predeterminado
+		# Configurar el diálogo del NPC
 		npc_instance.dialog_data = npc_info.get("dialog", ["No hay diálogo disponible."])
 
-		# Asegurarse de que la escala tenga un valor predeterminado
+		# Configurar la escala del NPC
 		npc_instance.scale = Vector2(npc_info.get("scale", 1.0), npc_info.get("scale", 1.0))
 
-		# Asegurarse de que el tipo tenga un valor predeterminado
-		npc_instance.type = npc_info.get("type", "hen")
+		# Asignar el recurso del NPC
+		npc_instance.npc_resource = npc_resource
+		npc_instance.type = npc_type
+
+		
 
 		# Añadir el NPC a la escena
 		$C/SVPC/SVP/Camera/Npcs.add_child(npc_instance)
@@ -309,3 +357,7 @@ func on_Left_teleport(body: Node2D) -> void:
 func on_Right_teleport(body: Node2D) -> void:
 	if "Hen" in body.to_string() and not is_transitioning:
 		_on_portal_teleport("right")
+
+func on_Down_teleport(body: Node2D) -> void:
+	if "Hen" in body.to_string() and not is_transitioning:
+		_on_portal_teleport("down")

@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhrua4anehx3n"]
+
+[ext_resource type="Script" uid="uid://bi8qd2lu8xk0l" path="res://src/scenes/UI/map menu/map_menu.gd" id="1_jdngn"]
+
+[node name="MapMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jdngn")
+
+[node name="InventoryPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.1
+anchor_right = 0.94
+anchor_bottom = 0.7
+offset_right = 0.32
+offset_bottom = -0.32
+
+[node name="MapPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.1
+anchor_right = 0.94
+anchor_bottom = 0.7
+offset_right = 0.32
+offset_bottom = -0.32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.8
+anchor_right = 0.94
+anchor_bottom = 0.9
+offset_right = 0.32
+offset_bottom = -0.32
+alignment = 1
+
+[node name="LeftButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Exit" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="HBoxContainer/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Exit" to="." method="_on_exit_pressed"]

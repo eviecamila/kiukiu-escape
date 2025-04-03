@@ -8,6 +8,8 @@ signal reset
 var score: int = 0:
 	set = set_score
 
+var debug = true
+
 var deaths: int = 0:
 	set = set_deaths
 

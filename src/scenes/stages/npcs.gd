@@ -1,15 +1,15 @@
 extends Node
 
-var estar_chingando = true
-const npc_list = {
+var estar_chingando = not PlayerData.debug
+const npc_list = { 
 	0: {
 		0: {
 			"bg": "87CEEB",
 			"npc_list": [
 				{
 					"dialog": ["Soy la coco coco", "Follame, Evie!", "no te creas we, es cura"],
-					"location": [2, 2.5],
-					"type": "hen"
+					"location": [27, 2.5],
+					"type": "hen2"
 				}
 			],
 			"portals":[
@@ -23,7 +23,7 @@ const npc_list = {
 				{
 					"dialog": ["COCO COCO! Soy una gallina kiukiu.", "¿Quieres follarme Evie?"],
 					"location": [3, 13],  # Ubicación dentro del room [-1, -1]
-					"type": "hen"  # Tipo de NPC: gallina
+					"type": "hen2"  # Tipo de NPC: gallina
 				}
 			],
 			"bgm": "boss1.mp3"
@@ -45,7 +45,7 @@ const npc_list = {
 				}
 			],
 			"portals":[
-				{'x':6, 'y':15, 'w':2, 'h': 2, "to":{"room":[-1,1],"cc":[3, 6]}}
+				{'x':6, 'y':15, 'w':2, 'h': 2, "to":{"room":[-1,1],"cc":[3, 15]}}
 			]
 		},
 		1: {
@@ -68,7 +68,7 @@ func get_bg(room_x: int, room_y: int) -> String:
 	if npc_list.has(room_x) and npc_list[room_x].has(room_y):
 		return npc_list[room_x][room_y].get("bg", "87CEEB")
 	return "87CEEB"
-	
+
 func get_song(x, y):
 	if not estar_chingando: return ""
 	x = int(x)  # Convierte a entero

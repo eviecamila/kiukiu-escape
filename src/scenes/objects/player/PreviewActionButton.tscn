@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://dau5kywyfc6ms"]
+
+[ext_resource type="Script" uid="uid://blfd7th8kqgcx" path="res://src/scenes/objects/player/preview_action_button.gd" id="1_ki8t2"]
+[ext_resource type="Texture2D" uid="uid://br0icqlg83l1k" path="res://assets/kiu/buttons.png" id="2_ghj4w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghj4w"]
+atlas = ExtResource("2_ghj4w")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbt5h"]
+atlas = ExtResource("2_ghj4w")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f06uq"]
+atlas = ExtResource("2_ghj4w")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvgmk"]
+atlas = ExtResource("2_ghj4w")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1wxq"]
+atlas = ExtResource("2_ghj4w")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_226ui"]
+atlas = ExtResource("2_ghj4w")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2d3g6"]
+atlas = ExtResource("2_ghj4w")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgdbm"]
+atlas = ExtResource("2_ghj4w")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rfrpc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghj4w")
+}],
+"loop": true,
+"name": &"js_a",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbt5h")
+}],
+"loop": true,
+"name": &"js_b",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f06uq")
+}],
+"loop": true,
+"name": &"js_x",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvgmk")
+}],
+"loop": true,
+"name": &"js_y",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1wxq")
+}],
+"loop": true,
+"name": &"kb_c",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_226ui")
+}],
+"loop": true,
+"name": &"kb_v",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2d3g6")
+}],
+"loop": true,
+"name": &"kb_x",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgdbm")
+}],
+"loop": true,
+"name": &"kb_z",
+"speed": 1.0
+}]
+
+[node name="PreviewAction" type="Node2D"]
+script = ExtResource("1_ki8t2")
+
+[node name="btn" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rfrpc")
+animation = &"kb_z"
