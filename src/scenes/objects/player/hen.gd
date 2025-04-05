@@ -1,7 +1,7 @@
 extends Actor
 class_name Hen
 
-signal died
+signal revived
 
 @export var stomp_impulse: float = 600.0
 @export var start_pos: Vector2 = Vector2.ZERO
@@ -152,7 +152,7 @@ func die():
 	print("Reiniciando en: ", start_pos)
 	set_physics_process(true)  # Reanudar las físicas
 	
-	emit_signal("died")  # Emitir la señal después de reiniciar
+	emit_signal("revived")  # Emitir la señal después de reiniciar
 
 func restart():
 	die()

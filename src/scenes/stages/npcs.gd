@@ -7,7 +7,7 @@ const npc_list = {
 			"bg": "87CEEB",
 			"npc_list": [
 				{
-					"dialog": ["Soy la coco coco", "Follame, Evie!", "no te creas we, es cura"],
+					"dialog": ["Hola ppapu", "soy ibi!", "migusta follar gallinas ekisde"],
 					"location": [27, 2.5],
 					"type": "hen2"
 				}

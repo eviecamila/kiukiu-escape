@@ -1,6 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://bsb555tx4ohae"]
 
-[ext_resource type="Script" uid="uid://b7yro1husjanr" path="res://src/scenes/objects/portal/portal.gd" id="1_nlpw2"]
+[ext_resource type="Script" uid="uid://b7yro1husjanr" path="res://src/scenes/objects/portal/portal.gd" id="1_33opp"]
 
 [node name="Area2D" type="Area2D"]
-script = ExtResource("1_nlpw2")
+script = ExtResource("1_33opp")
+target_room = null
+target_coords = null
+inside = null
+width = null
+height = null

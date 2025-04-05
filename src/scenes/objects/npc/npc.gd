@@ -65,7 +65,7 @@ func end_dialog():
 	# Reactivar controles del jugador después de 1 segundo
 	var player = get_node(player_node_path)
 	player.set_physics_process(true)
-
+	player.can_press("btn_1")
 	# Reproducir sonido de finalización del NPC
 	if npc_resource.sfx_2:
 		audio_player.stream = npc_resource.sfx_2

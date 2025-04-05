@@ -23,6 +23,7 @@ func _init() -> void:
 func set_data(dialogs: Array):
 	# Configurar los diálogos del NPC
 	current_texts = dialogs
+	
 	show_next_dialog()
 
 func show_next_dialog():
@@ -50,15 +51,9 @@ func start_typing():
 			is_typing = false
 			await wait_for_input()
 			return
-
 		text_to_show += current_text[i]
 		char_count += 1
-
-		# Insertar un salto de línea si se alcanzan 30 caracteres y el siguiente carácter es un espacio
-		if char_count >= 30 and current_text[i] == " ":
-			text_to_show += "\n"
-			char_count = 0  # Reiniciar el contador de caracteres
-
+		audio_player.play()
 		dialogue_text.text = text_to_show
 		await get_tree().create_timer(typing_speed).timeout
 
@@ -115,7 +110,7 @@ func dialog(npc_instance: NPC):
 
 	# Configurar los diálogos del NPC
 	set_data(npc.dialog_data)
-
+	audio_player.stream = npc.audio_player.stream
 	# Cargar la textura estática del NPC
 	if npc.npc_resource and npc.npc_resource.img:
 		sprite.texture = npc.npc_resource.img
