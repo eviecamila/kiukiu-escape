@@ -14,29 +14,29 @@ script = ExtResource("1_5wfmc")
 
 [node name="Heart" parent="." instance=ExtResource("1_lb1ro")]
 texture_filter = 1
-position = Vector2(137, 105)
+position = Vector2(52, 44)
 
 [node name="Heart2" parent="." instance=ExtResource("1_lb1ro")]
 texture_filter = 1
-position = Vector2(177, 105)
+position = Vector2(92, 44)
 
 [node name="Heart3" parent="." instance=ExtResource("1_lb1ro")]
 texture_filter = 1
-position = Vector2(217, 105)
+position = Vector2(132, 44)
 
 [node name="Heart4" parent="." instance=ExtResource("1_lb1ro")]
 texture_filter = 1
-position = Vector2(257, 105)
+position = Vector2(172, 44)
 metadata/golden = true
 
 [node name="Heart5" parent="." instance=ExtResource("1_lb1ro")]
 texture_filter = 1
-position = Vector2(297, 105)
+position = Vector2(212, 44)
 metadata/golden = true
 
 [node name="Heart6" parent="." instance=ExtResource("1_lb1ro")]
 texture_filter = 1
-position = Vector2(337, 105)
+position = Vector2(252, 44)
 metadata/golden = true
 
 [node name="Label" type="Label" parent="."]

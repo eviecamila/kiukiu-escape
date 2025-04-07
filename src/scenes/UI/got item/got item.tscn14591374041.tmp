@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct3dxtwnol7qx"]
+
+[ext_resource type="Script" uid="uid://c4bl2oe83hajt" path="res://src/scenes/UI/got item/got_item.gd" id="1_vv3ji"]
+
+[node name="GotItem" type="Node2D"]
+script = ExtResource("1_vv3ji")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel"]
+root_node = NodePath("../Label")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel"]
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 20.0

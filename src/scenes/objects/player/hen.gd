@@ -9,7 +9,6 @@ signal revived
 @export var throw_cooldown: float = 0.5
 @export var eggs_thrown: float = 0
 @export var max_eggs: float = 3
-@export var max_jumps: int = 1
 
 @onready var sprite = $Sprite
 @onready var audio: AudioStreamPlayer = $Audio
@@ -24,7 +23,7 @@ const buttons = {
 
 var is_dead: bool = false
 var can_throw: bool = true
-var jumps_remaining: int = max_jumps  # Saltos restantes
+var jumps_remaining: int = PlayerData.max_jumps  # Saltos restantes
 
 func _input(event: InputEvent) -> void:
 	if is_dead:
@@ -117,7 +116,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Resetear saltos si está en el suelo
 	if is_on_floor():
-		jumps_remaining = max_jumps  # Restaurar saltos disponibles cuando toca el suelo
+		jumps_remaining = PlayerData.max_jumps  # Restaurar saltos disponibles cuando toca el suelo
 	
 	# Flip horizontal
 	if direction.x > 0.0:

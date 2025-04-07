@@ -22,15 +22,14 @@ size = Vector2(10, 720)
 size = Vector2(1280, 10)
 
 [node name="Stage" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_6v322")
 
 [node name="C" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="SVPC" type="SubViewportContainer" parent="C"]
 layout_mode = 0

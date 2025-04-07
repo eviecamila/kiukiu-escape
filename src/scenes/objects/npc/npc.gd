@@ -15,7 +15,7 @@ class_name NPC
 
 const player_node_path = "/root/Stage/C/SVPC/SVP/Node2/Hen"  # Ruta al nodo del jugador
 const npc_dialog_path = "/root/Stage/C/SVPC/SVP/NpcDialog"  # Ruta al nodo NpcDialog
-
+const bgm_path = "/root/Stage/BGM"  # Ruta al nodo NpcDialog
 # Estado del NPC
 var is_player_near: bool = false
 var is_interacting: bool = false  # Indica si el NPC está interactuando
@@ -46,6 +46,9 @@ func _ready():
 
 func start_dialog():
 	if not is_interacting and is_player_near:
+		#Bajarle a la musica
+		var bgm = get_node(bgm_path)
+		bgm.set_volume_linear(.2)
 		# Bloquear controles del jugador
 		var player = get_node(player_node_path)
 		player.cant_press()  # Desactivar acciones del jugador
@@ -62,6 +65,8 @@ func start_dialog():
 		npc_dialog.visible = true  # Hacer visible el diálogo
 
 func end_dialog():
+	var bgm = get_node(bgm_path)
+	bgm.set_volume_linear(1)
 	# Reactivar controles del jugador después de 1 segundo
 	var player = get_node(player_node_path)
 	player.set_physics_process(true)
@@ -78,12 +83,14 @@ func _on_body_entered(body: Node2D):
 	if "Hen" in body.to_string():  # Verificar si el cuerpo entrante es el jugador
 		is_player_near = true
 		body.can_press(interact_action)  # Habilitar indicador de interacción
+		body.can_throw = false
 		print("Jugador dentro del área de interacción.")
 
 func _on_body_exited(body: Node2D):
 	if "Hen" in body.to_string():
 		is_player_near = false
 		body.cant_press()  # Deshabilitar indicador de interacción
+		body.can_throw = true
 		print("Jugador fuera del área de interacción.")
 
 func _input(event):

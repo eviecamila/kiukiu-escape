@@ -26,11 +26,9 @@ script = ExtResource("1_6v322")
 
 [node name="C" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="SVPC" type="SubViewportContainer" parent="C"]
 layout_mode = 0
@@ -94,6 +92,8 @@ offset_bottom = 720.0
 
 [node name="TopBar" parent="C/SVPC/SVP" instance=ExtResource("6_f8qku")]
 
+[node name="MapMenu" parent="C/SVPC/SVP" instance=ExtResource("7_qukwl")]
+
 [node name="Gamepad" type="Container" parent="C"]
 layout_mode = 1
 anchors_preset = -1
@@ -150,10 +150,6 @@ texture_normal = ExtResource("7_7j77a")
 texture_pressed = ExtResource("7_7j77a")
 action = "btn_2"
 visibility_mode = 1
-
-[node name="MapMenu" parent="." instance=ExtResource("7_qukwl")]
-offset_right = 1280.0
-offset_bottom = 720.0
 
 [node name="Pause" parent="." instance=ExtResource("5_x4f30")]
 process_mode = 3

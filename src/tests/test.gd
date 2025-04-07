@@ -1,15 +1,43 @@
 extends Node2D
-
-@onready var normal_label: Label = $UI_DEBUG_LIVES/normal
-@onready var golden_label: Label = $UI_DEBUG_LIVES/gold
-@onready var lives: Label = $UI_DEBUG_LIVES/debug
-@onready var total_label: Label = $UI_DEBUG_LIVES/total
+@onready var normal_label: Label = $Node2D/normal
+@onready var golden_label: Label = $Node2D/gold
+@onready var lives: Label = $Node2D/debug
+@onready var total_label: Label = $Node2D/total
 @onready var player = $Hen
+@onready var map_inv_menu = $MapMenu
 
 var normal = 0
 var golden = 0
 var total = 0
 var lives_sys = Lives.get_instance()
+
+# Variable para controlar si se puede pausar
+var can_pause: bool = true
+
+func _input(event: InputEvent):
+	if get_tree().paused:
+		return  # Ignora la entrada cuando el juego está pausado
+	eval_input(event)
+
+func toggle_menu():
+	# Solo alterna el estado de pausa si se permite
+	if not can_pause:
+		return
+	
+	# Alterna el estado de pausa
+	can_pause = false  # Bloquea la pausa temporalmente
+	get_tree().paused = not get_tree().paused
+	print("Estado de pausa:", get_tree().paused)
+	
+	# Si el juego está pausado, muestra el menú; si no, ocúltalo
+	if get_tree().paused:
+		map_inv_menu.show()  # Muestra el menú
+	else:
+		map_inv_menu.hide()  # Oculta el menú
+	
+	# Restablece el permiso para pausar después de un breve retraso
+	await get_tree().create_timer(0.1).timeout  # Espera 0.1 segundos
+	can_pause = true
 
 func _ready():
 	normal_label.text = str(normal)
@@ -17,6 +45,7 @@ func _ready():
 	total_label.text = str(total)
 	lives_sys.connect("death", Callable(self, "on_die"))
 	player.connect('revived', Callable(self, "reset"))
+	map_inv_menu.hide()
 	update_debug()
 
 # Evento cuando fallece la gallina cuyeya
@@ -88,3 +117,7 @@ func minustotal() -> void:
 	total -= 1
 	total_label.text = str(total)
 	update_debug()
+
+func eval_input(event: InputEvent):
+	if event.is_action_pressed("ui_map"):
+		toggle_menu()

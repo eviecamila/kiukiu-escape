@@ -1,4 +1,4 @@
-extends Node2D
+extends Node2D 
 
 @export var transition_speed: float = 1500.0  
 var target_camera_position: Vector2 = Vector2.ZERO  
@@ -17,18 +17,26 @@ var current_npcs = []  # Almacena referencias a los NPCs actuales
 var current_portals = []  # Almacena referencias a los portales actuales
 var LR_Pressed = false
 var current_song = ""
-@onready var camera = $C/SVPC/SVP/Camera
+
 @onready var player = $C/SVPC/SVP/Node2/Hen
+
+@onready var camera = $C/SVPC/SVP/Camera
+
+#UI
 @onready var BG = $C/SVPC/SVP/BG
-@onready var BGM = $BGM
+@onready var BGM: AudioStreamPlayer= $BGM
 @onready var FADE = $C/SVPC/SVP/Fade
 @onready var DIALOG  = $C/SVPC/SVP/NpcDialog
+@onready var TOPBAR = $C/SVPC/SVP/TopBar
+
 @onready var game = $C/SVPC/SVP/Node2  # Asegúrate de que sea un nodo adecuado
 @onready var npcs_script = get_node("/root/Stage/C/SVPC/SVP/Camera/Npcs")  # Referencia al nodo con npcs.gd
 @onready var bgm_sounds = "res://assets/audio/soundtrack/"  # Referencia al nodo con npcs.gd
 @onready var pause_screen = $Pause
+@onready var map_inv_menu = $MapMenu
 
 func _ready():
+	get_tree().set_debug_collisions_hint(true) 
 	# Configurar el menú de pausa
 	setup_pause_screen()
 
@@ -46,7 +54,6 @@ func setup_pause_screen():
 
 	# Conectar señales del menú de pausa
 	pause_screen.connect("continued", Callable(self, "on_pause_continued"))
-
 	pause_screen.connect("respawn", Callable(self, "on_respawn"))
 	
 func on_respawn(): player.die()
@@ -58,6 +65,13 @@ func set_pause_visibility(visible: bool):
 
 
 func _input(event):
+	# MAP MENU / INVENTORY PRESSED
+	if event.is_action_pressed("ui_map"):
+		if get_tree().paused:
+			return  # Ignora la entrada cuando el juego está pausado
+		toggle_menu()
+		
+	# PAUSE MENU PRESSED
 	if event.is_action_pressed("pause"):
 		if not pause_screen.visible:
 			# Mostrar el menú de pausa y emitir la señal "paused"
@@ -67,14 +81,36 @@ func _input(event):
 			# Ocultar el menú de pausa y emitir la señal "continued"
 			set_pause_visibility(false)
 			pause_screen.emit_signal("continued")
+var can_pause = true
+func toggle_menu():
+	# Solo alterna el estado de pausa si se permite
+	if not can_pause:
+		return
+	
+	# Alterna el estado de pausa
+	can_pause = false  # Bloquea la pausa temporalmente
+	get_tree().paused = not get_tree().paused
+	print("Estado de pausa:", get_tree().paused)
+	
+	# Si el juego está pausado, muestra el menú; si no, ocúltalo
+	if get_tree().paused:
+		TOPBAR.hide()
+		map_inv_menu.show()  # Muestra el menú
+	else:
+		TOPBAR.show()
+		map_inv_menu.hide()  # Oculta el menú
+	
+	# Restablece el permiso para pausar después de un breve retraso
+	await get_tree().create_timer(0.1).timeout  # Espera 0.1 segundos
+	can_pause = true
 
 func set_start_pos():
 	player.start_pos = Vector2(player.position.x, player.position.y + 20)
 
+# Mover los elementos de UI
 func set_UI_pos():
-	BG.position = camera.position
-	FADE.position = camera.position
-	DIALOG.position = camera.position
+	for ui_item in [BG, FADE, DIALOG, TOPBAR]:
+		ui_item.position = camera.position
 func _process(delta: float):
 
 	FADE.color = Color(0, 0, 0, 0)
@@ -98,7 +134,8 @@ func _process(delta: float):
 			player.set_physics_process(true)
 			load_npcs_for_current_room()
 			load_portals_for_current_room()
-
+			
+	
 	# Mover el fondo junto con la cámara
 	set_UI_pos()
 
@@ -121,8 +158,6 @@ func transition_bg_color():
 		tween.tween_property(BG, "color", new_bg_color, 1.0)  # Transición en 1 segundo
 func load_bgm_for_current_room():
 	var song = npcs_script.get_song(room_x,room_y)
-	prints("well, changing song to", song)
-	prints("tamos en: X:", room_x, "Y:", room_y)
 	if current_song != song:
 		current_song = song
 		
@@ -209,7 +244,7 @@ func _on_portal_pressed():
 			# Realizar el fade in
 			tween = create_tween()
 			tween.tween_property(FADE, "color:a", 0.0, 0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
-
+			
 			break
 
 func on_ActionKeyPressed():
@@ -349,6 +384,7 @@ func load_npcs_for_current_room():
 		# Añadir el NPC a la escena
 		$C/SVPC/SVP/Camera/Npcs.add_child(npc_instance)
 		current_npcs.append(npc_instance)
+	load_bgm_for_current_room()
 
 func on_Left_teleport(body: Node2D) -> void:
 	if "Hen" in body.to_string() and not is_transitioning:

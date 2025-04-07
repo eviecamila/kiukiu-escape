@@ -46,4 +46,7 @@ sprite = SubResource("SpriteFrames_stkdn")
 img = ExtResource("1_n7cb2")
 sfx_1 = ExtResource("3_dt01p")
 sfx_2 = ExtResource("4_e7c5g")
+scale = 1.5
+offset_x = 0.0
+offset_y = 0.0
 metadata/_custom_type_script = "uid://bwct28sknd6ix"

@@ -26,9 +26,13 @@ const npc_list = {
 					"type": "hen2"  # Tipo de NPC: gallina
 				}
 			],
-			"bgm": "boss1.mp3"
+			"bgm": "boss1.mp3",
+			"portals":[
+				{'x':29, 'y':4, 'w':1.8, 'h': 1.8, "to":{"room":[-1,0],"cc":[3, 15]}}
+			]
 		}
 	},
+	
 	-1: {
 		0: {
 			"bg": "5555ff",
@@ -83,7 +87,6 @@ func get_song(x, y):
 			print("No se encontró la subclave Y:", y)
 	else:
 		print("No se encontró la clave X:", x)
-	
 	return "overworld.mp3"
 
 # Función para obtener la lista de NPCs de un room

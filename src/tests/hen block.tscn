@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://gqop42p6x5ex"]
+[gd_scene load_steps=7 format=3 uid="uid://gqop42p6x5ex"]
 
 [ext_resource type="Script" uid="uid://m6163jsf85mj" path="res://src/tests/test.gd" id="1_cfwc1"]
 [ext_resource type="PackedScene" uid="uid://cd7yl2x0c4ltl" path="res://src/scenes/objects/player/Hen.tscn" id="1_otr7m"]
 [ext_resource type="PackedScene" uid="uid://c7lbhiv4m4re6" path="res://src/tests/testmap.tscn" id="2_tqxx5"]
 [ext_resource type="PackedScene" uid="uid://g8gjgp6025f3" path="res://src/tests/GUI_TOPBAR.tscn" id="4_7qon3"]
 [ext_resource type="PackedScene" uid="uid://bb3st06dsscvh" path="res://src/tests/Lives.tscn" id="5_7qon3"]
+[ext_resource type="PackedScene" uid="uid://bhrua4anehx3n" path="res://src/scenes/UI/map menu/map_menu.tscn" id="6_d5ws3"]
 
 [node name="HenBlock" type="Node2D"]
 script = ExtResource("1_cfwc1")
@@ -19,16 +20,27 @@ scale = Vector2(2.275, 2.275)
 
 [node name="Lives" parent="." instance=ExtResource("5_7qon3")]
 
-[node name="UI_DEBUG_LIVES" type="Node" parent="."]
+[node name="MapMenu" parent="." instance=ExtResource("6_d5ws3")]
+custom_minimum_size = Vector2(1280, 720)
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="Button" type="Button" parent="UI_DEBUG_LIVES"]
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+
+[node name="Button" type="Button" parent="Node2D"]
 offset_left = 652.0
 offset_top = 119.0
 offset_right = 758.0
 offset_bottom = 188.0
 text = "+ golden"
 
-[node name="Button5" type="Button" parent="UI_DEBUG_LIVES"]
+[node name="Button5" type="Button" parent="Node2D"]
 offset_left = 914.0
 offset_top = 178.0
 offset_right = 1020.0
@@ -36,7 +48,7 @@ offset_bottom = 247.0
 text = "aplicar
  "
 
-[node name="Button8" type="Button" parent="UI_DEBUG_LIVES"]
+[node name="Button8" type="Button" parent="Node2D"]
 offset_left = 394.0
 offset_top = 178.0
 offset_right = 506.0
@@ -45,14 +57,14 @@ text = "aplicar total
 
  "
 
-[node name="Button2" type="Button" parent="UI_DEBUG_LIVES"]
+[node name="Button2" type="Button" parent="Node2D"]
 offset_left = 652.0
 offset_top = 241.0
 offset_right = 758.0
 offset_bottom = 310.0
 text = "- golden"
 
-[node name="Button6" type="Button" parent="UI_DEBUG_LIVES"]
+[node name="Button6" type="Button" parent="Node2D"]
 offset_left = 525.0
 offset_top = 119.0
 offset_right = 631.0
@@ -60,56 +72,57 @@ offset_bottom = 188.0
 text = "total +
 "
 
-[node name="Button7" type="Button" parent="UI_DEBUG_LIVES"]
+[node name="Button7" type="Button" parent="Node2D"]
 offset_left = 525.0
 offset_top = 241.0
 offset_right = 631.0
 offset_bottom = 310.0
 text = "total -"
 
-[node name="Button3" type="Button" parent="UI_DEBUG_LIVES"]
+[node name="Button3" type="Button" parent="Node2D"]
 offset_left = 781.0
 offset_top = 119.0
 offset_right = 887.0
 offset_bottom = 188.0
 text = "+ normal"
 
-[node name="Button4" type="Button" parent="UI_DEBUG_LIVES"]
+[node name="Button4" type="Button" parent="Node2D"]
 offset_left = 781.0
 offset_top = 241.0
 offset_right = 887.0
 offset_bottom = 310.0
 text = "- normal"
 
-[node name="normal" type="Label" parent="UI_DEBUG_LIVES"]
+[node name="normal" type="Label" parent="Node2D"]
 offset_left = 794.0
 offset_top = 205.0
 offset_right = 881.0
 offset_bottom = 231.0
 
-[node name="gold" type="Label" parent="UI_DEBUG_LIVES"]
+[node name="gold" type="Label" parent="Node2D"]
 offset_left = 662.0
 offset_top = 205.0
 offset_right = 749.0
 offset_bottom = 231.0
 
-[node name="total" type="Label" parent="UI_DEBUG_LIVES"]
+[node name="total" type="Label" parent="Node2D"]
 offset_left = 537.0
 offset_top = 205.0
 offset_right = 624.0
 offset_bottom = 231.0
 
-[node name="debug" type="Label" parent="UI_DEBUG_LIVES"]
+[node name="debug" type="Label" parent="Node2D"]
 offset_left = 111.0
 offset_top = 123.0
 offset_right = 198.0
 offset_bottom = 149.0
 
-[connection signal="pressed" from="UI_DEBUG_LIVES/Button" to="." method="plusgold"]
-[connection signal="pressed" from="UI_DEBUG_LIVES/Button5" to="." method="issue"]
-[connection signal="pressed" from="UI_DEBUG_LIVES/Button8" to="." method="issuetotal"]
-[connection signal="pressed" from="UI_DEBUG_LIVES/Button2" to="." method="minusgold"]
-[connection signal="pressed" from="UI_DEBUG_LIVES/Button6" to="." method="plustotal"]
-[connection signal="pressed" from="UI_DEBUG_LIVES/Button7" to="." method="minustotal"]
-[connection signal="pressed" from="UI_DEBUG_LIVES/Button3" to="." method="plus"]
-[connection signal="pressed" from="UI_DEBUG_LIVES/Button4" to="." method="minus"]
+[connection signal="gui_input" from="MapMenu" to="." method="on_map_input"]
+[connection signal="pressed" from="Node2D/Button" to="." method="plusgold"]
+[connection signal="pressed" from="Node2D/Button5" to="." method="issue"]
+[connection signal="pressed" from="Node2D/Button8" to="." method="issuetotal"]
+[connection signal="pressed" from="Node2D/Button2" to="." method="minusgold"]
+[connection signal="pressed" from="Node2D/Button6" to="." method="plustotal"]
+[connection signal="pressed" from="Node2D/Button7" to="." method="minustotal"]
+[connection signal="pressed" from="Node2D/Button3" to="." method="plus"]
+[connection signal="pressed" from="Node2D/Button4" to="." method="minus"]

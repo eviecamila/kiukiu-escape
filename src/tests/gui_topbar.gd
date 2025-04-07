@@ -42,15 +42,18 @@ func _ready() -> void:
 	# Inicializar la visualización de las vidas
 	_on_health_update(lives_instance.current_lives, lives_instance.golden_lives)
 
-func _input(event: InputEvent) -> void:
-	# Detectar si se presiona btn_1 para subir vidas doradas
-	if event.is_action_pressed("btn_1"):
-		print("subir 1")
-		lives_instance.all_health_plus(1)  # Sumar 1 vida dorada
-	# Detectar si se presiona btn_2 para recibir daño
-	elif event.is_action_pressed("btn_2"):
-		print("bajar 1")
-		lives_instance.health_minus(1)  # Restar 1 vida (primero doradas, luego normales)
+
+#DEBUG: Se testea si sube o baja la vida 
+
+#func _input(event: InputEvent) -> void:
+	## Detectar si se presiona btn_1 para subir vidas doradas
+	#if event.is_action_pressed("btn_1"):
+		#print("subir 1")
+		#lives_instance.all_health_plus(1)  # Sumar 1 vida dorada
+	## Detectar si se presiona btn_2 para recibir daño
+	#elif event.is_action_pressed("btn_2"):
+		#print("bajar 1")
+		#lives_instance.health_minus(1)  # Restar 1 vida (primero doradas, luego normales)
 
 func _on_health_update(normal: int, golden: int) -> void:
 	# Validar entradas

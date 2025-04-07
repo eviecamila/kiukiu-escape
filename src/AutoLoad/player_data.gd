@@ -4,11 +4,14 @@ signal updated
 signal died
 signal reset
 
+# SALTOS MAXIMOS EN LA GALLINA JOTA
+var max_jumps = 1
+
 ## Variables estáticas
 var score: int = 0:
 	set = set_score
 
-var debug = true
+var debug = 1
 
 var deaths: int = 0:
 	set = set_deaths
