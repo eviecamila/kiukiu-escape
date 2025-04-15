@@ -1,0 +1,185 @@
+[gd_scene load_steps=17 format=3 uid="uid://b2jqodwsfc7w4"]
+
+[ext_resource type="Script" uid="uid://c0dllllum3jn4" path="res://src/scenes/stages/level_manager.gd" id="1_qukwl"]
+[ext_resource type="PackedScene" uid="uid://gepvpjeoypa3" path="res://src/scenes/stages/map.tscn" id="2_6v322"]
+[ext_resource type="PackedScene" uid="uid://cd7yl2x0c4ltl" path="res://src/scenes/objects/player/Hen.tscn" id="2_ih7p5"]
+[ext_resource type="PackedScene" uid="uid://ct3dxtwnol7qx" path="res://src/scenes/UI/got item/got item.tscn" id="5_1e3tx"]
+[ext_resource type="PackedScene" uid="uid://dyd3dmvx0dx1n" path="res://src/scenes/stages/Npcs_Parser.tscn" id="5_2g2h1"]
+[ext_resource type="PackedScene" uid="uid://cp4rmcatygr1q" path="res://src/scenes/objects/npc/NpcDialog.tscn" id="5_dli3e"]
+[ext_resource type="PackedScene" uid="uid://3ybboseyi07q" path="res://src/scenes/UI/pause menu/PauseMenu.tscn" id="5_x4f30"]
+[ext_resource type="Texture2D" uid="uid://cmy6lplqac4ib" path="res://assets/kiu/buttons/btn_j_a.png" id="6_44y8i"]
+[ext_resource type="PackedScene" uid="uid://g8gjgp6025f3" path="res://src/tests/GUI_TOPBAR.tscn" id="6_f8qku"]
+[ext_resource type="Texture2D" uid="uid://74f6uwht24dv" path="res://assets/kiu/buttons/btn_j_b.png" id="7_7j77a"]
+[ext_resource type="Texture2D" uid="uid://dwk4bnpq0ke5k" path="res://assets/kiu/buttons/arrow.png" id="7_dli3e"]
+[ext_resource type="PackedScene" uid="uid://bhrua4anehx3n" path="res://src/scenes/UI/map menu/map_menu.tscn" id="7_qukwl"]
+[ext_resource type="VideoStream" path="res://assets/video/output.ogv" id="12_vcuvp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6v322"]
+size = Vector2(10, 725)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1yk2"]
+size = Vector2(10, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dli3e"]
+size = Vector2(1280, 10)
+
+[node name="Stage" type="Node2D"]
+script = ExtResource("1_qukwl")
+
+[node name="C" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Game" type="SubViewportContainer" parent="C"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SVP" type="SubViewport" parent="C/Game"]
+process_mode = 1
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="BG" type="ColorRect" parent="C/Game/SVP"]
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Node" type="Node" parent="C/Game/SVP"]
+
+[node name="Map" parent="C/Game/SVP/Node" instance=ExtResource("2_6v322")]
+
+[node name="Camera" type="Camera2D" parent="C/Game/SVP"]
+anchor_mode = 0
+
+[node name="L_Portal" type="Area2D" parent="C/Game/SVP/Camera"]
+collision_layer = 4
+
+[node name="L_Portal" type="CollisionShape2D" parent="C/Game/SVP/Camera/L_Portal"]
+position = Vector2(-45, 357.5)
+shape = SubResource("RectangleShape2D_6v322")
+debug_color = Color(0.721573, 0.390079, 0.720596, 0.42)
+
+[node name="R_Portal" type="Area2D" parent="C/Game/SVP/Camera"]
+position = Vector2(1278, 0)
+collision_layer = 4
+
+[node name="R_Portal" type="CollisionShape2D" parent="C/Game/SVP/Camera/R_Portal"]
+position = Vector2(45, 355.5)
+shape = SubResource("RectangleShape2D_u1yk2")
+
+[node name="D_Portal" type="Area2D" parent="C/Game/SVP/Camera"]
+position = Vector2(1278, 0)
+collision_layer = 4
+
+[node name="D_Portal" type="CollisionShape2D" parent="C/Game/SVP/Camera/D_Portal"]
+position = Vector2(-640, 765)
+shape = SubResource("RectangleShape2D_dli3e")
+
+[node name="Npcs" parent="C/Game/SVP/Camera" instance=ExtResource("5_2g2h1")]
+position = Vector2(1, 0)
+
+[node name="Node2" type="Node" parent="C/Game/SVP"]
+
+[node name="Hen" parent="C/Game/SVP/Node2" instance=ExtResource("2_ih7p5")]
+position = Vector2(1183, 465)
+scale = Vector2(2.275, 2.275)
+
+[node name="Fade" type="ColorRect" parent="C/Game/SVP"]
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Gamepad" type="Container" parent="C"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 30.332
+anchor_bottom = 17.47
+offset_left = 70.0
+offset_top = 517.0
+offset_right = 43.72
+offset_bottom = 12.2
+
+[node name="btn_a" type="TouchScreenButton" parent="C/Gamepad"]
+texture_filter = 1
+position = Vector2(995, 98)
+scale = Vector2(5.3125, 5.3125)
+texture_normal = ExtResource("6_44y8i")
+texture_pressed = ExtResource("6_44y8i")
+action = "btn_1"
+visibility_mode = 1
+
+[node name="left" type="TouchScreenButton" parent="C/Gamepad"]
+texture_filter = 1
+position = Vector2(7, 183)
+rotation = 4.71239
+scale = Vector2(5.3125, 5.3125)
+texture_normal = ExtResource("7_dli3e")
+texture_pressed = ExtResource("7_dli3e")
+action = "ui_left"
+visibility_mode = 1
+
+[node name="up" type="TouchScreenButton" parent="C/Gamepad"]
+texture_filter = 1
+position = Vector2(904, 109)
+scale = Vector2(5.3125, 5.3125)
+texture_normal = ExtResource("7_dli3e")
+texture_pressed = ExtResource("7_dli3e")
+action = "ui_up"
+visibility_mode = 1
+
+[node name="right" type="TouchScreenButton" parent="C/Gamepad"]
+texture_filter = 1
+position = Vector2(274, 98)
+rotation = 1.5708
+scale = Vector2(5.3125, 5.3125)
+texture_normal = ExtResource("7_dli3e")
+texture_pressed = ExtResource("7_dli3e")
+action = "ui_right"
+visibility_mode = 1
+
+[node name="btn_b" type="TouchScreenButton" parent="C/Gamepad"]
+texture_filter = 1
+position = Vector2(1086, 98)
+scale = Vector2(5.3125, 5.3125)
+texture_normal = ExtResource("7_7j77a")
+texture_pressed = ExtResource("7_7j77a")
+action = "btn_2"
+visibility_mode = 1
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+process_mode = 3
+
+[node name="GotItem" parent="Node2D" instance=ExtResource("5_1e3tx")]
+
+[node name="NpcDialog" parent="Node2D" instance=ExtResource("5_dli3e")]
+process_mode = 0
+
+[node name="TopBar" parent="Node2D" instance=ExtResource("6_f8qku")]
+
+[node name="MapMenu" parent="Node2D" instance=ExtResource("7_qukwl")]
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Pause" parent="Node2D" instance=ExtResource("5_x4f30")]
+process_mode = 3
+offset_left = 0.0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Cutscenes" type="VideoStreamPlayer" parent="Node2D"]
+process_mode = 3
+offset_right = 1920.0
+offset_bottom = 1080.0
+scale = Vector2(0.666, 0.666)
+stream = ExtResource("12_vcuvp")
+
+[connection signal="gui_input" from="C" to="." method="_on_c_gui_input"]
+[connection signal="body_entered" from="C/Game/SVP/Camera/L_Portal" to="." method="on_Left_teleport"]
+[connection signal="body_entered" from="C/Game/SVP/Camera/R_Portal" to="." method="on_Right_teleport"]
+[connection signal="body_entered" from="C/Game/SVP/Camera/D_Portal" to="." method="on_Down_teleport"]

@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3x8mnmy1s3rf"]
+[gd_scene load_steps=5 format=3 uid="uid://d3x8mnmy1s3rf"]
 
 [ext_resource type="Script" uid="uid://dp62mf616jijc" path="res://src/scenes/objects/npc/npc.gd" id="1_f6lo0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f6lo0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_goc85"]
 font_size = 64
@@ -21,7 +23,7 @@ script = ExtResource("1_f6lo0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-16, 16)
-animation = &""
+sprite_frames = SubResource("SpriteFrames_f6lo0")
 offset = Vector2(16, -16)
 
 [node name="DialogueText" type="Label" parent="AnimatedSprite2D"]
@@ -36,8 +38,10 @@ horizontal_alignment = 1
 
 [node name="InteractionArea" type="Area2D" parent="AnimatedSprite2D"]
 position = Vector2(16, -16)
+collision_layer = 512
+collision_mask = 2
 
-[node name="Area" type="CollisionShape2D" parent="AnimatedSprite2D/InteractionArea"]
+[node name="Area" type="CollisionShape2D" parent="AnimatedSprite2D/InteractionArea" groups=["NPC"]]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_goc85")
 

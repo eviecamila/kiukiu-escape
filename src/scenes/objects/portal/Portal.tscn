@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://b7yro1husjanr" path="res://src/scenes/objects/portal/portal.gd" id="1_33opp"]
 
 [node name="Area2D" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
 script = ExtResource("1_33opp")
 target_room = null
 target_coords = null

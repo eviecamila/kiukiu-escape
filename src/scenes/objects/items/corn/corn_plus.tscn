@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c80xamq5isn5t"]
+
+[ext_resource type="PackedScene" uid="uid://coc7gxedp75ix" path="res://src/scenes/objects/items/item.tscn" id="1_14jdg"]
+[ext_resource type="Script" uid="uid://b7m615qly7ejk" path="res://src/scenes/objects/items/corn/corn_plus.gd" id="1_k32mt"]
+
+[node name="CornPlus" type="Node2D"]
+script = ExtResource("1_k32mt")
+
+[node name="Item" parent="." instance=ExtResource("1_14jdg")]
+metadata/item = "corn_plus"
+metadata/special = true
+
+[connection signal="grabbed" from="Item" to="." method="on_grabbed"]

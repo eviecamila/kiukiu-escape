@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://jbn2lmrx5vvh"]
+
+[ext_resource type="PackedScene" uid="uid://coc7gxedp75ix" path="res://src/scenes/objects/items/item.tscn" id="1_febrw"]
+[ext_resource type="Script" uid="uid://cy4ubotym1i6" path="res://src/scenes/objects/items/egg/golden_egg.gd" id="1_of40e"]
+
+[node name="GoldenEgg" type="Node2D"]
+script = ExtResource("1_of40e")
+
+[node name="Objeto" parent="." instance=ExtResource("1_febrw")]
+metadata/item = "secret_egg"
+metadata/special = true
+
+[connection signal="grabbed" from="Objeto" to="." method="on_grabbed"]

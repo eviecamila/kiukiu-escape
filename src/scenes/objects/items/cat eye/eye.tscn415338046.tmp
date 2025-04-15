@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://didhodifldcaw"]
+
+[ext_resource type="Script" uid="uid://cemi8fq6srfmo" path="res://src/scenes/objects/items/cat eye/eye.gd" id="1_1he7w"]
+[ext_resource type="PackedScene" uid="uid://coc7gxedp75ix" path="res://src/scenes/objects/items/item.tscn" id="2_5ybbq"]
+
+[node name="Eye" type="Node2D"]
+script = ExtResource("1_1he7w")
+
+[node name="Objeto" parent="." instance=ExtResource("2_5ybbq")]
+metadata/item = "cat_eye"
+metadata/special = true
+
+[connection signal="grabbed" from="Objeto" to="." method="on_grabbed"]

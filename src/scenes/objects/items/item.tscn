@@ -12,6 +12,10 @@ region = Rect2(80, 0, 16, 16)
 atlas = ExtResource("2_kq3q4")
 region = Rect2(0, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc2ei"]
+atlas = ExtResource("2_kq3q4")
+region = Rect2(32, 16, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jcrsd"]
 atlas = ExtResource("2_kq3q4")
 region = Rect2(0, 16, 16, 16)
@@ -31,10 +35,6 @@ region = Rect2(48, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_r20n7"]
 atlas = ExtResource("2_kq3q4")
 region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rc2ei"]
-atlas = ExtResource("2_kq3q4")
-region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dwvh0"]
 atlas = ExtResource("2_kq3q4")
@@ -64,6 +64,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"boots",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rc2ei")
+}],
+"loop": true,
+"name": &"cat_eye",
 "speed": 1.0
 }, {
 "frames": [{
@@ -108,14 +116,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rc2ei")
-}],
-"loop": true,
-"name": &"night_eye",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_dwvh0")
 }],
 "loop": true,
@@ -151,9 +151,11 @@ metadata/special = false
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_mi2ob")
-animation = &"boots"
+animation = &"cat_eye"
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_kq3q4")

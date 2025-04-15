@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://sbdi1t1ylk1t"]
+
+[ext_resource type="Script" uid="uid://un25pt86fds8" path="res://src/scenes/objects/items/pick/pick.gd" id="1_oc1ll"]
+[ext_resource type="PackedScene" uid="uid://coc7gxedp75ix" path="res://src/scenes/objects/items/item.tscn" id="2_i7pj6"]
+
+[node name="Pick" type="Node2D"]
+script = ExtResource("1_oc1ll")
+
+[node name="Objeto" parent="." instance=ExtResource("2_i7pj6")]
+metadata/item = "pick"
+metadata/special = true
+
+[connection signal="grabbed" from="Objeto" to="." method="on_grabbed"]

@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://c4bl2oe83hajt" path="res://src/scenes/UI/got item/got_item.gd" id="1_vv3ji"]
 [ext_resource type="AudioStream" uid="uid://bfqja81fo5vsr" path="res://assets/audio/typing/1.wav" id="2_4xfhu"]
 
+[sub_resource type="Animation" id="Animation_t880t"]
+resource_name = "hide"
+
 [sub_resource type="Animation" id="Animation_4xfhu"]
 resource_name = "play"
 
 [sub_resource type="Animation" id="Animation_tqjt7"]
 resource_name = "show"
-
-[sub_resource type="Animation" id="Animation_t880t"]
-resource_name = "hide"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dx8is"]
 _data = {

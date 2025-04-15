@@ -1,5 +1,5 @@
 extends Area2D
-class_name Portal
+
 
 # Señales personalizadas
 signal pressed  # Emitida cuando el jugador presiona una tecla dentro del portal

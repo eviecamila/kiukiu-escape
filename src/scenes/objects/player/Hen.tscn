@@ -298,6 +298,10 @@ size = Vector2(14, 12)
 size = Vector2(13.9951, 2)
 
 [node name="Hen" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5788
+platform_floor_layers = 8
+platform_wall_layers = 8
 script = ExtResource("1_tjltt")
 
 [node name="PreviewAction" parent="." instance=ExtResource("2_khep7")]
@@ -318,7 +322,8 @@ frame_progress = 0.34442
 offset = Vector2(0, -15)
 
 [node name="enemy_detector2" type="Area2D" parent="." groups=["player"]]
-collision_layer = 2
+collision_layer = 128
+collision_mask = 2049
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_detector2"]
 position = Vector2(0, -8)
@@ -326,7 +331,8 @@ shape = SubResource("RectangleShape2D_piujq")
 
 [node name="stomp_detector2" type="Area2D" parent="."]
 position = Vector2(0, -0.5)
-collision_layer = 16
+collision_layer = 256
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stomp_detector2"]
 position = Vector2(0, -0.5)

@@ -13,6 +13,7 @@ var typing_speed = .05
 var end = false
 
 func _ready():
+	visible = false
 	self.size = Vector2(1280, 720)
 
 func _input(event):
@@ -24,7 +25,8 @@ func _input(event):
 			_hide_item()
 
 func show_item(item: InvItem) -> void:
-
+	end = false
+	get_tree().paused=true 
 	icon.texture = item.sprite.sprite_frames.get_frame_texture(item.sprite.animation, 0)
 	label.text = ""
 	visible = true
@@ -44,6 +46,9 @@ func show_item(item: InvItem) -> void:
 	# No necesitamos un bucle aquí, _input se encargará de detectar la presión
 
 func _hide_item():
+	
+	print('se acabo el gotitas')
+	get_tree().paused=false
+	end = false
 	visible = false
-	get_tree().paused = false # Despausar el juego al ocultar el item
 	emit_signal("ending")

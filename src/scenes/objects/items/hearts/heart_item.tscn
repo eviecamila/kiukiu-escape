@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpicw4aodqtn2"]
+
+[ext_resource type="Script" uid="uid://c634246pqg5g3" path="res://src/scenes/objects/items/hearts/heart_item.gd" id="1_m58ed"]
+[ext_resource type="PackedScene" uid="uid://coc7gxedp75ix" path="res://src/scenes/objects/items/item.tscn" id="2_5d8qh"]
+
+[node name="HeartItem" type="Node2D"]
+script = ExtResource("1_m58ed")
+
+[node name="Objeto" parent="." instance=ExtResource("2_5d8qh")]
+texto = null
+sfx_path = null
+metadata/item = "live"
+
+[connection signal="grabbed" from="Objeto" to="." method="on_grabbed"]

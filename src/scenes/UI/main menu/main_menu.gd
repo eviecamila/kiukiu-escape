@@ -1,5 +1,7 @@
 extends Node2D
 
+func _ready():
+	$Label.text = PlayerData.version
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		show_question()

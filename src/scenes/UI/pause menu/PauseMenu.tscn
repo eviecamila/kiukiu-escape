@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://5h57kl35aoo4" path="res://src/scenes/UI/pause menu/pause_menu.gd" id="1_agenl"]
 
 [node name="Menu" type="Control"]
-process_mode = 2
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

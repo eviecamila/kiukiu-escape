@@ -1,6 +1,8 @@
 extends Node2D
+#codigo de botas
 
-
+func _ready():
+	$Objeto.texto = "Obtuviste unas botas papu"
+	
 func on_grabbed() -> void:
-	print('me agarraron')
 	PlayerData.max_jumps +=1

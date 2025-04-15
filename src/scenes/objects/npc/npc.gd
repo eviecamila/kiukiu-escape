@@ -1,6 +1,5 @@
 extends Node2D
 class_name NPC
-
 # Propiedades exportadas
 @export var dialog_data: Array = ["No hay diálogo disponible."]  # Datos del diálogo
 @export var interact_radius: int = 100  # Radio de interacción
@@ -13,9 +12,9 @@ class_name NPC
 @onready var interaction_area: Area2D = $AnimatedSprite2D/InteractionArea
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer  # Reproductor de sonido
 
-const player_node_path = "/root/Stage/C/SVPC/SVP/Node2/Hen"  # Ruta al nodo del jugador
-const npc_dialog_path = "/root/Stage/C/SVPC/SVP/NpcDialog"  # Ruta al nodo NpcDialog
-const bgm_path = "/root/Stage/BGM"  # Ruta al nodo NpcDialog
+const player_node_path = "/root/Stage/C/Game/SVP/Node2/Hen"  # Ruta al nodo del jugador
+const npc_dialog_path = "/root/Stage/UI/NpcDialog"  # Ruta al nodo NpcDialog
+const bgm_path = "/root/Stage/BGM"  # Ruta al nodo BGM
 # Estado del NPC
 var is_player_near: bool = false
 var is_interacting: bool = false  # Indica si el NPC está interactuando
@@ -32,6 +31,7 @@ func _ready():
 
 	# Configurar el sprite animado
 	animated_sprite.set_sprite_frames(npc_resource.sprite)
+	animated_sprite.animation = "idle"
 
 	# Escalar el NPC
 	scale = Vector2(npc_scale, npc_scale)
@@ -46,19 +46,13 @@ func _ready():
 
 func start_dialog():
 	if not is_interacting and is_player_near:
+		GameStateManager.set_state(GameStateManager.State.DIALOG)
 		#Bajarle a la musica
 		var bgm = get_node(bgm_path)
 		bgm.set_volume_linear(.2)
-		# Bloquear controles del jugador
-		var player = get_node(player_node_path)
-		player.cant_press()  # Desactivar acciones del jugador
-		is_interacting = true
-		animated_sprite.stop()  # Detener animación idle
-
 		# Reproducir sonido de inicio del NPC
 		if npc_resource.sfx_1:
 			audio_player.stream = npc_resource.sfx_1
-			audio_player.play()
 		# Mostrar el diálogo
 		var npc_dialog = get_node(npc_dialog_path)  # Obtener el nodo NpcDialog
 		npc_dialog.dialog(self)  # Iniciar el diálogo
@@ -68,9 +62,11 @@ func end_dialog():
 	var bgm = get_node(bgm_path)
 	bgm.set_volume_linear(1)
 	# Reactivar controles del jugador después de 1 segundo
-	var player = get_node(player_node_path)
-	player.set_physics_process(true)
-	player.can_press("btn_1")
+	#var player = get_node(player_node_path)
+	#player.set_physics_process(true)
+	print('se acabo el dialogo')
+	get_tree().paused=false
+	#player.can_press("btn_1")
 	# Reproducir sonido de finalización del NPC
 	if npc_resource.sfx_2:
 		audio_player.stream = npc_resource.sfx_2
@@ -78,19 +74,19 @@ func end_dialog():
 
 	# Reiniciar estado del NPC
 	is_interacting = false
+	GameStateManager.set_state(GameStateManager.State.PLAYING)
+	
 
 func _on_body_entered(body: Node2D):
 	if "Hen" in body.to_string():  # Verificar si el cuerpo entrante es el jugador
 		is_player_near = true
 		body.can_press(interact_action)  # Habilitar indicador de interacción
-		body.can_throw = false
 		print("Jugador dentro del área de interacción.")
 
 func _on_body_exited(body: Node2D):
 	if "Hen" in body.to_string():
 		is_player_near = false
 		body.cant_press()  # Deshabilitar indicador de interacción
-		body.can_throw = true
 		print("Jugador fuera del área de interacción.")
 
 func _input(event):

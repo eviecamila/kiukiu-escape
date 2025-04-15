@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://civ3s6mr8yr0m"]
+
+[ext_resource type="Script" uid="uid://bl6f0m0fegg28" path="res://src/scenes/objects/items/egg/egg.gd" id="1_0movc"]
+[ext_resource type="PackedScene" uid="uid://coc7gxedp75ix" path="res://src/scenes/objects/items/item.tscn" id="2_wuvyg"]
+
+[node name="Egg" type="Node2D"]
+script = ExtResource("1_0movc")
+
+[node name="Item" parent="." instance=ExtResource("2_wuvyg")]
+metadata/item = "egg"
+metadata/special = true
+
+[connection signal="grabbed" from="Item" to="." method="on_grabbed"]
