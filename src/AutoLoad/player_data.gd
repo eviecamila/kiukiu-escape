@@ -5,17 +5,17 @@ signal died
 signal reset
 
 # SALTOS MAXIMOS EN LA GALLINA JOTA
-var max_jumps = 0
+var max_jumps = 2
 var version = "Beta 0.1.1"
 # Bit para saber si se esta depurando
-var debug = 0
-
+var debug = 1
+var current_eyes_to_get:int
+var current_eyes_remaining:int
 # VIDA
 var _max_lives = 3
 var lives = _max_lives
 var max_golden_lives = _max_lives # Inicialmente igual a max_lives
 var golden_lives = 0
-
 func set_max_lives(new_max_lives: int) -> void:
 	_max_lives = new_max_lives
 	max_golden_lives = new_max_lives # Aseguramos que max_golden_lives se actualice

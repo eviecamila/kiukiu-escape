@@ -37,9 +37,9 @@ func _pickup():
 	sfx.play()
 	can_pick = false
 	await sfx.finished
-	
-	queue_free()
 	emit_signal("grabbed")
+	queue_free()
+	
 
 
 func special_display(item: InvItem):

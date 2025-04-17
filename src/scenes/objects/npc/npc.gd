@@ -1,7 +1,7 @@
 extends Node2D
 class_name NPC
 # Propiedades exportadas
-@export var dialog_data: Array = ["No hay diálogo disponible."]  # Datos del diálogo
+@export var dialog_data: String = "No hay diálogo disponible."  # Datos del diálogo
 @export var interact_radius: int = 100  # Radio de interacción
 @export var interact_action: String = "btn_1"  # Acción de entrada para iniciar el diálogo
 @export var npc_scale: float = 1.5

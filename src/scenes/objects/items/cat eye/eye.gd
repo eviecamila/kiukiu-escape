@@ -1,24 +1,21 @@
 extends Node2D
 class_name Eye
-func _ready():
-	$Objeto.texto="Ay mi gatito miau miau"
-func on_grabbed() -> void:
-	
-	print("¡Un Ojo de Gatita! ¡Ahora veo mejor!")
-	PlayerData.vision_nocturna_duracion += PlayerData.vision_nocturna_duracion_base # Usando la base para el incremento
-	print("Duración de visión nocturna aumentada a ", PlayerData.vision_nocturna_duracion, " segundos.")
-	queue_free() # O alguna forma de desaparecer el item
 
-# En el script del jugador o un sistema de efectos:
-# func activar_vision_nocturna() -> void:
-# 	if PlayerData.puede_activar_vision_nocturna and Time.get_ticks_msec() / 1000.0 > PlayerData.tiempo_fin_vision_nocturna:
-# 		print("Activando visión nocturna por ", PlayerData.vision_nocturna_duracion, " segundos.")
-# 		# Activar el efecto visual de visión nocturna
-# 		PlayerData.puede_activar_vision_nocturna = false
-# 		PlayerData.tiempo_fin_vision_nocturna = Time.get_ticks_msec() / 1000.0 + PlayerData.vision_nocturna_duracion
-# 		await get_tree().create_timer(PlayerData.vision_nocturna_cooldown).timeout
-# 		PlayerData.puede_activar_vision_nocturna = true
-# 	elif Time.get_ticks_msec() / 1000.0 <= PlayerData.tiempo_fin_vision_nocturna:
-# 		print("La visión nocturna aún está activa.")
-# 	else:
-# 		print("La visión nocturna está en cooldown.")
+signal got
+
+@onready var item = $Objeto # Asegúrate de que este nodo exista y sea un Label o similar
+
+func _ready():
+	update_text() # Actualiza el texto al inicio
+
+func update_text():
+	var ce = PlayerData.current_eyes_remaining
+	item.texto = "Has obtenido un ojo de gatita\n"
+	if ce-1>0:
+		item.texto+="Ahora alta"+"n %d ojos" % [ce-1] if ce-1 !=1 else " %d ojo"% [ce-1] + " más."
+	else:
+		item.texto += "Ahora ve a la meta miamor"
+
+func on_grabbed() -> void:
+	emit_signal("got")
+	queue_free() # Elimina el ojo al ser recogido

@@ -22,7 +22,8 @@ static func get_instance() -> Lives:
 	if instance == null:
 		instance = Lives.new()
 	return instance
-
+func max_life():
+	all_health_plus(5)
 func reset_lives() -> void:
 	current_lives = max_lives
 	golden_lives = 0

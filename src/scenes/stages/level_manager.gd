@@ -348,7 +348,7 @@ func _on_portal_teleport(direction: String):
 
 func load_npcs_for_current_room():
 	var bg_color = npcs_script.get_bg(room_x, room_y)
-
+	$UI/room.text = "X: %s\nY:%s"%[room_x,room_y]
 	if BG is ColorRect:
 		BG.color = Color(bg_color)  # Asigna el color inmediatamente
 	var npcs_data = npcs_script.get_npc_list(room_x, room_y)
@@ -370,7 +370,7 @@ func load_npcs_for_current_room():
 		npc_instance.position = Vector2(world_x, world_y)
 
 		# Configurar el diálogo del NPC
-		npc_instance.dialog_data = npc_info.get("dialog", ["No hay diálogo disponible."])
+		npc_instance.dialog_data = npc_info.get("dialog", "No hay diálogo disponible.")
 
 		# Configurar la escala del NPC
 		npc_instance.scale = Vector2(npc_info.get("scale", 1.0), npc_info.get("scale", 1.0))

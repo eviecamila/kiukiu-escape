@@ -46,9 +46,9 @@ libraries = {
 [node name="Label" type="Label" parent="Panel"]
 texture_filter = 1
 layout_mode = 0
-offset_top = 210.0
+offset_top = 104.0
 offset_right = 320.0
-offset_bottom = 270.0
+offset_bottom = 164.0
 scale = Vector2(4, 4)
 horizontal_alignment = 1
 

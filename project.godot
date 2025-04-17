@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="KiuKiu's Escape"
-run/main_scene="uid://d32h4g5tqweec"
+run/main_scene="uid://b2jqodwsfc7w4"
 config/features=PackedStringArray("4.4")
 boot_splash/bg_color=Color(0.834033, 0, 0.219688, 1)
 boot_splash/image="uid://b57xprbit0cp3"

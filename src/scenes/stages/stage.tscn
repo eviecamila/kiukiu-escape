@@ -190,6 +190,13 @@ offset_bottom = 1080.0
 scale = Vector2(0.666, 0.666)
 stream = ExtResource("12_vcuvp")
 
+[node name="room" type="Label" parent="UI"]
+offset_left = 296.0
+offset_top = 2.0
+offset_right = 336.0
+offset_bottom = 22.0
+text = "asd"
+
 [connection signal="gui_input" from="C" to="." method="_on_c_gui_input"]
 [connection signal="body_entered" from="C/Game/SVP/Camera/L_Portal" to="." method="on_Left_teleport"]
 [connection signal="body_entered" from="C/Game/SVP/Camera/R_Portal" to="." method="on_Right_teleport"]

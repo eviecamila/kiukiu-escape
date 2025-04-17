@@ -33,11 +33,11 @@ func dialog(npc_instance: NPC):
 	set_data(npc.dialog_data)
 	visible = true
 
-func set_data(dialogs: Array) -> void:
+func set_data(d: String) -> void:
 	is_running_dialog = true
 	visible = true
 	var index := 0
-
+	var dialogs = d.split(';')
 	while index < dialogs.size():
 		var entry = dialogs[index]
 
@@ -46,15 +46,15 @@ func set_data(dialogs: Array) -> void:
 			await start_typing(entry)
 			await wait_for_input()
 
-		elif typeof(entry) == TYPE_DICTIONARY:
-			for key in entry:
-				show_options(entry[key])
-				await wait_for_option()
-				await wait_for_input()
-
-				dialogs = selected_option_data + dialogs.slice(index + 1)
-				index = -1  # reiniciar para seguir con el nuevo diálogo
-				break
+		#elif typeof(entry) == TYPE_DICTIONARY:
+			#for key in entry:
+				#show_options(entry[key])
+				#await wait_for_option()
+				#await wait_for_input()
+#
+				#dialogs = selected_option_data + dialogs.slice(index + 1)
+				#index = -1  # reiniciar para seguir con el nuevo diálogo
+				#break
 
 		index += 1
 

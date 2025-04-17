@@ -5,6 +5,7 @@
 
 [node name="Eye" type="Node2D"]
 script = ExtResource("1_1he7w")
+metadata/custom_text = ""
 
 [node name="Objeto" parent="." instance=ExtResource("2_5ybbq")]
 metadata/item = "cat_eye"

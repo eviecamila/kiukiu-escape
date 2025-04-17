@@ -30,8 +30,9 @@ func show_item(item: InvItem) -> void:
 	icon.texture = item.sprite.sprite_frames.get_frame_texture(item.sprite.animation, 0)
 	label.text = ""
 	visible = true
-
-	var full_text: String = text + item.get_meta("item", "???")
+	
+	var full_text: String = item.texto if item.texto else text + item.get_meta("item", "???")
+	
 	var displayed_text: String = ""
 
 	for i in full_text.length():
