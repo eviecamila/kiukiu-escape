@@ -144,7 +144,7 @@ func on_body_entered(b: Node2D) -> void:
 		return
 
 	if in_g(b, "fall"):
-		print("Detectado contacto con fall")
+		print("Detectado contacto con fall") 
 		die()
 
 	elif in_g(b, "enemy"):

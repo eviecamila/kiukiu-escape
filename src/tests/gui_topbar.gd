@@ -25,7 +25,12 @@ const GOLDEN_HEART_INDICES = [3, 4, 5]  # Heart4, Heart5, Heart6
 # Singleton Lives
 var lives_instance: Lives = Lives.get_instance()
 
+func _process(delta: float) -> void:
+	var er = PlayerData.current_eyes_remaining
+	var tg = PlayerData.current_eyes_to_get
+	$EyeCounter.text = "%d/%d"%[tg-er,tg]
 func _ready() -> void:
+	text.visible = PlayerData.debug
 	# Aplicar escala a los corazones
 	for i in range(heart_nodes.size()):
 		var heart = heart_nodes[i]
@@ -34,7 +39,6 @@ func _ready() -> void:
 			heart.visible = true
 		else:
 			push_error("Nodo de corazón faltante en heart_nodes[%d]" % i)
-	
 	# Conectar señales del singleton Lives
 	lives_instance.connect("health_update", Callable(self, "_on_health_update"))
 	lives_instance.connect("death", Callable(self, "_on_death"))
@@ -88,6 +92,7 @@ func _on_health_update(normal: int, golden: int) -> void:
 			# Configurar visibilidad para corazón dorado
 			var golden_index = GOLDEN_HEART_INDICES.find(i)
 			heart.update_health(golden_quantities[golden_index])
+	
 	text.text= 'Vidas: %s\nVidas doradas: %s\n'%[lives_instance.current_lives, lives_instance.golden_lives]
 
 func _on_death() -> void:

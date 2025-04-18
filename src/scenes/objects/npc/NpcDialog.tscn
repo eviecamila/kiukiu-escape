@@ -49,6 +49,7 @@ alignment = 1
 [node name="Text" type="Label" parent="Panel/BG/BoxContainer"]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_d6bvk")
+horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="OptionsContainer" type="VBoxContainer" parent="Panel/BG/BoxContainer"]

@@ -12,10 +12,11 @@ func update_text():
 	var ce = PlayerData.current_eyes_remaining
 	item.texto = "Has obtenido un ojo de gatita\n"
 	if ce-1>0:
-		item.texto+="Ahora alta"+"n %d ojos" % [ce-1] if ce-1 !=1 else " %d ojo"% [ce-1] + " más."
+		item.texto+="Ahora falta"+("n %d ojos" % [ce-1] if ce-1 !=1 else " %d ojo"% [ce-1]) + " más."
 	else:
 		item.texto += "Ahora ve a la meta miamor"
 
 func on_grabbed() -> void:
 	emit_signal("got")
-	queue_free() # Elimina el ojo al ser recogido
+func on_finished():
+	queue_free()

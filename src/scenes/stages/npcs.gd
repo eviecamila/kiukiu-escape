@@ -10,28 +10,30 @@ const h = "h"
 const npc_list = { 
 # 	x	y
 	0: {
+		#0,0,29,15
 		0: {
 			bg: "87CEEB",
 			"npc_list": [
 				{
-					"dialog": "Hola paisana; soy Pablito el gallo!;Me gusta follar gallinas ekisde.;
-Bueno, veo que eres\nnueva por aqui;Tienes que agarrar los\nojos de gatita;Pinches gatos bastardos;como los odio;
-Tengo ladillas y corucos\npor andar follando gallinas",
+					"dialog": "Hola paisana; soy Pablito el gallo!;Me gustan las gallinas ekisde.;
+Bueno, veo que eres\nnueva por aqui;Tienes que agarrar los\nojos de gatita;Esos gatos como los odio;Lo bueno que al morir\ndejan sus ojos",
 					"location": [27, 2.5],
 					"type": "hen2"
 				}
 			],
 			"portals":[
 				#portal de la caseta 2 al subterraneo
-				#{x:28, y:15, w:2, h: 2, "to":{"room":[-1,1],"cc":[3, 6]}}
+				 #teleporter: 0,0,3,12
+				{x:10, y:15, w:2, h: 2, "to":{"room":[-2,1],"cc":[29, 15]}}
 			]
 		},
+		#0,1,29,15
 		1:{
 			bg: "FFD700",  # Color de fondo para el nuevo room [-1, -1]
 			"npc_list": [
 				{
-					"dialog": "COCO COCO! Soy una gallina kiukiu.;¿Quieres follarme Evie?",
-					"location": [3, 13],  # Ubicación dentro del room [-1, -1]
+					"dialog": "Te felicito por llegar aqui;pero si no has agarrado el ojo;Baja por el!!!",
+					"location": [23.5, 14.5],  # Ubicación dentro del room [-1, -1]
 					"type": "hen2"  # Tipo de NPC: gallina
 				}
 			],
@@ -40,9 +42,11 @@ Tengo ladillas y corucos\npor andar follando gallinas",
 				{x:29, y:4, w:1.8, h: 1.8, "to":{"room":[-1,0],"cc":[3, 15]}}
 			]
 		},
+		# 0,2,29,15
 		2:{
 			bg:"000044"
-		}
+		},
+		
 	},
 	
 	-1: {
@@ -50,13 +54,13 @@ Tengo ladillas y corucos\npor andar follando gallinas",
 			bg: "5555ff",
 			"npc_list": [
 				{
-					"dialog": "Soy la coco coco;Follame, Evie!;no te creas we, es cura",
-					"location": [8, 2],
+					"dialog": "Hola papu;Ten mucho cuidado;El granjero anda suelto caramba.",
+					"location": [3, 2.5],
 					"type": "hen"
 				},
 				{
-					"dialog": "Kiu Kiu *>",
-					"location": [0, 3],
+					"dialog": "Kiu Kiu *>;Bueno, que carambas es lo que\ntienes que hacer?;Facil:\n-Encuentra los ojos de gatita\n-Llega a la meta\n y escapa de aqui!!.",
+					"location": [29, 2.5],
 					"type": "hen"
 				}
 			],
@@ -64,12 +68,13 @@ Tengo ladillas y corucos\npor andar follando gallinas",
 				{x:6, y:15, w:2, h: 2, "to":{"room":[-1,1],"cc":[3, 15]}}
 			]
 		},
+		# -1,1,18,9
 		1: {
 			bg: "FFD700",  # Color de fondo para el nuevo room [-1, -1]
 			"npc_list": [
 				{
-					"dialog": ["COCO COCO! Soy una gallina feliz.;¿Quieres un huevo?"],
-					"location": [3, 6],  # Ubicación dentro del room [-1, -1]
+					"dialog": "Para escapar de aqui;tienes que irte por\nlos bloques de arriba;digo...\nkiukiukiu *>",
+					"location": [16, 9.5],  # Ubicación dentro del room [-1, -1]
 					"type": "hen"  # Tipo de NPC: gallina
 				}
 			],
@@ -79,20 +84,72 @@ Tengo ladillas y corucos\npor andar follando gallinas",
 		2:{bg:"000044"},
 		3:{bg:"ab804b"}
 	},
-	-2: {2:{bg:"87ceff"}, 3:{bg:"ab804b"}},
+	-2: {
+		1:{
+			bg: "FFD700",  # Color de fondo para el nuevo room [-1, -1]
+			bgm: "boss1.mp3",
+		},
+		2:{bg:"87ceff"},
+		3:{bg:"ab804b"}},
 	#aqui w
-	-3: {2:{bg:"87CEEB"}, 3:{bg:"ab804b"}},
+	-3: {
+		1:{
+#			-3,1,6,15
+			"portals":[
+				{x:5, y:15, w:2, h: 2, "to":{"room":[0,0],"cc":[8, 15]}}
+			],
+			bg: "FFD700",  # Color de fondo para el nuevo room [-1, -1]
+			bgm: "boss1.mp3", 
+		},
+		2:{bg:"87CEEB"}, 
+		3:{bg:"ab804b"}},
 	1:{
 		1:{bg:"000099"},
-		2:{bg:"000044"}
+		2:{bg:"000044"},
+		3:{
+			"portals":[{x:5, y:7, w:2, h: 2, "to":{"room":[4,1],"cc":[8, 15]}}],
+			"npc_list":[ 
+				{
+					"dialog": "Mira we;Si no tienes todos los ojos de gatita;No puedes pasar el nivel todavia;Asi que muy tu pedo si cruzas en vano",
+					"location": [8, 10.5],  # Ubicación dentro del room [-1, -1]
+					"type": "hen2"  # Tipo de NPC: gallina
+				}
+			],
+			bg: "FFD700",  # Color de fondo para el nuevo room [-1, -1]
+			bgm: "boss1.mp3", 
+		}
 	},
 	2:{
 		1:{bg:"000088"}, 
-		2:{bg:"000044"}
+		2:{bg:"000044"},
+		3:{
+			bg: "FFD700",  # Color de fondo para el nuevo room [-1, -1]
+			bgm: "boss1.mp3", 
+		}
 	},
 	3:{
 		1:{bg:"000055"},
-		2:{bg:"000044"}
+		2:{bg:"000044"},
+		3:{
+			bg: "FFD700",  # Color de fondo para el nuevo room [-1, -1]
+			bgm: "boss1.mp3", 
+		}
+	},
+	4:{
+		1:{"portals":[{x:8, y:15, w:2, h: 2, "to":{"room":[1,3],"cc":[3, 7]}}]},
+		2:{
+			"npc_list":[
+				{
+					"dialog": "Brinca yocho;Brinca como nunca!!;Arriba esta la meta;Pero si no tienes los ojos de gatita;Jamas lograras tu cometido ",
+					"location": [12, 14.5],  # Ubicación dentro del room [-1, -1]
+					"type": "hen2"  # Tipo de NPC: gallina
+				}
+			]
+		},
+		3:{
+			bg: "FFD700",  # Color de fondo para el nuevo room [-1, -1]
+			bgm: "boss1.mp3", 
+		}
 	}
 }
 

@@ -36,10 +36,13 @@ var current_song = ""
 @onready var map_inv_menu = $UI/MapMenu
 
 func _ready():
-	#get_tree().set_debug_collisions_hint(true) 
+	var debug = PlayerData.debug
+	get_tree().set_debug_collisions_hint(debug) 
+	$UI/teleporter.visible = debug
+	$UI/room.visible = debug
 	# Configurar el menú de pausa
 	setup_pause_screen()
-
+	
 	# Configuraciones iniciales
 	camera.offset.x = 0
 	is_transitioning = false
@@ -112,7 +115,10 @@ func set_UI_pos():
 	for ui_item in [BG, FADE]:
 		ui_item.position = camera.position
 func _process(delta: float):
+	var cc_x = int(abs(player.position.x)/tile_size)%32
+	var cc_y = int(abs(player.position.y)/tile_size)%18
 
+	$UI/room.text = "Room: [%d, %d]\nCC: [%d, %d]" % [room_x, room_y, cc_x, cc_y]
 	FADE.color = Color(0, 0, 0, 0)
 	if is_transitioning:
 		if LR_Pressed:
@@ -215,7 +221,10 @@ func _on_portal_pressed():
 		if portal.overlaps_body(player):
 			var target_room = portal.target_room
 			var target_coords = portal.target_coords
-
+			
+			move_room(target_room, target_coords)
+			break
+func move_room(target_room, target_coords):
 			# Realizar el fade out
 			var tween = create_tween()
 			tween.tween_property(FADE, "color:a", 1.0, 0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
@@ -244,8 +253,6 @@ func _on_portal_pressed():
 			# Realizar el fade in
 			tween = create_tween()
 			tween.tween_property(FADE, "color:a", 0.0, 0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
-			
-			break
 
 func on_ActionKeyPressed():
 	if is_transitioning:
@@ -348,7 +355,6 @@ func _on_portal_teleport(direction: String):
 
 func load_npcs_for_current_room():
 	var bg_color = npcs_script.get_bg(room_x, room_y)
-	$UI/room.text = "X: %s\nY:%s"%[room_x,room_y]
 	if BG is ColorRect:
 		BG.color = Color(bg_color)  # Asigna el color inmediatamente
 	var npcs_data = npcs_script.get_npc_list(room_x, room_y)
@@ -404,3 +410,17 @@ func on_Down_teleport(body: Node2D) -> void:
 func on_Up_teleport(body: Node2D) -> void:
 	if validate_portal(body):
 		_on_portal_teleport("up")
+
+
+func _on_teleport(location: String) -> void:
+	var values = location.split(",", false)
+	
+	if values.size() != 4:
+		push_error("Formato incorrecto. Usa: room_x,room_y,cc_x,cc_y")
+		return
+
+	var room_x = int(values[0])
+	var room_y = int(values[1])
+	var cc_x = int(values[2])
+	var cc_y = int(values[3])
+	move_room(Vector2(room_x,room_y), Vector2(cc_x,cc_y))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b2jqodwsfc7w4"]
+[gd_scene load_steps=19 format=3 uid="uid://b2jqodwsfc7w4"]
 
 [ext_resource type="Script" uid="uid://c0dllllum3jn4" path="res://src/scenes/stages/level_manager.gd" id="1_qukwl"]
 [ext_resource type="PackedScene" uid="uid://gepvpjeoypa3" path="res://src/scenes/stages/map.tscn" id="2_6v322"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dwk4bnpq0ke5k" path="res://assets/kiu/buttons/arrow.png" id="7_dli3e"]
 [ext_resource type="PackedScene" uid="uid://bhrua4anehx3n" path="res://src/scenes/UI/map menu/map_menu.tscn" id="7_qukwl"]
 [ext_resource type="VideoStream" uid="uid://dfc2r1km821af" path="res://assets/video/output.ogv" id="12_vcuvp"]
+[ext_resource type="PackedScene" uid="uid://xpmy55e2kgkk" path="res://src/tests/teleporter.tscn" id="14_snobr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6v322"]
 size = Vector2(10, 725)
@@ -22,6 +23,10 @@ size = Vector2(10, 720)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dli3e"]
 size = Vector2(1280, 10)
+
+[sub_resource type="LabelSettings" id="LabelSettings_snobr"]
+font_color = Color(0.000113828, 0.000113828, 0.000113828, 1)
+outline_size = 6
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_qukwl")
@@ -191,14 +196,22 @@ scale = Vector2(0.666, 0.666)
 stream = ExtResource("12_vcuvp")
 
 [node name="room" type="Label" parent="UI"]
-offset_left = 296.0
+offset_left = 911.0
 offset_top = 2.0
-offset_right = 336.0
+offset_right = 951.0
 offset_bottom = 22.0
 text = "asd"
+label_settings = SubResource("LabelSettings_snobr")
+
+[node name="teleporter" parent="UI" instance=ExtResource("14_snobr")]
+offset_left = 538.0
+offset_top = 6.0
+offset_right = 538.0
+offset_bottom = 6.0
 
 [connection signal="gui_input" from="C" to="." method="_on_c_gui_input"]
 [connection signal="body_entered" from="C/Game/SVP/Camera/L_Portal" to="." method="on_Left_teleport"]
 [connection signal="body_entered" from="C/Game/SVP/Camera/R_Portal" to="." method="on_Right_teleport"]
 [connection signal="body_entered" from="C/Game/SVP/Camera/D_Portal" to="." method="on_Down_teleport"]
 [connection signal="body_entered" from="C/Game/SVP/Camera/U_Portal" to="." method="on_Up_teleport"]
+[connection signal="teleport" from="UI/teleporter" to="." method="_on_teleport"]

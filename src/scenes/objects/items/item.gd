@@ -2,6 +2,7 @@ extends Node2D
 class_name InvItem
 
 signal grabbed
+signal finished
 signal special_d
 
 
@@ -31,13 +32,13 @@ func on_touched(body: Node2D) -> void:
 
 func _pickup():
 	visible = false
-
+	emit_signal("grabbed")
 	if sfx_path:
 		sfx.set_stream(load("res://assets/audio/%s"%[sfx_path]))
 	sfx.play()
 	can_pick = false
 	await sfx.finished
-	emit_signal("grabbed")
+	emit_signal("finished")
 	queue_free()
 	
 

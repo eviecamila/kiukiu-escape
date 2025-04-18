@@ -11,4 +11,5 @@ metadata/custom_text = ""
 metadata/item = "cat_eye"
 metadata/special = true
 
+[connection signal="finished" from="Objeto" to="." method="on_finished"]
 [connection signal="grabbed" from="Objeto" to="." method="on_grabbed"]

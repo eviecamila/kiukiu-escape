@@ -1,7 +1,148 @@
-[gd_scene load_steps=3 format=3 uid="uid://g8gjgp6025f3"]
+[gd_scene load_steps=17 format=3 uid="uid://g8gjgp6025f3"]
 
 [ext_resource type="Script" uid="uid://ce2ate1ofhyf7" path="res://src/tests/gui_topbar.gd" id="1_5wfmc"]
 [ext_resource type="PackedScene" uid="uid://cns22pwgmld4e" path="res://src/tests/Heart.tscn" id="1_lb1ro"]
+[ext_resource type="Texture2D" uid="uid://c8phbwy05as7d" path="res://assets/kiu/items.png" id="3_hpyfa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g46wi"]
+atlas = ExtResource("3_hpyfa")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45kbx"]
+atlas = ExtResource("3_hpyfa")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc2ei"]
+atlas = ExtResource("3_hpyfa")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcrsd"]
+atlas = ExtResource("3_hpyfa")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nabbs"]
+atlas = ExtResource("3_hpyfa")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uy6d0"]
+atlas = ExtResource("3_hpyfa")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur1ks"]
+atlas = ExtResource("3_hpyfa")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r20n7"]
+atlas = ExtResource("3_hpyfa")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwvh0"]
+atlas = ExtResource("3_hpyfa")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl2db"]
+atlas = ExtResource("3_hpyfa")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fa72"]
+atlas = ExtResource("3_hpyfa")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m3gr1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g46wi")
+}],
+"loop": true,
+"name": &"block",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45kbx")
+}],
+"loop": true,
+"name": &"boots",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rc2ei")
+}],
+"loop": true,
+"name": &"cat_eye",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcrsd")
+}],
+"loop": true,
+"name": &"corn",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nabbs")
+}],
+"loop": true,
+"name": &"corn_plus",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uy6d0")
+}],
+"loop": true,
+"name": &"egg",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur1ks")
+}],
+"loop": true,
+"name": &"gold_live",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r20n7")
+}],
+"loop": true,
+"name": &"live",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwvh0")
+}],
+"loop": true,
+"name": &"pick",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cl2db")
+}],
+"loop": true,
+"name": &"secret_egg",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fa72")
+}],
+"loop": true,
+"name": &"water",
+"speed": 1.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hpyfa"]
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+outline_size = 10
 
 [node name="TopBar" type="Control"]
 layout_mode = 3
@@ -44,3 +185,19 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 20.0
 text = "Lives: "
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(292, 44)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_m3gr1")
+animation = &"cat_eye"
+
+[node name="EyeCounter" type="Label" parent="."]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 21.0
+offset_right = 484.0
+offset_bottom = 70.0
+text = "Counter"
+label_settings = SubResource("LabelSettings_hpyfa")
