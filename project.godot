@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="KiuKiu's Escape"
-run/main_scene="uid://b2jqodwsfc7w4"
+run/main_scene="uid://d32h4g5tqweec"
 config/features=PackedStringArray("4.4")
 boot_splash/bg_color=Color(0.834033, 0, 0.219688, 1)
 boot_splash/image="uid://b57xprbit0cp3"
@@ -26,8 +26,8 @@ GameStateManager="*res://src/AutoLoad/game_state_manager.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
 
 [dotnet]
 

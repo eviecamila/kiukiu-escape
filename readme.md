@@ -1,7 +1,9 @@
-![KiuKiu's Escape Logo](./assets/kiu/logo.png)
+<p align="center">
+<img src="./assets/kiu/logo.png" style="image-rendering: pixelated; width: 600px;" />
+</p>
 
-# Juegalo ya mismo!!! [LINK](https://eviecamila.github.io/kiukiu-escape/)
-
+## Juegalo ya mismo!!! [LINK](https://eviecamila.github.io/kiukiu-escape/)
+## Descarga sus respectivas versiones aqui: [RELEASES](https://github.com/eviecamila/kiukiu-escape/releases/tag/beta)
 
 ## Descripción
 

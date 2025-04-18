@@ -5,9 +5,9 @@ signal died
 signal reset
 
 # SALTOS MAXIMOS EN LA GALLINA JOTA
-var max_jumps = 2
-var version = "Beta 0.1.1"
-# Bit para saber si se esta depurando
+var max_jumps = 0
+var version = "Beta 0.1.2"
+# Bit para saber si se esta dsepurando
 var debug = 0
 var current_eyes_to_get:int
 var current_eyes_remaining:int

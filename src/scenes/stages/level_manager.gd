@@ -37,6 +37,7 @@ var current_song = ""
 
 func _ready():
 	var debug = PlayerData.debug
+	
 	get_tree().set_debug_collisions_hint(debug) 
 	$UI/teleporter.visible = debug
 	$UI/room.visible = debug
