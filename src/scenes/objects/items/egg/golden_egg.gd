@@ -1,12 +1,13 @@
 extends Node2D
 class_name SuperHuevoDorado
-
+signal grab_started
 func _ready() -> void:
-	$Objeto.texto = "Chupalos w"
+	$Objeto.texto = "Acabas de encontrar uno\nde los 3 Huevos secretos"
+func _on_grab_started():
+	emit_signal("grab_started")
 func on_grabbed() -> void:
-	
 	PlayerData.max_active_super_eggs += 1
-	print("Ahora puedo lanzar hasta ", PlayerData.max_active_super_eggs, " Super Huevos simultáneamente.")
+	#print("Ahora puedo lanzar hasta ", PlayerData.max_active_super_eggs, " Super Huevos simultáneamente.")
 	queue_free() # O alguna forma de desaparecer el item
 
 # En el script del jugador (al lanzar el huevo):

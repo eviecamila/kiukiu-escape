@@ -2,6 +2,7 @@ extends Node2D
 class_name InvItem
 
 signal grabbed
+signal grab_started
 signal finished
 signal special_d
 
@@ -14,30 +15,35 @@ var got_item: GotItem
 var can_pick = true
 var special = false
 
+var bgm_path = "/root/Stage/BGM"
+var bgm
 func _ready() -> void:
 	special = get_meta("special", false)
 	sprite.animation = self.get_meta("item", "")
 	sprite.play()
-
+	if not bgm: bgm = get_node(bgm_path)
+	# print(bgm)
+	
 	if special:
-		var got_item_scene = preload("res://src/scenes/UI/got item/got item.tscn")
+		var got_item_scene = preload("res://src/scenes/UI/got_item/GotItem.tscn")
 		got_item = got_item_scene.instantiate()
 		got_item.connect("ending", Callable(self, "_on_got_item_finished"))
 
 func on_touched(body: Node2D) -> void:
-
 	if can_pick and "Hen" in body.to_string():
+		bgm.stream_paused = true
 		if special: special_display(self)
 		else: _pickup()
 
 func _pickup():
 	visible = false
 	emit_signal("grabbed")
-	if sfx_path:
-		sfx.set_stream(load("res://assets/audio/%s"%[sfx_path]))
+	if sfx_path: sfx.set_stream(load("res://assets/audio/%s"%[sfx_path]))
+	sfx.seek(0)
 	sfx.play()
 	can_pick = false
-	await sfx.finished
+	await sfx.finished 
+	bgm.stream_paused = false
 	emit_signal("finished")
 	queue_free()
 	

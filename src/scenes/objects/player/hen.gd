@@ -13,7 +13,9 @@ signal revived
 
 const buttons = {
 	"btn_1": { "KB": "Z", "JS": "A" },
-	"btn_2": { "KB": "X", "JS": "B" }
+	"btn_2": { "KB": "X", "JS": "B" },
+	"btn_3": { "KB": "C", "JS": "X" },
+	"btn_4": { "KB": "V", "JS": "Y" }
 }
 
 var is_dead: bool = false
@@ -32,8 +34,26 @@ func _input(event: InputEvent) -> void:
 		handle_jump()
 
 func can_press(btn: String):
-	preview_btn.can_press(btn)
-
+	# Determinar el tipo de control basado en si el jugador está tocando la pantalla
+	var variant = "JS" if Meta.touching else "KB"
+	
+	# Verificar que el botón exista en el diccionario `buttons`
+	if not buttons.has(btn):
+		print("Error: El botón '%s' no está definido en el diccionario `buttons`." % btn)
+		return
+	
+	# Verificar que el tipo de control exista para el botón
+	if not buttons[btn].has(variant):
+		print("Error: El botón '%s' no tiene configuración para '%s'." % [btn, variant])
+		return
+	# Construir el identificador del botón
+	var button_id = (variant + "_" + buttons[btn][variant]).to_lower()
+	print(button_id)
+	# Habilitar o deshabilitar el botón en la interfaz
+	if preview_btn:
+		preview_btn.can_press(button_id)
+	else:
+		print("Error: preview_btn no está definido.")
 func handle_jump():
 	if is_on_floor():
 		jump()

@@ -55,30 +55,8 @@ vertical_alignment = 2
 [node name="OptionsContainer" type="VBoxContainer" parent="Panel/BG/BoxContainer"]
 layout_mode = 2
 
-[node name="BoxContainer2" type="BoxContainer" parent="Panel/BG"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.5
-anchor_right = 0.9
-anchor_bottom = 0.86
-offset_left = 101.6
-offset_top = -50.5
-offset_right = 101.6
-offset_bottom = -50.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-theme = SubResource("Theme_unty7")
-alignment = 1
-
-[node name="Text" type="Label" parent="Panel/BG/BoxContainer2"]
-layout_mode = 2
-label_settings = SubResource("LabelSettings_d6bvk")
-vertical_alignment = 2
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1

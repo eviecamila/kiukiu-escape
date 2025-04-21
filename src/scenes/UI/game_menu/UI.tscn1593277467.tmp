@@ -1,0 +1,150 @@
+[gd_scene load_steps=20 format=3 uid="uid://wtbenighyfv7"]
+
+[ext_resource type="Script" uid="uid://b1fq18dxbm33w" path="res://src/scenes/UI/game menu/ui.gd" id="1_of2mg"]
+[ext_resource type="PackedScene" uid="uid://ct3dxtwnol7qx" path="res://src/scenes/UI/got item/got item.tscn" id="1_ug8j2"]
+[ext_resource type="PackedScene" uid="uid://cp4rmcatygr1q" path="res://src/scenes/objects/npc/NpcDialog.tscn" id="2_of2mg"]
+[ext_resource type="PackedScene" uid="uid://g8gjgp6025f3" path="res://src/tests/GUI_TOPBAR.tscn" id="3_hwr6o"]
+[ext_resource type="Texture2D" uid="uid://cmy6lplqac4ib" path="res://assets/kiu/buttons/btn_j_a.png" id="4_gxr4c"]
+[ext_resource type="Texture2D" uid="uid://baxge70m5uq6i" path="res://assets/kiu/buttons/btn_p_j_a.png" id="5_k0aod"]
+[ext_resource type="PackedScene" uid="uid://xpmy55e2kgkk" path="res://src/tests/teleporter.tscn" id="6_1at7u"]
+[ext_resource type="VideoStream" uid="uid://dfc2r1km821af" path="res://assets/video/output.ogv" id="7_fu7o3"]
+[ext_resource type="PackedScene" uid="uid://bhrua4anehx3n" path="res://src/scenes/UI/map menu/map_menu.tscn" id="8_sv7cd"]
+[ext_resource type="Texture2D" uid="uid://drt5rn08mumae" path="res://assets/kiu/buttons/btn_pause.png" id="9_4wrnu"]
+[ext_resource type="Texture2D" uid="uid://sofpptu2g6tl" path="res://assets/kiu/buttons/btn_p_pause.png" id="10_srwkr"]
+[ext_resource type="PackedScene" uid="uid://3ybboseyi07q" path="res://src/scenes/UI/pause menu/PauseMenu.tscn" id="11_qqoah"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_180ho"]
+font_color = Color(0.000113828, 0.000113828, 0.000113828, 1)
+outline_size = 6
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_45inq"]
+load_path = "res://.godot/imported/btn_j_b.png-17895038c5c8a2ae490869354e5961f6.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v3mfk"]
+load_path = "res://.godot/imported/btn_p_j_b.png-19e485940e789b68f2afcc938b2a5d13.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hp0gk"]
+load_path = "res://.godot/imported/arrow.png-54d20f0ea79de4b1202076d6da23a385.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kpqf7"]
+load_path = "res://.godot/imported/arrow_p.png-66882c297299789f995f8063b60935c0.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g8xjb"]
+load_path = "res://.godot/imported/arrow.png-54d20f0ea79de4b1202076d6da23a385.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sl6hw"]
+load_path = "res://.godot/imported/arrow.png-54d20f0ea79de4b1202076d6da23a385.ctex"
+
+[node name="UI" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_of2mg")
+
+[node name="GotItem" parent="." instance=ExtResource("1_ug8j2")]
+layout_mode = 1
+
+[node name="NpcDialog" parent="." instance=ExtResource("2_of2mg")]
+process_mode = 0
+
+[node name="TopBar" parent="." instance=ExtResource("3_hwr6o")]
+layout_mode = 1
+
+[node name="room" type="Label" parent="."]
+layout_mode = 0
+offset_left = 911.0
+offset_top = 2.0
+offset_right = 951.0
+offset_bottom = 22.0
+text = "asd"
+label_settings = SubResource("LabelSettings_180ho")
+
+[node name="Gamepad" type="Container" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 30.332
+anchor_bottom = 17.47
+offset_left = 70.0
+offset_top = 517.0
+offset_right = 70.0
+offset_bottom = 517.0
+
+[node name="btn_a" type="TouchScreenButton" parent="Gamepad"]
+texture_filter = 1
+position = Vector2(1054, 65)
+scale = Vector2(7, 7)
+texture_normal = ExtResource("4_gxr4c")
+texture_pressed = ExtResource("5_k0aod")
+action = "btn_1"
+visibility_mode = 1
+
+[node name="btn_b" type="TouchScreenButton" parent="Gamepad"]
+texture_filter = 1
+position = Vector2(911, 65)
+scale = Vector2(7, 7)
+texture_normal = SubResource("CompressedTexture2D_45inq")
+texture_pressed = SubResource("CompressedTexture2D_v3mfk")
+action = "btn_2"
+visibility_mode = 1
+
+[node name="left" type="TouchScreenButton" parent="Gamepad"]
+texture_filter = 1
+position = Vector2(52, 183)
+rotation = 4.71239
+scale = Vector2(6, 6)
+texture_normal = SubResource("CompressedTexture2D_hp0gk")
+texture_pressed = SubResource("CompressedTexture2D_kpqf7")
+action = "ui_left"
+visibility_mode = 1
+
+[node name="right" type="TouchScreenButton" parent="Gamepad"]
+texture_filter = 1
+position = Vector2(348, 87)
+rotation = 1.5708
+scale = Vector2(6, 6)
+texture_normal = SubResource("CompressedTexture2D_g8xjb")
+texture_pressed = SubResource("CompressedTexture2D_sl6hw")
+action = "ui_right"
+visibility_mode = 1
+
+[node name="teleporter" parent="." instance=ExtResource("6_1at7u")]
+layout_mode = 1
+offset_left = 538.0
+offset_top = 6.0
+offset_right = 538.0
+offset_bottom = 6.0
+
+[node name="Cutscenes" type="VideoStreamPlayer" parent="."]
+process_mode = 3
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+scale = Vector2(0.666, 0.666)
+mouse_filter = 2
+stream = ExtResource("7_fu7o3")
+
+[node name="MapMenu" parent="." instance=ExtResource("8_sv7cd")]
+layout_mode = 1
+
+[node name="PauseButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1175.0
+offset_top = 16.0
+offset_right = 1255.0
+offset_bottom = 96.0
+texture_normal = ExtResource("9_4wrnu")
+texture_pressed = ExtResource("10_srwkr")
+stretch_mode = 0
+
+[node name="Pause" parent="." instance=ExtResource("11_qqoah")]
+process_mode = 2
+layout_mode = 1
+offset_left = 0.0
+offset_right = 0.0
+mouse_filter = 1

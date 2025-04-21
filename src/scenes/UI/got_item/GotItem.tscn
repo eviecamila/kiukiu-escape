@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://ct3dxtwnol7qx"]
+
+[ext_resource type="Script" uid="uid://c4bl2oe83hajt" path="res://src/scenes/UI/got_item/got_item.gd" id="1_o1s86"]
+[ext_resource type="AudioStream" uid="uid://bfqja81fo5vsr" path="res://assets/audio/typing/1.wav" id="2_5euej"]
+
+[sub_resource type="Animation" id="Animation_t880t"]
+resource_name = "hide"
+
+[sub_resource type="Animation" id="Animation_4xfhu"]
+resource_name = "play"
+
+[sub_resource type="Animation" id="Animation_tqjt7"]
+resource_name = "show"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dx8is"]
+_data = {
+&"hide": SubResource("Animation_t880t"),
+&"play": SubResource("Animation_4xfhu"),
+&"show": SubResource("Animation_tqjt7")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_4xfhu"]
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+outline_size = 15
+
+[node name="Control" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o1s86")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel"]
+root_node = NodePath("../Label")
+libraries = {
+&"": SubResource("AnimationLibrary_dx8is")
+}
+
+[node name="Label" type="Label" parent="Panel"]
+texture_filter = 1
+layout_mode = 0
+offset_top = 104.0
+offset_right = 1280.0
+offset_bottom = 284.0
+text = "asdasd"
+label_settings = SubResource("LabelSettings_4xfhu")
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel"]
+texture_filter = 1
+position = Vector2(642, 400)
+scale = Vector2(6, 6)
+
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5euej")
+bus = &"SFX"

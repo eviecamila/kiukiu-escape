@@ -1,6 +1,8 @@
 extends Node2D
 class_name SuperPico
-
+signal grabbed
+func _ready() -> void:
+	$Objeto.texto = "Eso mamona, haz de cuenta\nque ya pasaste el nivel XD"
 func on_grabbed() -> void:
 	print("¡Ahora tengo el Super Pico!")
 	PlayerData.puede_atacar_con_pico = true

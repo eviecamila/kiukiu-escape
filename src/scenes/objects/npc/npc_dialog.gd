@@ -1,6 +1,9 @@
 extends Node2D
 class_name NPCDialog
 
+signal start_dialog
+signal finished
+
 @export var typing_speed: float = 0.05  # Velocidad de escritura
 
 @onready var dialogue_box: Panel = $Panel
@@ -23,12 +26,14 @@ func _init() -> void:
 func dialog(npc_instance: NPC):
 	if is_running_dialog:
 		return
-
+	emit_signal("start_dialog")
 	get_tree().paused=true
 	npc = npc_instance
-	audio_player.stream = npc.audio_player.stream
+	audio_player.stream = npc.npc_resource.sfx_1
+	var scale =  npc.npc_resource.scale
 	if npc.npc_resource and npc.npc_resource.img:
 		sprite.texture = npc.npc_resource.img
+		sprite.scale = Vector2(scale*4, scale*4)
 
 	set_data(npc.dialog_data)
 	visible = true
@@ -65,7 +70,7 @@ func start_typing(text: String):
 	var text_to_show = ""
 
 	for i in range(text.length()):
-		if Input.is_action_pressed("btn_2"):
+		if Input.is_action_pressed("btn_2") and not Input.is_action_pressed("btn_1"):
 			dialogue_text.text = text
 			break
 		text_to_show += text[i]
@@ -76,7 +81,7 @@ func start_typing(text: String):
 	is_typing = false
 
 func wait_for_input():
-	while not Input.is_action_just_pressed("btn_1"):
+	while not Input.is_action_pressed("btn_1"):
 		await get_tree().process_frame
 
 func show_options(options: Dictionary):
@@ -99,10 +104,15 @@ func wait_for_option():
 		await get_tree().process_frame
 
 func end_dialog():
+	emit_signal("finished")
 	visible = false
+	if npc.npc_resource.sfx_2:
+		audio_player.stream = npc.npc_resource.sfx_2
+		audio_player.play()
 	if npc:
 		npc.end_dialog()
 	reset_dialog()
+	await get_tree().create_timer(1).timeout
 
 func reset_dialog():
 	current_texts = []

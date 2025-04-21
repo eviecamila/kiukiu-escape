@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="NPCRes" load_steps=9 format=3 uid="uid://dmb5pra1myemv"]
+
+[ext_resource type="Texture2D" uid="uid://bdvnftp2kginv" path="res://assets/kiu/npcs/Farmer.png" id="1_8lvp4"]
+[ext_resource type="Script" uid="uid://bwct28sknd6ix" path="res://src/scenes/objects/npc/npc_res.gd" id="2_p067r"]
+[ext_resource type="AudioStream" uid="uid://6wsir03wt0ek" path="res://assets/audio/npc/1.wav" id="3_j1vd5"]
+[ext_resource type="AudioStream" uid="uid://666ccmo77t2" path="res://assets/audio/npc/2.wav" id="4_wxbsd"]
+[ext_resource type="Texture2D" uid="uid://goh8tiinlwnv" path="res://assets/Farmer/Farmer.png" id="5_4av21"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bhh2"]
+atlas = ExtResource("5_4av21")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1654n"]
+atlas = ExtResource("5_4av21")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7puhm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bhh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bhh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bhh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1654n")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[resource]
+script = ExtResource("2_p067r")
+sprite = SubResource("SpriteFrames_7puhm")
+img = ExtResource("1_8lvp4")
+sfx_1 = ExtResource("3_j1vd5")
+sfx_2 = ExtResource("4_wxbsd")
+scale = 8.0
+offset_x = 0.0
+offset_y = -13.0
+metadata/_custom_type_script = "uid://bwct28sknd6ix"

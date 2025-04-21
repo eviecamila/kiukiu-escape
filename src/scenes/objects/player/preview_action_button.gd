@@ -13,13 +13,13 @@ func _ready():
 	modulate.a = 0.0  # Inicialmente transparente
 
 func can_press(button: String) -> void:
+	animated_sprite.animation = button
 	# Mostrar el botón
 	show_btn()
 
 func cant_press() -> void:
 	# Ocultar el botón
 	hide_btn()
-
 func set_is_visible_on_screen(value: bool) -> void:
 	if value == is_visible_on_screen:
 		return
@@ -31,6 +31,7 @@ func set_is_visible_on_screen(value: bool) -> void:
 
 func show_button() -> void:
 	# Hacer visible el botón
+	
 	modulate.a = 1.0
 	animated_sprite.visible = true
 

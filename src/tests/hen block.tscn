@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c7lbhiv4m4re6" path="res://src/tests/testmap.tscn" id="2_tqxx5"]
 [ext_resource type="PackedScene" uid="uid://g8gjgp6025f3" path="res://src/tests/GUI_TOPBAR.tscn" id="4_7qon3"]
 [ext_resource type="PackedScene" uid="uid://bb3st06dsscvh" path="res://src/tests/Lives.tscn" id="5_7qon3"]
-[ext_resource type="PackedScene" uid="uid://bhrua4anehx3n" path="res://src/scenes/UI/map menu/map_menu.tscn" id="6_d5ws3"]
+[ext_resource type="PackedScene" uid="uid://bhrua4anehx3n" path="res://src/scenes/UI/map_menu/map_menu.tscn" id="6_d5ws3"]
 
 [node name="HenBlock" type="Node2D"]
 script = ExtResource("1_cfwc1")
