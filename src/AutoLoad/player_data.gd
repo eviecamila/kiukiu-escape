@@ -1,5 +1,5 @@
 extends Node
-var debug = 0
+var debug = 1
 
 
 signal updated
@@ -8,6 +8,7 @@ signal reset
 
 # SALTOS MAXIMOS EN LA GALLINA JOTA
 var max_jumps = 0
+var max_dashes = 0
 var version = "Beta 0.2.1"
 # Bit para saber si se esta dsepurando
 
@@ -42,17 +43,8 @@ var max_active_super_eggs = 1 # Cantidad máxima de Super Huevos activos simult�
 var super_pico_damage = 1
 var puede_atacar_con_pico = false
 
-# OJO DE GATITA
-var vision_nocturna_duracion_base = 5.0
-var vision_nocturna_duracion = 0.0 # Duración actual del efecto
-var vision_nocturna_cooldown = 30.0
-var puede_activar_vision_nocturna = true
-var tiempo_fin_vision_nocturna = 0.0
-
 # Otros estados del jugador (podrías expandir esto)
 var has_bota_prrona = false # Para saber si tiene la bota prrona activa
-
-
 
 func _ready():
 	# print("PlayerData listo.")
@@ -88,10 +80,5 @@ func reset_stats() -> void:
 	max_active_super_eggs = 1
 	super_pico_damage = 1
 	puede_atacar_con_pico = false
-	vision_nocturna_duracion_base = 5.0
-	vision_nocturna_duracion = 0.0
-	vision_nocturna_cooldown = 30.0
-	puede_activar_vision_nocturna = true
-	tiempo_fin_vision_nocturna = 0.0
 	has_bota_prrona = false
 	emit_signal("updated")

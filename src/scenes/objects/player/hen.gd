@@ -4,12 +4,14 @@ class_name Hen
 signal revived
 
 @export var stomp_impulse: float = 600.0
-@export var start_pos: Vector2 = Vector2.ZERO
+
 
 @onready var sprite = $Sprite
 @onready var audio: AudioStreamPlayer = $Audio
 @onready var npc_detector: Area2D = $enemy_detector2
 @onready var preview_btn = $PreviewAction
+
+var inv = Inventory.get_instance()
 
 const buttons = {
 	"btn_1": { "KB": "Z", "JS": "A" },
@@ -21,8 +23,12 @@ const buttons = {
 var is_dead: bool = false
 var jumps_remaining: int = PlayerData.max_jumps
 var lives: Lives
+var attack_ended = true
+var spawn_point: Vector2
+var is_hurted = false
 
 func _ready():
+	spawn_point = position
 	lives = Lives.get_instance()  # Usar el singleton de Lives
 	lives.connect("death", Callable(restart))
 
@@ -32,11 +38,14 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("btn_2"):
 		handle_jump()
+	if event.is_action_pressed("btn_3"):
+		inv.use_item(0, self)
+	if event.is_action_pressed("btn_4"):
+		inv.use_item(1, self)
 
 func can_press(btn: String):
 	# Determinar el tipo de control basado en si el jugador está tocando la pantalla
 	var variant = "JS" if Meta.touching else "KB"
-	
 	# Verificar que el botón exista en el diccionario `buttons`
 	if not buttons.has(btn):
 		print("Error: El botón '%s' no está definido en el diccionario `buttons`." % btn)
@@ -63,8 +72,13 @@ func handle_jump():
 
 func jump():
 	velocity.y = -speed.y
+	Meta._play_sound($Audio, "hen/jump.wav")
 	print("Saltando. Saltos restantes:", jumps_remaining)
 
+func hurt():
+	Meta._play_sound($Audio, "hen/hurt.wav")
+	is_hurted = true
+	
 func cant_press():
 	preview_btn.cant_press()
 
@@ -74,7 +88,7 @@ func get_direction() -> Vector2:
 
 	var direction = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
-		0.0
+		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"),
 	)
 
 	return direction
@@ -100,17 +114,23 @@ func _physics_process(delta: float) -> void:
 
 	velocity = calculate_move_velocity(velocity, direction, speed, is_jump_interrupted)
 
-	if is_on_floor():
+	if is_on_floor() and attack_ended:
+		PlayerData.puede_atacar_con_pico = true
 		if direction.x != 0.0:
 			sprite.play("walk")
 		else:
 			sprite.play("idle")
 	else:
 		pass
-
+	var p_x = int(abs(position.x))-1
+	if is_on_floor() and !is_hurted:
+		#print(p_x)
+		#if p_x % Meta.tile_size == 0 and p_x % Meta.tile_size/2 == 0:
+			set_spawn_point()
+		
 	if is_on_floor():
 		jumps_remaining = PlayerData.max_jumps
-
+	
 	if direction.x > 0.0:
 		sprite.flip_h = false
 	elif direction.x < 0.0:
@@ -123,17 +143,22 @@ func _physics_process(delta: float) -> void:
 
 func get_damage(dmg):
 	if lives != null:
+		hurt()
 		print("Recibiendo daño:", dmg)
 		lives.health_minus(dmg)
 	else:
 		print("Error: lives is null when trying to take damage!")
+func set_spawn_point():
+	#print('asignando spawnpoint en %s' %[position])
+	var p_x = int(position.x)
+	spawn_point = Vector2(p_x, position.y)
 
 func die():
 	if is_dead:
 		return
 
 	is_dead = true
-	audio.stream = load("res://assets/audio/death/1.ogg")
+	audio.stream = load("res://assets/audio/death/1.mp3")
 	audio.play()
 	set_physics_process(false)
 
@@ -143,11 +168,12 @@ func die():
 
 	audio.stream = load("res://assets/audio/death/2.wav")
 	audio.play()
-	position = start_pos
+	position = spawn_point
 	sprite.play("idle")
 	is_dead = false
-	print("Reiniciando en:", start_pos)
+	print("Reiniciando en:", spawn_point)
 	lives.reset_lives()
+	
 	set_physics_process(true)
 	emit_signal("revived")
 
@@ -172,3 +198,9 @@ func on_body_entered(b: Node2D) -> void:
 
 	elif in_g(b, "damage"):
 		get_damage(1)
+func on_body_exited(b: Node2D) -> void:
+	if in_g(b, "damage"):
+		is_hurted = false
+
+func fin() -> void:
+	print('se acabo la animacion gei')

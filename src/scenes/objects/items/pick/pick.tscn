@@ -10,4 +10,5 @@ script = ExtResource("1_oc1ll")
 metadata/item = "pick"
 metadata/special = true
 
+[connection signal="finished" from="Objeto" to="." method="on_finished"]
 [connection signal="grabbed" from="Objeto" to="." method="on_grabbed"]

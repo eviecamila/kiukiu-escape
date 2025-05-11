@@ -47,6 +47,8 @@ func get_npc_list(room_x: int, room_y: int) -> Array:
 func get_portal_metadata(p):
 	return 	{"x":p["x"], "y":p["y"], "w":p["w"], "h": p["h"], "to":p["to"]}
 	
+func get_borders_metadata(x, y):
+	return data[x][y]["borders"]
 
 # Función para obtener los portales de un room
 func get_portals(room_x: int, room_y: int) -> Array:

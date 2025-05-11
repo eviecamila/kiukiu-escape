@@ -1,5 +1,7 @@
 extends Node2D
 class_name LiveBlock
+@onready var item = $Objeto
+func _ready():pass
 # el Kiu Bloque aumenta vida maxima
 func on_grabbed() -> void:
 	print("¡Un Kiu Bloque! ¡Más vida!")
@@ -11,4 +13,7 @@ func on_grabbed() -> void:
 	else:
 		PlayerData.increase_golden_lives()
 		print("Vida dorada aumentada a: ", PlayerData.golden_lives)
-	queue_free() # O alguna forma de desaparecer el item
+
+
+func on_finished() -> void:
+	queue_free()

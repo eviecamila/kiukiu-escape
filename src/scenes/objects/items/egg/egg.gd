@@ -11,7 +11,7 @@ func on_grabbed() -> void:
 	else:
 		PlayerData.super_huevo_rango_actual += PlayerData.super_huevo_rango_base
 		print("El rango del Super Huevo aumentó a ", PlayerData.super_huevo_rango_actual, " píxeles.")
-	queue_free() # O alguna forma de desaparecer el item
+	
 
 #func lanzar(posicion_inicial: Vector2, flipped_h: bool) -> void:
 	#if PlayerData.puede_lanzar_super_huevo:
@@ -22,3 +22,7 @@ func on_grabbed() -> void:
 		#proyectil.direccion = direccion
 		#proyectil.rango = PlayerData.super_huevo_rango_actual
 		## El proyectil deberá tener lógica para moverse, caer al final del rango o al golpear un enemigo
+
+
+func on_finished() -> void:
+	queue_free()

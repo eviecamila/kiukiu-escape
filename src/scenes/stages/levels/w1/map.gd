@@ -14,10 +14,13 @@ signal grab_started
 signal completed
 signal animation(function)
 
+
+#@onready var goal = $
 func _ready():
 	for item in $items.get_children():
 		print(item.get_child(0))
 	setup_eyes()
+	$items/GOAL.item.connect('finished', Callable(_on_goal))
 
 func setup_eyes():
 	# Inicializa el contador de ojos totales
@@ -46,11 +49,7 @@ func _on_eye_found():
 	if PlayerData.current_eyes_remaining == 2:
 		emit_signal("animation", Callable(on_2_eyes_remaining))
 func _input(e):
-	if not PlayerData.debug: return
-	if e.is_action_pressed("btn_4"):
-		emit_signal("animation", Callable(on_eyes_collected))
-	if e.is_action_pressed("btn_3"):
-		emit_signal("animation", Callable(on_2_eyes_remaining))
+	return
 func set_pos(now, color):
 	var cam = get_node(Meta.GAME_PATH+'/Camera')
 	var bg = get_node(Meta.GAME_PATH+'/BG')
@@ -142,7 +141,13 @@ Bueno, veo que eres\nnueva por aqui;Tienes que agarrar los\nojos de gatita;Esos 
 			"portals":[
 				 #teleporter: 0,0,3,12
 				{"x":10, "y":15, "w":2, "h": 2, "to":{"room":[-2,1],"cc":[29, 15]}}
-			]
+			],
+			"borders":{
+				"l":[0,16],
+				"r":[0,9],
+				"u":[0,0],
+				"d":[0,0]
+			}
 		},
 		#0,1,29,15
 		1:{

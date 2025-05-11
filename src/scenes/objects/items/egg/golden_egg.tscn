@@ -10,5 +10,6 @@ script = ExtResource("1_of40e")
 metadata/item = "secret_egg"
 metadata/special = true
 
+[connection signal="finished" from="Objeto" to="." method="on_finished"]
 [connection signal="grab_started" from="Objeto" to="." method="_on_grab_started"]
 [connection signal="grabbed" from="Objeto" to="." method="on_grabbed"]

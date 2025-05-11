@@ -6,7 +6,8 @@
 [node name="SpringWater" type="Node2D"]
 script = ExtResource("1_jo4g2")
 
-[node name="Item" parent="." instance=ExtResource("2_uoa1k")]
+[node name="Objeto" parent="." instance=ExtResource("2_uoa1k")]
 metadata/item = "water"
 
-[connection signal="grabbed" from="Item" to="." method="on_grabbed"]
+[connection signal="finished" from="Objeto" to="." method="on_finished"]
+[connection signal="grabbed" from="Objeto" to="." method="on_grabbed"]

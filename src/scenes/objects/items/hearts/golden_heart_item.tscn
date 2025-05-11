@@ -9,4 +9,5 @@ script = ExtResource("1_ucd1w")
 [node name="Objeto" parent="." instance=ExtResource("1_b0lan")]
 metadata/item = "gold_live"
 
+[connection signal="finished" from="Objeto" to="." method="on_finished"]
 [connection signal="grabbed" from="Objeto" to="." method="on_grabbed"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://g8gjgp6025f3"]
+[gd_scene load_steps=19 format=3 uid="uid://g8gjgp6025f3"]
 
 [ext_resource type="Script" uid="uid://ce2ate1ofhyf7" path="res://src/tests/gui_topbar.gd" id="1_5wfmc"]
 [ext_resource type="PackedScene" uid="uid://cns22pwgmld4e" path="res://src/tests/Heart.tscn" id="1_lb1ro"]
 [ext_resource type="Texture2D" uid="uid://c8phbwy05as7d" path="res://assets/kiu/items.png" id="3_hpyfa"]
+[ext_resource type="PackedScene" uid="uid://c2q68qre7fx7n" path="res://src/scenes/UI/map_menu/inventory/ItemBox.tscn" id="4_m3gr1"]
+[ext_resource type="LabelSettings" uid="uid://b253t4wxu6jcq" path="res://src/scenes/UI/map_menu/inventory_settings.tres" id="5_o3uy7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g46wi"]
 atlas = ExtResource("3_hpyfa")
@@ -201,3 +203,41 @@ offset_right = 484.0
 offset_bottom = 70.0
 text = "Counter"
 label_settings = SubResource("LabelSettings_hpyfa")
+
+[node name="Item1" parent="." instance=ExtResource("4_m3gr1")]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 16.0
+offset_right = 522.0
+offset_bottom = 32.0
+scale = Vector2(4, 4)
+
+[node name="BTN" type="Label" parent="Item1"]
+layout_mode = 0
+offset_left = 1.5
+offset_top = 5.75
+offset_right = 30.5
+offset_bottom = 41.75
+scale = Vector2(0.3, 0.3)
+text = "1
+"
+label_settings = ExtResource("5_o3uy7")
+
+[node name="Item2" parent="." instance=ExtResource("4_m3gr1")]
+layout_mode = 0
+offset_left = 578.0
+offset_top = 15.0
+offset_right = 594.0
+offset_bottom = 31.0
+scale = Vector2(4, 4)
+
+[node name="BTN" type="Label" parent="Item2"]
+layout_mode = 0
+offset_left = 2.25
+offset_top = 5.75
+offset_right = 31.25
+offset_bottom = 41.75
+scale = Vector2(0.3, 0.3)
+text = "2
+"
+label_settings = ExtResource("5_o3uy7")

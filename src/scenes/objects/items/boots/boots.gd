@@ -6,3 +6,7 @@ func _ready():
 	
 func on_grabbed() -> void:
 	PlayerData.max_jumps +=1
+
+
+func on_finished() -> void:
+	queue_free()

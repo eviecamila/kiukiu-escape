@@ -23,4 +23,7 @@ func on_grabbed() -> void:
 		OpcionMejora.HUEVO_2:
 			PlayerData.super_huevo_damage += 2
 			print("El daño del Super Huevo aumentó en 2 a ", PlayerData.super_huevo_damage)
+
+
+func on_finished() -> void:
 	queue_free() # O alguna forma de desaparecer el item

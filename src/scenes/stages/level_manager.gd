@@ -37,6 +37,12 @@ var in_menus = false
 @onready var pause_screen = $UI/PauseMenu
 @onready var map_inv_menu = $UI/MapMenu
 
+@onready var border_portals = [
+	{"node": $C/Game/SVP/Camera/L_Portal/L_Portal, "direction":"left"},
+	{"node": $C/Game/SVP/Camera/R_Portal/R_Portal, "direction":"right"},
+	{"node":$C/Game/SVP/Camera/D_Portal/D_Portal, "direction":"down"},
+	{"node":$C/Game/SVP/Camera/U_Portal/U_Portal, "direction":"up"}
+]
 func _ready():
 	var debug = PlayerData.debug
 	_load_map(1)
@@ -56,8 +62,9 @@ func _ready():
 	is_transitioning = false
 	load_npcs_for_current_room()
 	load_portals_for_current_room()
+	load_border_portals()
 	player.position = map.startpos.position
-	set_start_pos()
+	set_spawn_point()
 	
 	
 
@@ -85,11 +92,7 @@ func _input(event):
 	if in_menus:
 		return
 
-	# Detectar si es touchpad o mando
-	if event is InputEventGesture or event is InputEventPanGesture or event is InputEventJoypadButton or event is InputEventJoypadMotion:
-		Meta.touching = true
-	else:
-		Meta.touching = false
+	Meta.update_touching(event)
 
 	# MAP MENU / INVENTORY PRESSED
 	if event.is_action_pressed("ui_map"):
@@ -110,8 +113,9 @@ func animation(anim:Callable):
 	load_portals_for_current_room()
 
 
-func set_start_pos():
-	player.start_pos = Vector2(player.position.x, player.position.y + 20)
+func set_spawn_point():
+	pass
+	#player.spawn_point = Vector2(player.position.x, player.position.y + 20)
 
 # Mover los elementos de UI
 func set_UI_pos():
@@ -121,7 +125,7 @@ func _process(delta: float):
 	var cc_x = int(abs(player.position.x)/Meta.tile_size)%32
 	var cc_y = int(abs(player.position.y)/Meta.tile_size)%18
 
-	$UI/room.text = "Room: [%d, %d]\nCC: [%d, %d]" % [room_x, room_y, cc_x, cc_y]
+	$UI/room.text = "Room: [%d, %d]\nCC: [%d, %d]\nPosition: [%d, %d]" % [room_x, room_y, cc_x, cc_y, player.position.x, player.position.y]
 	FADE.color = Color(0, 0, 0, 0)
 	if is_transitioning:
 		if LR_Pressed:
@@ -158,7 +162,7 @@ func move_camera(new_position: Vector2):
 		# Cambiar suavemente el color de fondo
 		transition_bg_color()
 
-	set_start_pos()
+	set_spawn_point()
 
 func transition_bg_color():
 	var new_bg_color = Color(npcs_script.get_bg(room_x, room_y))
@@ -249,7 +253,7 @@ func move_room(target_room, target_coords):
 			var new_player_y = target_coords.y * Meta.tile_size
 
 			player.position = Vector2(screen_x + new_player_x, screen_y + new_player_y)
-			player.start_pos = Vector2(screen_x + Meta.screen_width / 2, screen_y + Meta.screen_height / 2)
+			player.spawn_point = Vector2(screen_x + Meta.screen_width / 2, screen_y + Meta.screen_height / 2)
 
 			# Cargar NPCs y portales del nuevo room
 			load_npcs_for_current_room()
@@ -288,7 +292,7 @@ func on_ActionKeyPressed():
 			var new_player_y = target_coords.y * Meta.tile_size
 
 			player.position = Vector2(new_player_x, new_player_y)
-			player.start_pos = Vector2(screen_x + Meta.screen_width / 2, screen_y + Meta.screen_height / 2)
+			player.spawn_point = Vector2(screen_x + Meta.screen_width / 2, screen_y + Meta.screen_height / 2)
 
 			# Cargar NPCs y portales del nuevo room
 			load_npcs_for_current_room()
@@ -331,8 +335,8 @@ func _on_portal_teleport(direction: String):
 		# Actualizar la posición del jugador
 		player.position = Vector2(new_player_x, new_player_y)
 
-		# Actualizar start_pos del jugador
-		player.start_pos = Vector2(screen_x + Meta.screen_width / 2, screen_y + Meta.screen_height / 2)
+		# Actualizar spawn_point del jugador
+		player.spawn_point = Vector2(screen_x + Meta.screen_width / 2, screen_y + Meta.screen_height / 2)
 
 		# Mover la cámara
 		move_camera(Vector2(screen_x, screen_y))
@@ -357,9 +361,24 @@ func _on_portal_teleport(direction: String):
 			player.position.y
 			room_y += 1
 
-	# Actualizar start_pos del jugador al cambiar de habitación
-	player.start_pos = Vector2(screen_x + Meta.screen_width / 2, screen_y + Meta.screen_height / 2)
+	# Actualizar spawn_point del jugador al cambiar de habitación
+	player.spawn_point = Vector2(screen_x + Meta.screen_width / 2, screen_y + Meta.screen_height / 2)
 	move_camera(Vector2(screen_x, screen_y))
+func load_border_portals():
+	var borders = npcs_script.get_borders_metadata(room_x,room_y)
+	print(borders)
+	for p in border_portals:
+		var size = borders[p["direction"][0]][1]*Meta.tile_size
+		var nodo = p['node']
+		if p["direction"] in ["up", "down"]:
+				nodo.shape.size = Vector2(size, 10)
+				nodo.position.x = nodo.shape.size.x/2
+		else:
+			nodo.shape.size = Vector2(10, size)
+			nodo.position.y = nodo.shape.size.y/2
+		print(nodo)
+		print("posicion:", nodo.position)
+		print("tama;o", nodo.shape.size)
 
 func load_npcs_for_current_room():
 	var bg_color = npcs_script.get_bg(room_x, room_y)

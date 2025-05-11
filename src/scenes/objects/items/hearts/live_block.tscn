@@ -6,8 +6,9 @@
 [node name="LiveBlock" type="Node2D"]
 script = ExtResource("1_t6cwi")
 
-[node name="Item" parent="." instance=ExtResource("2_7u4tr")]
+[node name="Objeto" parent="." instance=ExtResource("2_7u4tr")]
 metadata/item = "block"
 metadata/special = true
 
-[connection signal="grabbed" from="Item" to="." method="on_grabbed"]
+[connection signal="finished" from="Objeto" to="." method="on_finished"]
+[connection signal="grabbed" from="Objeto" to="." method="on_grabbed"]

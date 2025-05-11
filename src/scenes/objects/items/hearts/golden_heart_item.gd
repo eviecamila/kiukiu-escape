@@ -7,4 +7,5 @@ func on_grabbed() -> void:
 	print("¡Un corazón! Me siento más fuerte.")
 	PlayerData.increase_golden_lives()
 	print("Vida normal actual: ", PlayerData.lives)
+func on_finished():	
 	queue_free() # O alguna forma de desaparecer el item

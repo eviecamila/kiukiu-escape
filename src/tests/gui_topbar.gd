@@ -17,6 +17,7 @@ var states = {
 	1: "full",
 	0: "empty"
 }
+@onready var item_slots =[$Item1, $Item2]
 
 # Índices de corazones normales y dorados
 const NORMAL_HEART_INDICES = [0, 1, 2]  # Heart1, Heart2, Heart3
@@ -98,3 +99,6 @@ func _on_health_update(normal: int, golden: int) -> void:
 func _on_death() -> void:
 	print("¡El jugador ha muerto!")
 	# Aquí puedes agregar lógica adicional para manejar la muerte del jugador
+
+func reset_slot(pos):
+	item_slots[pos].reset(false)

@@ -1,0 +1,294 @@
+[gd_scene load_steps=12 format=3 uid="uid://bhrua4anehx3n"]
+
+[ext_resource type="Script" uid="uid://bi8qd2lu8xk0l" path="res://src/scenes/UI/map_menu/map_menu.gd" id="1_jdngn"]
+[ext_resource type="Texture2D" uid="uid://dwk4bnpq0ke5k" path="res://assets/kiu/buttons/arrow.png" id="2_akokx"]
+[ext_resource type="Texture2D" uid="uid://c8phbwy05as7d" path="res://assets/kiu/items.png" id="2_s0ok0"]
+[ext_resource type="Texture2D" uid="uid://ct63a1bdr324u" path="res://assets/UI/inventory/grid.png" id="2_xmi0m"]
+[ext_resource type="LabelSettings" uid="uid://b253t4wxu6jcq" path="res://src/scenes/UI/map_menu/inventory_settings.tres" id="3_3qi0e"]
+[ext_resource type="Texture2D" uid="uid://cjkiq0o0ny5tt" path="res://assets/kiu/buttons/btn_x.png" id="3_6bfta"]
+[ext_resource type="Texture2D" uid="uid://br0icqlg83l1k" path="res://assets/kiu/buttons.png" id="3_pp7d8"]
+[ext_resource type="PackedScene" uid="uid://dsk8dtbtyefxs" path="res://src/scenes/UI/map_menu/inventory/InventoryGrid.tscn" id="6_wt5b1"]
+[ext_resource type="Texture2D" uid="uid://thmeh1fhjv3e" path="res://assets/UI/inventory/button.png" id="6_xmi0m"]
+[ext_resource type="PackedScene" uid="uid://c2q68qre7fx7n" path="res://src/scenes/UI/map_menu/inventory/ItemBox.tscn" id="8_7440o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wt5b1"]
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[node name="MapMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jdngn")
+
+[node name="InventoryPanel" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.1
+anchor_right = 0.94
+anchor_bottom = 0.7
+offset_right = 0.32
+offset_bottom = -0.32
+texture = ExtResource("2_xmi0m")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Boots" type="Sprite2D" parent="InventoryPanel"]
+texture_filter = 1
+position = Vector2(150, 150)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_s0ok0")
+hframes = 6
+vframes = 4
+
+[node name="BootsCounter" type="Label" parent="InventoryPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.25
+anchor_top = -2.687
+anchor_right = 3.437
+anchor_bottom = -1.437
+offset_left = -1187.4
+offset_top = 1283.92
+offset_right = -3531.54
+offset_bottom = 799.324
+text = "32/60 "
+label_settings = ExtResource("3_3qi0e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Eyes" type="Sprite2D" parent="InventoryPanel"]
+texture_filter = 1
+position = Vector2(150, 220)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_s0ok0")
+hframes = 6
+vframes = 4
+frame = 8
+
+[node name="EyesCounter" type="Label" parent="InventoryPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.25
+anchor_top = -2.687
+anchor_right = 3.437
+anchor_bottom = -1.437
+offset_left = -1187.4
+offset_top = 1353.92
+offset_right = -3531.54
+offset_bottom = 869.324
+text = "32/60"
+label_settings = ExtResource("3_3qi0e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Eggs" type="Sprite2D" parent="InventoryPanel"]
+texture_filter = 1
+position = Vector2(150, 290)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_s0ok0")
+hframes = 6
+vframes = 4
+frame = 10
+
+[node name="EggsCounter" type="Label" parent="InventoryPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.25
+anchor_top = -2.687
+anchor_right = 3.437
+anchor_bottom = -1.437
+offset_left = -1187.4
+offset_top = 1423.92
+offset_right = -3531.54
+offset_bottom = 939.324
+text = "32/60"
+label_settings = ExtResource("3_3qi0e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Sprite2D" parent="InventoryPanel"]
+texture_filter = 1
+position = Vector2(397.2, 168)
+scale = Vector2(4, 4)
+texture = ExtResource("3_pp7d8")
+hframes = 4
+vframes = 2
+frame = 4
+
+[node name="InventoryGrid" parent="InventoryPanel" instance=ExtResource("6_wt5b1")]
+visible = false
+position = Vector2(707.2, 66)
+scale = Vector2(4, 4)
+
+[node name="ToolsSelector" type="NinePatchRect" parent="InventoryPanel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 625.2
+offset_top = 108.0
+offset_right = 1027.2
+offset_bottom = 166.0
+texture = ExtResource("6_xmi0m")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+metadata/_edit_group_ = true
+
+[node name="text" type="Label" parent="InventoryPanel/ToolsSelector"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.25
+anchor_top = -2.687
+anchor_right = 3.437
+anchor_bottom = -1.437
+offset_left = -500.5
+offset_top = 157.846
+offset_right = -980.674
+offset_bottom = 140.346
+text = "Herramientas"
+label_settings = SubResource("LabelSettings_wt5b1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemsSelector" type="NinePatchRect" parent="InventoryPanel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 625.2
+offset_top = 275.0
+offset_right = 1027.2
+offset_bottom = 333.0
+texture = ExtResource("6_xmi0m")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+metadata/_edit_group_ = true
+
+[node name="text" type="Label" parent="InventoryPanel/ItemsSelector"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.25
+anchor_top = -2.687
+anchor_right = 3.437
+anchor_bottom = -1.437
+offset_left = -500.5
+offset_top = 157.846
+offset_right = -980.674
+offset_bottom = 140.346
+text = "Consumibles"
+label_settings = SubResource("LabelSettings_wt5b1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Sprite2D" parent="InventoryPanel"]
+texture_filter = 1
+position = Vector2(397.2, 278)
+scale = Vector2(4, 4)
+texture = ExtResource("3_pp7d8")
+hframes = 4
+vframes = 2
+frame = 6
+
+[node name="InvUISlot" parent="InventoryPanel" instance=ExtResource("8_7440o")]
+layout_mode = 0
+offset_left = 437.2
+offset_top = 148.0
+offset_right = 502.2
+offset_bottom = 201.0
+
+[node name="MapPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.1
+anchor_right = 0.94
+anchor_bottom = 0.7
+offset_right = 0.32
+offset_bottom = -0.32
+
+[node name="Label" type="Label" parent="MapPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 20.0
+text = "este es el mapa"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.8
+anchor_right = 0.4
+anchor_bottom = 0.918
+offset_left = 1.0
+offset_right = -255.0
+offset_bottom = -67.96
+scale = Vector2(5, 5)
+alignment = 1
+
+[node name="Control3" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer/Control3"]
+layout_mode = 0
+offset_left = 56.6
+offset_top = -11.8
+offset_right = 72.6
+offset_bottom = 4.2
+scale = Vector2(2, 2)
+action_mode = 0
+texture_normal = ExtResource("3_6bfta")
+texture_pressed = ExtResource("3_6bfta")
+texture_hover = ExtResource("3_6bfta")
+texture_disabled = ExtResource("3_6bfta")
+texture_focused = ExtResource("3_6bfta")
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer/Control"]
+layout_mode = 0
+offset_left = -78.0
+offset_top = 22.2
+offset_right = -62.0
+offset_bottom = 39.2
+rotation = 4.71239
+scale = Vector2(2, 2)
+action_mode = 0
+texture_normal = ExtResource("2_akokx")
+texture_pressed = ExtResource("2_akokx")
+texture_hover = ExtResource("2_akokx")
+texture_disabled = ExtResource("2_akokx")
+texture_focused = ExtResource("2_akokx")
+
+[node name="Control2" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer/Control2"]
+layout_mode = 0
+offset_left = -5.2
+offset_top = -10.0
+offset_right = 10.8
+offset_bottom = 7.0
+rotation = 1.5708
+scale = Vector2(2, 2)
+action_mode = 0
+texture_normal = ExtResource("2_akokx")
+texture_pressed = ExtResource("2_akokx")
+texture_hover = ExtResource("2_akokx")
+texture_disabled = ExtResource("2_akokx")
+texture_focused = ExtResource("2_akokx")
+
+[connection signal="pressed" from="HBoxContainer/Control3/TextureButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Control/TextureButton" to="." method="_on_left_button_pressed"]
+[connection signal="button_up" from="HBoxContainer/Control2/TextureButton" to="." method="_on_right_button_pressed"]

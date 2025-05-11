@@ -1,53 +1,53 @@
 {
-    "rooms": {
-      "0": {
-        "startpos": { "x": 0, "y": 0, "direction": true },
-        "portals": [
-          {
-            "room_id": 1,
-            "area": {
-              "type": true,
-              "thickness": 1,
-              "coords": { "x1": 15, "y1": 4, "x2": 15, "y2": 5 }
-            }
-          }
-        ],
-        "blocks": {
-          "layer1": {
-            "sky": {
-              "horizontal": [0, 0, 0, 0, 1, 1, 1, 1, 1],
-              "vertical": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-              "custom": []
-            },
-            "dirt": [[0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0], false]
-          },
-          "layer2": {
-            "tree_top": [[0, 0, 0, 0, 1, 0, 0, 0, 0], false],
-            "tree_bottom": [[0, 0, 0, 0, 1, 0, 0, 0, 0], false]
-          }
-        },
-        "npcs": [
-          {
-            "dialog": [
-              "Hola viajero",
-              {
-                "q1": {
-                  "yes": {
-                    "action": "give_item(1)",
-                    "dialog": ["¡Gracias!", "Toma esto"]
-                  },
-                  "no": {
-                    "action": "",
-                    "dialog": ["Vuelve si cambias de opinión"]
-                  }
-                }
-              }
-            ],
-            "item": { "id": 1, "quantity": 1, "condition": "has_item(2)" },
-            "sprite": 0,
-            "position": { "x": 5, "y": 3 }
-          }
-        ]
-      }
-    }
+	"rooms": {
+	  "0": {
+		"startpos": { "x": 0, "y": 0, "direction": true },
+		"portals": [
+		  {
+			"room_id": 1,
+			"area": {
+			  "type": true,
+			  "thickness": 1,
+			  "coords": { "x1": 15, "y1": 4, "x2": 15, "y2": 5 }
+			}
+		  }
+		],
+		"blocks": {
+		  "layer1": {
+			"sky": {
+			  "horizontal": [0, 0, 0, 0, 1, 1, 1, 1, 1],
+			  "vertical": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			  "custom": []
+			},
+			"dirt": [[0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0], false]
+		  },
+		  "layer2": {
+			"tree_top": [[0, 0, 0, 0, 1, 0, 0, 0, 0], false],
+			"tree_bottom": [[0, 0, 0, 0, 1, 0, 0, 0, 0], false]
+		  }
+		},
+		"npcs": [
+		  {
+			"dialog": [
+			  "Hola viajero",
+			  {
+				"q1": {
+				  "yes": {
+					"action": "give_item(1)",
+					"dialog": ["¡Gracias!", "Toma esto"]
+				  },
+				  "no": {
+					"action": "",
+					"dialog": ["Vuelve si cambias de opinión"]
+				  }
+				}
+			  }
+			],
+			"item": { "id": 1, "quantity": 1, "condition": "has_item(2)" },
+			"sprite": 0,
+			"position": { "x": 5, "y": 3 }
+		  }
+		]
+	  }
+	}
   }

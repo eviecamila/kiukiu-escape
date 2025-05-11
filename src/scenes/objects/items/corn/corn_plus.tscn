@@ -10,4 +10,5 @@ script = ExtResource("1_k32mt")
 metadata/item = "corn_plus"
 metadata/special = true
 
+[connection signal="finished" from="Item" to="." method="on_finished"]
 [connection signal="grabbed" from="Item" to="." method="on_grabbed"]

@@ -17,4 +17,7 @@ func on_grabbed() -> void:
 		TipoMejora.SUPER_HUEVO:
 			PlayerData.super_huevo_damage += 1
 			print("El daño del Super Huevo aumentó a ", PlayerData.super_huevo_damage)
-	queue_free() # O alguna forma de desaparecer el item
+
+
+func on_finished() -> void:
+	queue_free()

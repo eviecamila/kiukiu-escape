@@ -6,6 +6,7 @@ signal got
 @onready var item = $Objeto # Asegúrate de que este nodo exista y sea un Label o similar
 
 func _ready():
+	item.nombre = "Ojo de Gatita"
 	update_text() # Actualiza el texto al inicio
 
 func update_text():

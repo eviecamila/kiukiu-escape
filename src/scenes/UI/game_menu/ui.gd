@@ -64,3 +64,6 @@ func respawn():
 
 func _on_teleport(location: String) -> void:
 	emit_signal("teleport", location)
+
+func _input(event: InputEvent) -> void:
+	Meta.update_touching(event)

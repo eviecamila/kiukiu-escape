@@ -8,7 +8,7 @@ func _on_grab_started():
 func on_grabbed() -> void:
 	PlayerData.max_active_super_eggs += 1
 	#print("Ahora puedo lanzar hasta ", PlayerData.max_active_super_eggs, " Super Huevos simultáneamente.")
-	queue_free() # O alguna forma de desaparecer el item
+	
 
 # En el script del jugador (al lanzar el huevo):
 # if PlayerData.puede_lanzar_super_huevo and active_super_eggs < PlayerData.max_active_super_eggs:
@@ -22,3 +22,6 @@ func on_grabbed() -> void:
 # # En el script del jugador (conectado a la señal):
 # func _on_super_huevo_destruido():
 # 	active_super_eggs -= 1
+
+
+func on_finished() -> void:queue_free() # O alguna forma de desaparecer el item
