@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://3oh1q1iuh8c5"]
+
+[ext_resource type="Script" uid="uid://7imip0p8w0vu" path="res://Elements/Checkpoint/checkpoint.gd" id="1_cmuql"]
+[ext_resource type="Texture2D" uid="uid://5qaffikm81lk" path="res://Assets/img/kiu/egg.png" id="2_c2g88"]
+
+[node name="Checkpoint" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_cmuql")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_c2g88")

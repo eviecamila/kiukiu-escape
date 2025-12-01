@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cccr4p7wr71vu"]
+
+[ext_resource type="Script" uid="uid://b7rjpqoyua3ia" path="res://Elements/Misc/Teleporter/portal.gd" id="1_ih04p"]
+[ext_resource type="PackedScene" uid="uid://cy00ggiurflk4" path="res://Elements/Interaction/PreviewButton.tscn" id="2_4elrg"]
+
+[node name="Portal" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ih04p")
+metadata/activation_action = ""
+
+[node name="Origin" type="CollisionShape2D" parent="."]
+
+[node name="Destination" type="Node2D" parent="."]
+
+[node name="PreviewButton" parent="." instance=ExtResource("2_4elrg")]
+
+[connection signal="area_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_exited" from="." to="." method="_on_body_exited"]

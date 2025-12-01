@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5cym120prdj0"]
+
+[ext_resource type="Script" uid="uid://bvpv1441voxow" path="res://Elements/UI/game/game_ui.gd" id="1_7kap3"]
+[ext_resource type="PackedScene" uid="uid://b7gdu5vvnr3vq" path="res://Elements/Levels/1/level.tscn" id="1_l00hv"]
+[ext_resource type="PackedScene" uid="uid://btwpu76wmvm7h" path="res://Elements/Interaction/dialog_player.tscn" id="3_jppqq"]
+[ext_resource type="PackedScene" uid="uid://fpsl8tm3ltdu" path="res://Singletons/FadeCanvas.tscn" id="4_r882g"]
+
+[node name="GameUi" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_7kap3")
+
+[node name="Level" parent="." instance=ExtResource("1_l00hv")]
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+
+[node name="DialogPlayer" parent="." instance=ExtResource("3_jppqq")]
+process_mode = 3
+
+[node name="FadeCanvas" parent="." instance=ExtResource("4_r882g")]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bovcw328vnvdr"]
+
+[ext_resource type="PackedScene" uid="uid://cfnq5ey7daamt" path="res://Elements/Interaction/dialog_area.tscn" id="1_wb4dh"]
+
+[node name="Npc" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="DialogArea" parent="." instance=ExtResource("1_wb4dh")]
+
+[editable path="DialogArea"]

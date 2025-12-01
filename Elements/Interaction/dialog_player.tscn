@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://btwpu76wmvm7h"]
+
+[ext_resource type="Script" uid="uid://npgnjgbhybwx" path="res://Elements/Interaction/dialog_player.gd" id="1_1juo0"]
+[ext_resource type="Texture2D" uid="uid://c74ob4jdehakj" path="res://Assets/UI/grid.png" id="1_u2xxd"]
+
+[node name="DialogPlayer" type="CanvasLayer"]
+script = ExtResource("1_1juo0")
+
+[node name="BG" type="NinePatchRect" parent="."]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.082
+anchor_top = 0.596
+anchor_right = 0.926
+anchor_bottom = 0.874
+offset_left = 0.0399933
+offset_top = -0.120026
+offset_right = -874.28
+offset_bottom = -160.28
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(5, 5)
+texture = ExtResource("1_u2xxd")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Text" type="RichTextLabel" parent="BG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.039
+anchor_top = 0.125
+anchor_right = 0.973
+anchor_bottom = 0.869
+offset_left = -0.0340004
+offset_right = 357.562
+offset_bottom = 55.24
+scale = Vector2(0.35, 0.35)
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

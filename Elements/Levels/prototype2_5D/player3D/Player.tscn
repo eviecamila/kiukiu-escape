@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://dry65chjlwcuy"]
+
+[ext_resource type="Script" uid="uid://cdm24k3xrb7sq" path="res://Elements/Levels/prototype2_5D/player3D/player3D.gd" id="1_ht6wf"]
+[ext_resource type="Texture2D" uid="uid://dpnq811h13n64" path="res://Assets/img/kiu/Kiu idle.png" id="2_mdua5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w50hl"]
+atlas = ExtResource("2_mdua5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vf7th"]
+atlas = ExtResource("2_mdua5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ajfgi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w50hl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w50hl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w50hl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w50hl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vf7th")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="PrismMesh" id="PrismMesh_mdua5"]
+size = Vector3(0.32, 0.001, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ofbg0"]
+size = Vector3(0.32, 0.32, 0.32)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_ht6wf")
+
+[node name="CAM_2_5D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, -0.00103763, 0.390877, 1.41922)
+
+[node name="sprites" type="AnimatedSprite3D" parent="."]
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_ajfgi")
+animation = &"idle"
+frame_progress = 0.827192
+
+[node name="POV" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0355881, 3.74309, 0)
+mesh = SubResource("PrismMesh_mdua5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Hurtbox" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ofbg0")

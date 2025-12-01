@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7gdu5vvnr3vq"]
+
+[ext_resource type="PackedScene" uid="uid://dry65chjlwcuy" path="res://Characters/Player/Player.tscn" id="1_ubwiq"]
+[ext_resource type="PackedScene" uid="uid://3oh1q1iuh8c5" path="res://Elements/Checkpoint/Checkpoint.tscn" id="2_xegy0"]
+
+[node name="Level" type="Node2D"]
+texture_filter = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="Player" parent="." instance=ExtResource("1_ubwiq")]
+
+[node name="Checkpoint" parent="." instance=ExtResource("2_xegy0")]

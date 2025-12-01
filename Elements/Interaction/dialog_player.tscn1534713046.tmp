@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://btwpu76wmvm7h"]
+
+[ext_resource type="Script" uid="uid://npgnjgbhybwx" path="res://Elements/Interaction/dialog_player.gd" id="1_1juo0"]
+[ext_resource type="Texture2D" uid="uid://c74ob4jdehakj" path="res://Assets/UI/grid.png" id="1_u2xxd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1juo0"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DialogPlayer" type="CanvasLayer"]
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 0, 0)
+script = ExtResource("1_1juo0")
+
+[node name="BG" type="NinePatchRect" parent="."]
+texture_filter = 1
+offset_right = 235.0
+offset_bottom = 84.0
+texture = ExtResource("1_u2xxd")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Text" type="Label" parent="."]
+texture_filter = 1
+offset_left = 11.6667
+offset_top = 9.66667
+offset_right = 221.667
+offset_bottom = 58.6667
+text = "a mi me la pelas cara de pi-
+ja peluda"
+label_settings = SubResource("LabelSettings_1juo0")

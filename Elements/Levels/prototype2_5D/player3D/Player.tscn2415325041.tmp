@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dry65chjlwcuy"]
+
+[ext_resource type="Script" uid="uid://dx3fsbjjveq17" path="res://Elements/Levels/prototype2_5D/player3D/player.gd" id="1_ht6wf"]
+[ext_resource type="SpriteFrames" uid="uid://blqhhuavfd4d6" path="res://Elements/Levels/prototype2_5D/player3D/Player.tres" id="2_6mep6"]
+
+[node name="Player" type="RigidBody3D"]
+script = ExtResource("1_ht6wf")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1.39985, 0, 0, 0, 1.39985, 0, 0, 0, 3.40711, 0, 0, 0)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="CharacterBody3D"]
+texture_filter = 0
+sprite_frames = ExtResource("2_6mep6")
+animation = &"attack"

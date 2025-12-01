@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://gaci62hbdawq"]
+
+[ext_resource type="Script" uid="uid://cg84x283cp85f" path="res://Elements/UI/menu.gd" id="1_unn1n"]
+
+[node name="Control" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_unn1n")
+
+[node name="ButtonsContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="button_2d" type="Button" parent="ButtonsContainer"]
+texture_filter = 1
+layout_mode = 2
+offset_left = 402.0
+offset_top = 106.0
+offset_right = 806.0
+offset_bottom = 242.0
+text = "2D PROTOTYPE"
+
+[node name="button_3d" type="Button" parent="ButtonsContainer"]
+texture_filter = 1
+layout_mode = 2
+offset_left = 406.0
+offset_top = 407.0
+offset_right = 804.0
+offset_bottom = 570.0
+text = "3D Prototype
+"
+
+[node name="button_asd" type="Button" parent="ButtonsContainer"]
+texture_filter = 1
+layout_mode = 2
+offset_left = 404.0
+offset_top = 261.0
+offset_right = 807.0
+offset_bottom = 389.0
+text = "2D but in a PC"
+
+[node name="PrototypeContainer" type="Node" parent="."]
+process_mode = 1
+
+[connection signal="pressed" from="ButtonsContainer/button_2d" to="." method="_on_button_2d_pressed"]
+[connection signal="pressed" from="ButtonsContainer/button_3d" to="." method="_on_button_3d_pressed"]
+[connection signal="pressed" from="ButtonsContainer/button_asd" to="." method="_on_button_asd_pressed"]

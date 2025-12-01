@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=3 uid="uid://b7gdu5vvnr3vq"]
+
+[ext_resource type="Script" uid="uid://denbyit5rvse8" path="res://Elements/Levels/1/level.gd" id="1_awg30"]
+[ext_resource type="PackedScene" uid="uid://dry65chjlwcuy" path="res://Characters/Player/Player.tscn" id="1_ubwiq"]
+[ext_resource type="Texture2D" uid="uid://ds2ewhgcnlhh3" path="res://Assets/img/tilesets/tileset.png" id="1_xegy0"]
+[ext_resource type="PackedScene" uid="uid://3oh1q1iuh8c5" path="res://Elements/Checkpoint/Checkpoint.tscn" id="2_xegy0"]
+[ext_resource type="Script" uid="uid://bgcfo436pyl7v" path="res://Elements/Levels/1/cam.gd" id="4_awg30"]
+[ext_resource type="PackedScene" uid="uid://cfnq5ey7daamt" path="res://Elements/Interaction/dialog_area.tscn" id="6_l7w6k"]
+[ext_resource type="PackedScene" uid="uid://cccr4p7wr71vu" path="res://Elements/Misc/Teleporter/portal.tscn" id="7_bdnjb"]
+[ext_resource type="Texture2D" uid="uid://xqf5cmnx3x3l" path="res://Assets/img/buttons/mouse_l.png" id="8_gcxx7"]
+[ext_resource type="PackedScene" uid="uid://cssjoggabest" path="res://Elements/Interaction/NPC/Farmer1.tscn" id="9_ywxly"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o8215"]
+texture = ExtResource("1_xegy0")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+5:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_awg30"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_o8215")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7w6k"]
+size = Vector2(121, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcxx7"]
+size = Vector2(224, 149)
+
+[node name="Level" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_awg30")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -856.0
+offset_top = -384.0
+offset_right = 424.0
+offset_bottom = 336.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1.09738e-05, 0.913554, 0.914292, 1)
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_awg30")
+format = 2
+layer_0/tile_data = PackedInt32Array(983027, 0, 0, 983028, 0, 0, 983029, 0, 0, 983030, 0, 0, 983031, 0, 0, 983032, 0, 0, 983033, 0, 0, 983034, 0, 0, 983035, 0, 0, 983036, 0, 0, 983037, 0, 0, 983038, 0, 0, 983039, 0, 0, 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 0, 0, 917520, 0, 0, 917521, 0, 0, 917522, 0, 0, 917523, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 0, 917527, 0, 0, 917528, 0, 0, 917529, 0, 0, 917530, 0, 0, 917531, 0, 0, 917532, 0, 0, 917533, 0, 0, 917534, 0, 0, 917535, 0, 0, 917536, 0, 0, 917537, 0, 0, 917538, 0, 0, 917539, 0, 0, 917540, 0, 0, 917541, 0, 0, 917542, 0, 0, 917543, 0, 0, 917544, 0, 0, 917545, 0, 0, 917546, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_ubwiq")]
+position = Vector2(640, 360)
+scale = Vector2(3, 3)
+
+[node name="Cam" type="Camera2D" parent="Player"]
+scale = Vector2(0.333333, 0.333333)
+process_callback = 0
+position_smoothing_enabled = true
+script = ExtResource("4_awg30")
+
+[node name="Checkpoint" parent="." instance=ExtResource("2_xegy0")]
+position = Vector2(376, -131)
+scale = Vector2(2, 2)
+
+[node name="DialogArea" parent="." instance=ExtResource("6_l7w6k")]
+metadata/dialogs = ["    [b]Bold Text[/b]    [i]Italic Text[/i]    [color=#FF0000]Red Text[/color]    [center]Centered Text[/center] peluda", "puchaina"]
+
+[node name="CollisionShape2D" parent="DialogArea" index="0"]
+position = Vector2(451, 568)
+shape = SubResource("RectangleShape2D_l7w6k")
+
+[node name="PreviewButton" parent="DialogArea" index="1"]
+position = Vector2(392, 481)
+scale = Vector2(3.56929, 3.56929)
+
+[node name="Portals" type="Node2D" parent="."]
+
+[node name="Portal" parent="Portals" instance=ExtResource("7_bdnjb")]
+position = Vector2(739, 575)
+
+[node name="Origin" parent="Portals/Portal" index="0"]
+position = Vector2(48, 12)
+shape = SubResource("RectangleShape2D_gcxx7")
+
+[node name="Destination" parent="Portals/Portal" index="1"]
+position = Vector2(940, -388)
+
+[node name="PreviewButton" parent="Portals/Portal" index="2"]
+position = Vector2(132, -48)
+scale = Vector2(2.375, 2.375)
+texture = ExtResource("8_gcxx7")
+
+[node name="NPC\'s" type="Node2D" parent="."]
+
+[node name="Pablito" parent="NPC\'s" instance=ExtResource("9_ywxly")]
+position = Vector2(145, 600)
+scale = Vector2(3, 3)
+
+[connection signal="area_exited" from="Portals/Portal" to="." method="_on_portal_area_exited"]
+
+[editable path="DialogArea"]
+[editable path="Portals/Portal"]
+[editable path="NPC\'s/Pablito"]
+[editable path="NPC\'s/Pablito/DialogArea"]
