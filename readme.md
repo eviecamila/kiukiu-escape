@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./assets/kiu/logo.png" style="image-rendering: pixelated; width: 600px;" />
+<img src="./assets/logo.png" style="image-rendering: pixelated; width: 600px;" />
 </p>
 
 NOTES:
