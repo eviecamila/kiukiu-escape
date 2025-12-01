@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2jqodwsfc7w4"]
+[gd_scene load_steps=11 format=3 uid="uid://b2jqodwsfc7w4"]
 
 [ext_resource type="Script" uid="uid://c0dllllum3jn4" path="res://src/scenes/stages/level_manager.gd" id="1_qukwl"]
 [ext_resource type="PackedScene" uid="uid://cd7yl2x0c4ltl" path="res://src/scenes/objects/player/Hen.tscn" id="2_ih7p5"]
@@ -11,9 +11,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6v322"]
 size = Vector2(10, 725)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1yk2"]
-size = Vector2(10, 720)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dli3e"]
 size = Vector2(1280, 10)
@@ -65,10 +62,6 @@ debug_color = Color(0.721573, 0.390079, 0.720596, 0.42)
 position = Vector2(1278, 0)
 collision_layer = 16
 collision_mask = 386
-
-[node name="R_Portal" type="CollisionShape2D" parent="C/Game/SVP/Camera/R_Portal"]
-position = Vector2(45, 360)
-shape = SubResource("RectangleShape2D_u1yk2")
 
 [node name="D_Portal" type="Area2D" parent="C/Game/SVP/Camera"]
 position = Vector2(1278, 0)

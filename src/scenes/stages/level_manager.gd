@@ -38,10 +38,10 @@ var in_menus = false
 @onready var map_inv_menu = $UI/MapMenu
 
 @onready var border_portals = [
-	{"node": $C/Game/SVP/Camera/L_Portal/L_Portal, "direction":"left"},
-	{"node": $C/Game/SVP/Camera/R_Portal/R_Portal, "direction":"right"},
-	{"node":$C/Game/SVP/Camera/D_Portal/D_Portal, "direction":"down"},
-	{"node":$C/Game/SVP/Camera/U_Portal/U_Portal, "direction":"up"}
+	{"node": $C/Game/SVP/Camera/L_Portal/CollisionShape2D, "direction":"left"},
+	{"node": $C/Game/SVP/Camera/R_Portal/CollisionShape2D, "direction":"right"},
+	{"node":$C/Game/SVP/Camera/D_Portal/CollisionShape2D, "direction":"down"},
+	{"node":$C/Game/SVP/Camera/U_Portal/CollisionShape2D, "direction":"up"}
 ]
 func _ready():
 	var debug = PlayerData.debug

@@ -4,8 +4,8 @@ extends Node
 var estar_chingando = not PlayerData.debug
 
 const songs = [
-	"overworld.ogg",
-	"fanfare_loop.ogg"
+	"overworld.wav",
+	"intro.wav"
 ]
 var data:Dictionary ={}
 func _ready():

@@ -1,5 +1,5 @@
 extends Node
-var debug = 1
+var debug = 0
 
 
 signal updated
