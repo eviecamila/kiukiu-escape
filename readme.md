@@ -2,19 +2,28 @@
 <img src="./assets/kiu/logo.png" style="image-rendering: pixelated; width: 600px;" />
 </p>
 
-## Juegalo ya mismo!!! [LINK](https://eviecamila.github.io/kiukiu-escape/)
-## Descarga sus respectivas versiones aqui: [RELEASES](https://github.com/eviecamila/kiukiu-escape/releases/tag/beta)
+NOTES:
+-este juego solo es compatible con PC
+
+## Prueba el prototipo ya mismo!!! [LINK](https://eviecamila.github.io/kiukiu-escape/)
 
 ## Descripción
 
-**KiuKiu's Escape** es un juego en estilo pixelart donde KiuKiu, una gallina valiente y un poco enojada, quiere agarrarse contra la follagallinas de la dev de este juego... Emprende una aventura para escapar de su culia... quise decir, cuidadora. Explora un mundo lleno de prados, tierras rocosas y cárceles misteriosas, todo diseñado con gráficos retro de 16x16 píxeles. ¿Podrás ayudar a KiuKiu a encontrar su libertad?
+**KiuKiu's Escape** es un juego con un estilo mixto (Pixelart / 2.5D), y se espera que su salida oficial sea el 2027. Se bienvenido(a) a acompañar a Kiu en su aventura de regresar a su rancho origen.
 
-Este proyecto combina arte en pixelart con mecánicas de juego simples pero desafiantes, inspiradas en clásicos retro. ¡Prepárate para una experiencia llena de diversión y nostalgia!
 
-## Características
+## Sinopsis
+Algún lugar del sur de México, 203X:
+Kiu es una ave de especie _gallus gallus domesticus_ de origen sonorense, esta tiene antecedentes genéticos particulares que permiten el descubrimiento del sexo biológico desde que son polluelos a traves del patrón de plumas.
 
-- **Arte en pixelart**: Gráficos detallados de 16x16 píxeles, incluyendo tilesets de pasto, tierra, y cárceles.
-- **Protagonista única**: Controla a KiuKiu, una gallina con actitud, diseñada en pixelart con expresiones llenas de personalidad.
+Entre ciertas adversidades, Kiu soportó mas de 40 horas de viaje sin satisfacer sus necesidades básicas (comer, dormir, calor), su destino es ser gallina ponedora en Daisy's Chicks S. A. de C. V., desde joven se le asignó jaula para vivir una crianza intensiva para la producción. Ahora tiene que obedecer las ordenes de mamá Camila, papá Pepe, señor Juan Pablo y señora Karen (unos de los empleados de dicha empresa), aprendiendo a tomar agua, comer alimento y no destruir el lugar.
+
+¿Será Kiu una gallina obediene? ¿Armará Kiu una rebelión en favor de las habitantes de la avícola?
+
+
+## Características de los prototipos
+
+- **Estilo mixto**: Gráficos detallados de 32*32 píxeles, incluyendo tilesets de pasto, tierra, y cárceles en el entorno 2D, y un entorno 2.5D donde podrás cambiar a tercera persona con click derecho.
 - **Entornos variados**: Explora parques, prados y estructuras misteriosas mientras avanzas en la aventura.
 - **Estilo retro**: Inspirado en los juegos clásicos de 8 bits, con un toque moderno.
 
@@ -26,7 +35,8 @@ Este proyecto combina arte en pixelart con mecánicas de juego simples pero desa
 
 ## Agradecimientos
 
-Lo aprendido se lo debo a los siguientes repositorios:
-[Plataformero de GDQuest Demos](https://github.com/gdquest-demos/godot-3-beginner-2d-platformer)
+Lo aprendido se lo debo al trabajo de las siguientes personas:
 
-fun fact: las carceles son lo equivalente a cualquier caseta de santa rosa XDDDD
+[Repositorio - Plataformero de GDQuest Demos](https://github.com/gdquest-demos/godot-3-beginner-2d-platformer)
+
+[Canal YT - Securas](https://www.youtube.com/@rluis)
