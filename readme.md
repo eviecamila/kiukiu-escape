@@ -40,3 +40,11 @@ Lo aprendido se lo debo al trabajo de las siguientes personas:
 [Repositorio - Plataformero de GDQuest Demos](https://github.com/gdquest-demos/godot-3-beginner-2d-platformer)
 
 [Canal YT - Securas](https://www.youtube.com/@rluis)
+
+## 🔗 Licencia y Uso
+
+Todos los archivos FamiTracker (.ftm) en este repositorio están disponibles bajo la licencia **Creative Commons Atribución 4.0 (CC BY 4.0)**.
+
+**¡Esto significa que puedes usarlos y remezclarlos libremente, incluso en proyectos comerciales, siempre y cuando des crédito al autor original!**
+
+* **Ver los términos completos de la licencia:** [LICENSE.md](assets/audio/ftm/license.md)
