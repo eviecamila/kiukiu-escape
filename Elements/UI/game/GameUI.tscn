@@ -12,10 +12,10 @@ script = ExtResource("1_7kap3")
 [node name="Level" parent="." instance=ExtResource("1_l00hv")]
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
-process_mode = 3
+bus = &"SFX"
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
-process_mode = 3
+bus = &"SFX"
 
 [node name="DialogPlayer" parent="." instance=ExtResource("3_jppqq")]
 process_mode = 3

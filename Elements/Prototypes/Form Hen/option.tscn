@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://blsjtd305ohl3"]
+
+[ext_resource type="LabelSettings" uid="uid://c1vsbg8weo3p3" path="res://settings/label_setttings.tres" id="1_n3apf"]
+
+[node name="option" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "option"
+label_settings = ExtResource("1_n3apf")

@@ -225,7 +225,7 @@ position = Vector2(857, 568)
 scale = Vector2(3, 3)
 
 [node name="DialogArea" parent="NPC\'s/Pablito" index="1"]
-metadata/dialogs = ["Buenas, me da un taco de BTS?", "en terminos realistas, aun no concluye el desarrollo", "se vienen cosas grandes banda. sigan viendo", "copyright: EvieK1000a, 2025 "]
+metadata/dialogs = ["Hola, buen dia", "Sabías que presionando Q y E puedes cambiar de canción?", "Y salirte del juego con ESC", "copyright: EvieK1000a, 2025 "]
 
 [node name="Player" parent="." instance=ExtResource("3_gcxx7")]
 position = Vector2(132, 275)

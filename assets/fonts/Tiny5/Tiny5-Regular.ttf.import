@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://dyjxedlanfto8"
-path="res://.godot/imported/Tiny5-Regular.ttf-f035f6a2aecc19c104cc373279eba3b5.fontdata"
+path="res://.godot/imported/Tiny5-Regular.ttf-921e592d570edbc88273fa6a28bb5fa8.fontdata"
 
 [deps]
 
-source_file="res://Assets/Fonts/Tiny5/Tiny5-Regular.ttf"
-dest_files=["res://.godot/imported/Tiny5-Regular.ttf-f035f6a2aecc19c104cc373279eba3b5.fontdata"]
+source_file="res://Assets/fonts/Tiny5/Tiny5-Regular.ttf"
+dest_files=["res://.godot/imported/Tiny5-Regular.ttf-921e592d570edbc88273fa6a28bb5fa8.fontdata"]
 
 [params]
 

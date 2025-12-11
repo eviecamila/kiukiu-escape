@@ -1,20 +1,7 @@
-[gd_scene load_steps=22 format=4 uid="uid://cr3qjhilkgb11"]
+[gd_scene load_steps=19 format=4 uid="uid://cr3qjhilkgb11"]
 
 [ext_resource type="Script" uid="uid://dviywetugisfd" path="res://Elements/Levels/prototype2_5D/library/pc.gd" id="1_g470q"]
 [ext_resource type="PackedScene" uid="uid://b5cym120prdj0" path="res://Elements/UI/game/GameUI.tscn" id="2_pfuxc"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g470q"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_pfuxc"]
-sky_material = SubResource("ProceduralSkyMaterial_g470q")
-
-[sub_resource type="Environment" id="Environment_iiub7"]
-background_mode = 2
-sky = SubResource("Sky_pfuxc")
-tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnh24"]
 
@@ -195,57 +182,59 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_67uxp")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_g470q"]
-viewport_path = NodePath("PC/ScreenVP")
+viewport_path = NodePath("PC_ENTITY/PC/INSERT_SCENE")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dnkxl"]
+size = Vector3(1.0113, 1.00354, 0.697815)
 
 [node name="PC MODE" type="Node3D"]
 process_mode = 3
 script = ExtResource("1_g470q")
+metadata/scene = "res://Elements/Prototypes/Form Hen/Form.tscn"
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 3.24112, 0)
-shadow_enabled = true
+[node name="PC_ENTITY" type="Node3D" parent="."]
+process_mode = 1
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_iiub7")
+[node name="PC" type="Node3D" parent="PC_ENTITY"]
+process_mode = 1
 
-[node name="PC" type="Node3D" parent="."]
-
-[node name="Monitor" type="MeshInstance3D" parent="PC"]
+[node name="Monitor" type="MeshInstance3D" parent="PC_ENTITY/PC"]
 transform = Transform3D(1.33333, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, -0.851986, 1.44553, -1.63368)
 mesh = SubResource("ArrayMesh_ejkw1")
 skeleton = NodePath("")
 
-[node name="PC" type="MeshInstance3D" parent="PC"]
+[node name="PC" type="MeshInstance3D" parent="PC_ENTITY/PC"]
 transform = Transform3D(1.6, 0, 0, 0, 0.570011, 0, 0, 0, 1, -0.851986, 0.758267, -1.73728)
 mesh = SubResource("ArrayMesh_pqhoo")
 skeleton = NodePath("")
 
-[node name="monitor_base" type="MeshInstance3D" parent="PC"]
+[node name="monitor_base" type="MeshInstance3D" parent="PC_ENTITY/PC"]
 transform = Transform3D(0.779785, 0, 0, 0, 0.277804, 0, 0, 0, 0.552314, -0.851986, 1.02648, -1.71607)
 mesh = SubResource("ArrayMesh_6ola4")
 skeleton = NodePath("")
 
-[node name="margin" type="MeshInstance3D" parent="PC"]
+[node name="margin" type="MeshInstance3D" parent="PC_ENTITY/PC"]
 transform = Transform3D(1.04, 0, 0, 0, 0.76815, -0.135446, 0, 0.135446, 0.76815, -0.851986, 1.45447, -1.68441)
 mesh = SubResource("ArrayMesh_qbo3d")
 skeleton = NodePath("")
 
-[node name="ScreenVP" type="SubViewport" parent="PC"]
+[node name="INSERT_SCENE" type="SubViewport" parent="PC_ENTITY/PC"]
+process_mode = 1
 size = Vector2i(1280, 720)
+metadata/scene = "res://Elements/UI/game/GameUI.tscn"
 
-[node name="GameUi" parent="PC/ScreenVP" instance=ExtResource("2_pfuxc")]
+[node name="GameUi" parent="PC_ENTITY/PC/INSERT_SCENE" instance=ExtResource("2_pfuxc")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PC/ScreenVP"]
-
-[node name="Screen" type="Sprite3D" parent="PC"]
+[node name="Screen" type="Sprite3D" parent="PC_ENTITY/PC"]
 transform = Transform3D(-0.07, 1.12298e-08, -1.33832e-08, 1.04091e-08, 0.0886327, -0.0156283, -8.7343e-09, 0.0156283, 0.0886327, -0.860985, 1.51671, -2.04631)
 texture = SubResource("ViewportTexture_g470q")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PC"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.35761)
+[node name="PC2" type="StaticBody3D" parent="PC_ENTITY/PC"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PC_ENTITY/PC/PC2"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.844091, 1.27244, -1.67931)
 shape = SubResource("BoxShape3D_dnkxl")
 
-[node name="CAM" type="Camera3D" parent="."]
+[node name="CAM" type="Camera3D" parent="PC_ENTITY"]
 transform = Transform3D(-1, -7.61939e-09, 8.70901e-08, 0, 0.996195, 0.0871557, -8.74228e-08, 0.0871557, -0.996195, -0.827417, 1.47509, -2.77208)

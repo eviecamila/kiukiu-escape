@@ -6,7 +6,7 @@ extends Control
 @export var prototype_2d: PackedScene = load("res://Elements/UI/game/GameUI.tscn")
 # Escena 3D de ejemplo (ej: CharacterBody3D con cámara 3D)
 @export var prototype_3d: PackedScene = load("res://Elements/Levels/prototype2_5D/Level.tscn")
-@export var prototype_pc: PackedScene = load("res://Elements/Levels/prototype2_5D/library/PC.tscn")
+@export var prototype_pc: PackedScene = load("res://Elements/Prototypes/Form Hen/Form.tscn")
 # --- Variables de Referencia ---
 "res://Elements/Levels/prototype2_5D/"
 # Referencia al nodo contenedor donde se agregará el prototipo (debe ser un hijo de este script)
@@ -22,7 +22,7 @@ var current_prototype: Node = null
 
 # Función llamada cuando se pulsa el botón "2D"
 func _on_button_2d_pressed():
-	load_prototype(prototype_2d)
+	load_prototype(prototype_pc)
 	print("Modo 2D cargado.")
 
 # Función llamada cuando se pulsa el botón "3D"

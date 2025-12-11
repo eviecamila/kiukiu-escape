@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://brjcm8rawofqn"]
+
+[ext_resource type="Script" uid="uid://cf332p5wtvc1x" path="res://Elements/Prototypes/Form Hen/form.gd" id="1_yuru2"]
+[ext_resource type="LabelSettings" uid="uid://c1vsbg8weo3p3" path="res://settings/label_setttings.tres" id="2_v853q"]
+
+[node name="FormCreation" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yuru2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.319946
+offset_bottom = -0.320007
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="AnimationPlayer"]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 37.0
+offset_right = 1267.0
+offset_bottom = 91.0
+text = "LA GALLINITA VOLADORA S.A. DE C.V. ZEIGLER SUITE 7.12.1"
+label_settings = ExtResource("2_v853q")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.15
+anchor_right = 0.9
+anchor_bottom = 0.242
+offset_left = -126.0
+offset_top = -2.00001
+offset_right = 132.88
+offset_bottom = 14.56
+text = "QUESTION"
+label_settings = ExtResource("2_v853q")
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="C1" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 250.0
+offset_right = 150.0
+offset_bottom = 250.0
+
+[node name="C2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -353.0
+offset_top = 250.0
+offset_right = -353.0
+offset_bottom = 250.0
+grow_horizontal = 0
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+bus = &"BGM"

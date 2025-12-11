@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dry65chjlwcuy"]
+[gd_scene load_steps=9 format=3 uid="uid://dry65chjlwcuy"]
 
 [ext_resource type="Script" uid="uid://cdm24k3xrb7sq" path="res://Elements/Levels/prototype2_5D/player3D/player3D.gd" id="1_ht6wf"]
 [ext_resource type="Texture2D" uid="uid://dpnq811h13n64" path="res://Assets/img/kiu/Kiu idle.png" id="2_mdua5"]
+[ext_resource type="Script" uid="uid://k31uxg2k2oj5" path="res://Elements/Levels/prototype2_5D/player3D/ray_cast_3d.gd" id="3_ofbg0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w50hl"]
 atlas = ExtResource("2_mdua5")
@@ -45,7 +46,8 @@ size = Vector3(0.32, 0.001, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ofbg0"]
 size = Vector3(0.32, 0.32, 0.32)
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["player"]]
+collision_mask = 3
 script = ExtResource("1_ht6wf")
 
 [node name="CAM_2_5D" type="Camera3D" parent="."]
@@ -60,11 +62,18 @@ frame_progress = 0.827192
 [node name="POV" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
+[node name="RayCast3D" type="RayCast3D" parent="POV"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, 0.3, 0)
+collision_mask = 3
+hit_from_inside = true
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
+script = ExtResource("3_ofbg0")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0355881, 3.74309, 0)
 mesh = SubResource("PrismMesh_mdua5")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="Hurtbox" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_ofbg0")

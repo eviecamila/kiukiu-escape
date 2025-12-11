@@ -24,30 +24,21 @@ offset_left = 402.0
 offset_top = 106.0
 offset_right = 806.0
 offset_bottom = 242.0
-text = "2D PROTOTYPE"
+scale = Vector2(1, 0.991658)
+text = "ZEIGLER MACHINE PROTOTYPE (ESP)"
 
 [node name="button_3d" type="Button" parent="ButtonsContainer"]
 texture_filter = 1
 layout_mode = 2
 offset_left = 406.0
-offset_top = 407.0
+offset_top = 312.0
 offset_right = 804.0
-offset_bottom = 570.0
+offset_bottom = 475.0
 text = "3D Prototype
 "
-
-[node name="button_asd" type="Button" parent="ButtonsContainer"]
-texture_filter = 1
-layout_mode = 2
-offset_left = 404.0
-offset_top = 261.0
-offset_right = 807.0
-offset_bottom = 389.0
-text = "2D but in a PC"
 
 [node name="PrototypeContainer" type="Node" parent="."]
 process_mode = 1
 
 [connection signal="pressed" from="ButtonsContainer/button_2d" to="." method="_on_button_2d_pressed"]
 [connection signal="pressed" from="ButtonsContainer/button_3d" to="." method="_on_button_3d_pressed"]
-[connection signal="pressed" from="ButtonsContainer/button_asd" to="." method="_on_button_asd_pressed"]
